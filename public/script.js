@@ -946,7 +946,7 @@ async function editQuestion(id) {
     try {
         const question = await fetchAPI(`/api/questions/${id}`);
         
-        // Fill form with question data
+        // Fill the existing add question form with question data
         document.getElementById('question-id').value = question.id;
         document.getElementById('question-type').value = question.type;
         document.getElementById('question-content').innerHTML = question.question;
@@ -983,7 +983,7 @@ async function editQuestion(id) {
             correctAnswerField.className = 'form-group';
             correctAnswerField.innerHTML = `
                 <label for="correct-answer">Resposta Correta:</label>
-                <textarea id="correct-answer" name="correctAnswer" rows="3" required placeholder="Digite a resposta modelo...">${question.correctAnswer}</textarea>
+                <textarea id="correct-answer" name="correctAnswer" rows="3" required placeholder="Digite a resposta modelo...">${question.correctAnswer || ''}</textarea>
             `;
             
             // Insert before explanation field
@@ -1000,7 +1000,7 @@ async function editQuestion(id) {
         // Update preview
         updatePreview();
         
-        // Switch to add question section
+        // Switch to add question section (reusing the existing form)
         showAdminSection('add-question');
         
     } catch (error) {
@@ -1031,6 +1031,12 @@ async function deleteQuestion(id) {
         hideLoading();
     }
 }
+
+
+
+
+
+
 
 function cancelEdit() {
     document.getElementById('question-form').reset();
@@ -1175,6 +1181,8 @@ function setupRichEditor() {
         hiddenInput.value = editor.innerHTML;
     }
 }
+
+
 
 function getOptionNumber(index, type) {
     if (type === 'letters') {
