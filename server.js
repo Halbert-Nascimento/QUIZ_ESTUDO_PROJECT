@@ -204,6 +204,19 @@ app.post('/api/history', (req, res) => {
     }
 });
 
+// API para limpar histórico
+app.delete('/api/history/clear', (req, res) => {
+    try {
+        const success = dataManager.clearHistory();
+        if (!success) {
+            return res.status(500).json({ error: 'Erro ao limpar histórico' });
+        }
+        res.json({ message: 'Histórico limpo com sucesso' });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao limpar histórico' });
+    }
+});
+
 // API para Login
 app.post('/api/login', (req, res) => {
     try {

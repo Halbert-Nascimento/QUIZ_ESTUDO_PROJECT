@@ -944,7 +944,25 @@ body {
     gap: var(--space-sm);
 }
 
+/* Admin Header */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--gray-200);
+}
 
+.admin-header h3 {
+    margin: 0;
+    color: var(--gray-800);
+}
+
+.admin-actions {
+    display: flex;
+    gap: var(--space-sm);
+}
 
 .question-content {
     color: var(--gray-700);

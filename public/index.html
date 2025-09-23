@@ -402,7 +402,15 @@
                     
                     <!-- Questions Management -->
                     <div id="admin-questions" class="admin-section active">
-                        <h3>Lista de Questões</h3>
+                        <div class="admin-header">
+                            <h3>Lista de Questões</h3>
+                            <div class="admin-actions">
+                                <button class="btn btn-outline" onclick="clearHistory()" title="Limpar histórico de testes">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Limpar Histórico
+                                </button>
+                            </div>
+                        </div>
                         <div id="questions-list" class="questions-list">
                             <!-- Questions will be populated by JavaScript -->
                         </div>

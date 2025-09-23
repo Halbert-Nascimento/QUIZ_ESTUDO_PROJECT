@@ -1038,6 +1038,33 @@ async function deleteQuestion(id) {
 
 
 
+async function clearHistory() {
+    const confirmed = confirm('Tem certeza que deseja limpar todo o histórico de testes? Esta ação não pode ser desfeita.');
+    
+    if (!confirmed) {
+        return;
+    }
+    
+    try {
+        showLoading();
+        
+        await fetchAPI('/api/history/clear', {
+            method: 'DELETE'
+        });
+        
+        showToast('Histórico limpo com sucesso!', 'success');
+        
+        // Reload dashboard data to reflect changes
+        loadDashboardData();
+        
+    } catch (error) {
+        showToast('Erro ao limpar histórico', 'error');
+        console.error('Error clearing history:', error);
+    } finally {
+        hideLoading();
+    }
+}
+
 function cancelEdit() {
     document.getElementById('question-form').reset();
     document.getElementById('question-id').value = '';

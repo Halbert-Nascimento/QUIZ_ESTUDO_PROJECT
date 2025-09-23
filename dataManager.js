@@ -238,6 +238,21 @@ class DataManager {
             averageScore
         };
     }
+
+    clearHistory() {
+        try {
+            const data = this.readFile(this.historyFile);
+            if (!data) return false;
+            
+            data.sessions = [];
+            data.nextId = 1;
+            
+            return this.writeFile(this.historyFile, data);
+        } catch (error) {
+            console.error('Erro ao limpar histórico:', error);
+            return false;
+        }
+    }
 }
 
 module.exports = DataManager;
