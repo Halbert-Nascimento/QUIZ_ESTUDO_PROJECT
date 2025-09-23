@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Estudos - Plataforma Interativa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>Quiz de Estudos</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-section="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </button>
+                <button class="nav-btn" data-section="quiz-config">
+                    <i class="fas fa-play"></i> Novo Teste
+                </button>
+                <button class="nav-btn" data-section="history">
+                    <i class="fas fa-history"></i> Histórico
+                </button>
+                <button class="nav-btn" data-section="admin">
+                    <i class="fas fa-cog"></i> Admin
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="dashboard-header">
+                    <h2>Dashboard</h2>
+                    <p>Bem-vindo à sua plataforma de estudos!</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-questions">0</h3>
+                            <p>Questões Disponíveis</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-sessions">0</h3>
+                            <p>Testes Realizados</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="average-score">0%</h3>
+                            <p>Média de Acertos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-correct">0</h3>
+                            <p>Respostas Corretas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Ações Rápidas</h3>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" data-action="start-quiz">
+                            <i class="fas fa-play"></i>
+                            Começar Novo Teste
+                        </button>
+                        <button class="btn btn-secondary" data-action="view-history">
+                            <i class="fas fa-history"></i>
+                            Ver Histórico
+                        </button>
+                        <button class="btn btn-outline" data-action="manage-questions">
+                            <i class="fas fa-edit"></i>
+                            Gerenciar Questões
+                        </button>
+                    </div>
+                </div>
+
+                <div id="no-questions-message" class="empty-state" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Nenhuma questão encontrada!</h3>
+                    <p>Para começar a usar a plataforma, você precisa cadastrar algumas questões.</p>
+                    <button class="btn btn-primary" data-action="manage-questions">
+                        <i class="fas fa-plus"></i>
+                        Cadastrar Primeira Questão
+                    </button>
+                </div>
+            </section>
+
+            <!-- Quiz Configuration Section -->
+            <section id="quiz-config" class="section">
+                <div class="section-header">
+                    <h2>Configurar Teste</h2>
+                    <button class="btn-back" data-section="dashboard">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                </div>
+                
+                <div class="config-form">
+                    <div class="form-group">
+                        <label for="question-count">Número de Questões:</label>
+                        <input type="number" id="question-count" min="1" max="50" value="10">
+                        <small id="max-questions-info">Máximo: 0 questões disponíveis</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tipos de Questões:</label>
+                        <div class="question-type-filter">
+                            <div class="filter-stats">
+                                <span id="multiple-choice-count" class="filter-stat">
+                                    <i class="fas fa-list-ul"></i>
+                                    <span class="count">0</span>
+                                    <span class="label">Múltipla Escolha</span>
+                                </span>
+                                <span id="essay-count" class="filter-stat">
+                                    <i class="fas fa-edit"></i>
+                                    <span class="count">0</span>
+                                    <span class="label">Discursivas</span>
+                                </span>
+                            </div>
+                            
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="question-type-filter" value="multiple-choice" checked>
+                                    <span class="radio-custom"></span>
+                                    <div class="radio-content">
+                                        <strong>Apenas Múltipla Escolha</strong>
+                                        <small>Somente questões de múltipla escolha</small>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="question-type-filter" value="essay">
+                                    <span class="radio-custom"></span>
+                                    <div class="radio-content">
+                                        <strong>Apenas Discursivas</strong>
+                                        <small>Somente questões abertas/discursivas</small>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="question-type-filter" value="mixed">
+                                    <span class="radio-custom"></span>
+                                    <div class="radio-content">
+                                        <strong>Misto</strong>
+                                        <small>Múltipla escolha e discursivas juntas</small>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Modo de Feedback:</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="feedback-mode" value="immediate" checked>
+                                <span class="radio-custom"></span>
+                                <div class="radio-content">
+                                    <strong>Feedback Imediato</strong>
+                                    <small>Mostra se está certo ou errado após cada questão</small>
+                                </div>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="feedback-mode" value="end">
+                                <span class="radio-custom"></span>
+                                <div class="radio-content">
+                                    <strong>Feedback no Final</strong>
+                                    <small>Mostra os resultados apenas ao final do teste</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-large" id="start-quiz-btn">
+                        <i class="fas fa-play"></i>
+                        Iniciar Teste
+                    </button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quiz" class="section">
+                <div class="quiz-header">
+                    <div class="progress-info">
+                        <span id="question-counter">Questão 1 de 10</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-content">
+                    <div class="question-card">
+                        <h3 id="question-text">Carregando questão...</h3>
+                        
+                        <div id="question-options" class="options-container">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+                        
+                        <div id="question-input" class="input-container" style="display: none;">
+                            <textarea placeholder="Digite sua resposta aqui..." id="user-answer"></textarea>
+                        </div>
+                        
+                        <div id="feedback" class="feedback" style="display: none;">
+                            <div class="feedback-content">
+                                <div class="feedback-result">
+                                    <i class="feedback-icon"></i>
+                                    <span class="feedback-text"></span>
+                                </div>
+                                <div class="feedback-explanation" style="display: none;">
+                                    <strong>Explicação:</strong>
+                                    <p class="explanation-text"></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-actions">
+                            <button id="submit-answer" class="btn btn-primary">
+                                Confirmar Resposta
+                            </button>
+                            <button id="next-question" class="btn btn-secondary" style="display: none;">
+                                Próxima Questão
+                            </button>
+                            <button id="finish-quiz" class="btn btn-success" style="display: none;">
+                                Finalizar Teste
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Results Section -->
+            <section id="quiz-results" class="section">
+                <div class="results-header">
+                    <i class="fas fa-trophy results-icon"></i>
+                    <h2>Resultado do Teste</h2>
+                </div>
+                
+                <div class="results-summary">
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <span id="final-score">0%</span>
+                        </div>
+                        <p>Pontuação Final</p>
+                    </div>
+                    
+                    <div class="results-stats">
+                        <div class="result-stat">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span>Corretas: <strong id="correct-count">0</strong></span>
+                        </div>
+                        <div class="result-stat">
+                            <i class="fas fa-times-circle text-error"></i>
+                            <span>Erradas: <strong id="wrong-count">0</strong></span>
+                        </div>
+                        <div class="result-stat">
+                            <i class="fas fa-question-circle text-info"></i>
+                            <span>Total: <strong id="total-count">0</strong></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results-actions">
+                    <button class="btn btn-primary" data-action="start-new-quiz">
+                        <i class="fas fa-redo"></i>
+                        Novo Teste
+                    </button>
+                    <button class="btn btn-secondary" data-action="view-details">
+                        <i class="fas fa-list"></i>
+                        Ver Detalhes
+                    </button>
+                    <button class="btn btn-outline" data-section="dashboard">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </button>
+                </div>
+                
+                <div id="results-details" class="results-details" style="display: none;">
+                    <h3>Detalhes das Respostas</h3>
+                    <div id="detailed-results">
+                        <!-- Detailed results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="section">
+                <div class="section-header">
+                    <h2>Histórico de Testes</h2>
+                    <button class="btn-back" data-section="dashboard">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                </div>
+                
+                <div id="history-content">
+                    <div id="history-loading" class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        Carregando histórico...
+                    </div>
+                    
+                    <div id="history-list" class="history-list">
+                        <!-- History items will be populated by JavaScript -->
+                    </div>
+                    
+                    <div id="no-history" class="empty-state" style="display: none;">
+                        <i class="fas fa-history"></i>
+                        <h3>Nenhum teste realizado ainda</h3>
+                        <p>Comece fazendo seu primeiro teste!</p>
+                        <button class="btn btn-primary" data-section="quiz-config">
+                            <i class="fas fa-play"></i>
+                            Fazer Primeiro Teste
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admin Section -->
+            <section id="admin" class="section">
+                <div class="section-header">
+                    <h2>Painel Administrativo</h2>
+                    <button class="btn-back" data-section="dashboard">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                </div>
+                
+                <!-- Login Form -->
+                <div id="admin-login" class="admin-login">
+                    <div class="login-card">
+                        <div class="login-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Login Administrativo</h3>
+                        </div>
+                        
+                        <form id="login-form" class="login-form">
+                            <div class="form-group">
+                                <label for="username">Usuário:</label>
+                                <input type="text" id="username" name="username" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">Senha:</label>
+                                <input type="password" id="password" name="password" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Entrar
+                            </button>
+                        </form>
+                        
+                        <div class="login-info">
+                            <small>
+                                <i class="fas fa-info-circle"></i>
+                                Usuário padrão: <code>admin</code> / Senha: <code>admin123</code>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Admin Panel -->
+                <div id="admin-panel" class="admin-panel" style="display: none;">
+                    <div class="admin-nav">
+                        <button class="admin-nav-btn active" data-admin-section="questions">
+                            <i class="fas fa-question-circle"></i>
+                            Gerenciar Questões
+                        </button>
+                        <button class="admin-nav-btn" data-admin-section="add-question">
+                            <i class="fas fa-plus"></i>
+                            Adicionar Questão
+                        </button>
+                        <button class="btn btn-outline admin-logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sair
+                        </button>
+                    </div>
+                    
+                    <!-- Questions Management -->
+                    <div id="admin-questions" class="admin-section active">
+                        <h3>Lista de Questões</h3>
+                        <div id="questions-list" class="questions-list">
+                            <!-- Questions will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Add Question -->
+                    <div id="admin-add-question" class="admin-section">
+                        <h3 id="form-title">Adicionar Nova Questão</h3>
+                        
+                        <form id="question-form" class="question-form">
+                            <input type="hidden" id="question-id" name="questionId">
+                            
+                            <div class="form-group">
+                                <label for="question-type">Tipo de Questão:</label>
+                                <select id="question-type" name="type" required>
+                                    <option value="multiple-choice">Múltipla Escolha</option>
+                                    <option value="essay">Discursiva</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="question-content">Enunciado da Questão:</label>
+                                <div class="editor-toolbar">
+                                    <button type="button" class="editor-btn" data-command="bold" title="Negrito">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button type="button" class="editor-btn" data-command="italic" title="Itálico">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button type="button" class="editor-btn" data-command="underline" title="Sublinhado">
+                                        <i class="fas fa-underline"></i>
+                                    </button>
+                                    <span class="editor-separator"></span>
+                                    <button type="button" class="editor-btn" data-command="insertParagraph" title="Novo Parágrafo">
+                                        <i class="fas fa-paragraph"></i>
+                                    </button>
+                                    <button type="button" class="editor-btn" data-command="insertLineBreak" title="Quebra de Linha">
+                                        <i class="fas fa-level-down-alt"></i>
+                                    </button>
+                                </div>
+                                <div id="question-content" class="rich-editor" contenteditable="true" placeholder="Digite o enunciado da questão... Use os botões acima para formatação ou HTML básico como &lt;p&gt;, &lt;b&gt;, &lt;i&gt;"></div>
+                                <input type="hidden" id="question-content-html" name="question">
+                            </div>
+                            
+                            <div id="options-container" class="form-group">
+                                <div class="options-header">
+                                    <label>Opções de Resposta:</label>
+                                    <div class="numbering-options">
+                                        <label class="radio-option-small">
+                                            <input type="radio" name="numbering-type" value="numbers" checked>
+                                            <span class="radio-custom-small"></span>
+                                            <span>Números (1, 2, 3...)</span>
+                                        </label>
+                                        <label class="radio-option-small">
+                                            <input type="radio" name="numbering-type" value="letters">
+                                            <span class="radio-custom-small"></span>
+                                            <span>Letras (a, b, c...)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="options-list" class="options-list">
+                                    <!-- Options will be added dynamically -->
+                                </div>
+                                <button type="button" id="add-option" class="btn btn-outline btn-small">
+                                    <i class="fas fa-plus"></i>
+                                    Adicionar Opção
+                                </button>
+                            </div>
+                            
+                            <div id="question-preview" class="form-group">
+                                <label>Pré-visualização da Questão:</label>
+                                <div class="question-preview-container">
+                                    <div id="preview-question" class="preview-question">
+                                        Digite o enunciado acima para ver a pré-visualização...
+                                    </div>
+                                    <div id="preview-options" class="preview-options">
+                                        <!-- Preview options will be shown here -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="explanation">Explicação (opcional):</label>
+                                <textarea id="explanation" name="explanation" rows="3" placeholder="Explicação sobre a resposta correta..."></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    <span id="submit-btn-text">Salvar Questão</span>
+                                </button>
+                                <button type="button" id="cancel-edit" class="btn btn-secondary" style="display: none;">
+                                    <i class="fas fa-times"></i>
+                                    Cancelar
+                                </button>
+                                <button type="reset" class="btn btn-outline">
+                                    <i class="fas fa-eraser"></i>
+                                    Limpar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
