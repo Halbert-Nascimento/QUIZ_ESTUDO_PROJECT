@@ -2,7 +2,24 @@
 
 Uma aplicação web completa para gerenciar questões de estudo, realizar testes interativos e acompanhar o progresso de aprendizado. Desenvolvida com Node.js, Express e tecnologias web modernas.
 
-## 🚀 Características Principais
+##  Índice
+
+- [Características Principais](#-características-principais)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Instalação e Execução](#-instalação-e-execução)
+- [Primeiro Acesso e Configurações](#-primeiro-acesso-e-configurações)
+- [Cadastrando Questões Manualmente](#cadastrando-questões-manualmente)
+- [Como Usar](#-como-usar)
+- [Características de UX/UI](#-características-de-uxui)
+- [Configuração Avançada](#-configuração-avançada)
+- [Solução de Problemas](#-solução-de-problemas)
+- [Desenvolvimento Futuro](#-desenvolvimento-futuro)
+- [Licença](#-licença)
+- [Contribuições](#-contribuições)
+- [Suporte](#-suporte)
+
+## Características Principais
 
 ### 📊 Dashboard Inteligente
 - Visão geral das estatísticas de estudo
@@ -13,7 +30,8 @@ Uma aplicação web completa para gerenciar questões de estudo, realizar testes
 ### 🎯 Sistema de Quiz Avançado
 - **Questões de Múltipla Escolha**: Com suporte a número variável de opções
 - **Questões Discursivas**: Para respostas abertas e desenvolvimento
-- **Feedback Configurable**: 
+- **Editor de Texto Rico**: Formatação avançada para questões e explicações
+- **Feedback Configurável**: 
   - Imediato (após cada questão)
   - No final (relatório completo)
 - **Seleção Aleatória**: Questões escolhidas randomicamente
@@ -80,53 +98,156 @@ quiz_estudo_project/
 ### Pré-requisitos
 - Node.js (versão 14 ou superior)
 - npm (gerenciador de pacotes)
+- Git (opcional, para clonar o projeto)
 
 ### Passo a Passo
 
-1. **Clone ou baixe o projeto**:
+1. **Clone o repositório**:
+   Abra seu terminal e execute o comando abaixo para clonar o projeto.
    ```bash
-   # Se usando Git
-   git clone [repository-url]
-   cd quiz_estudo_project
-   
-   # Ou extraia os arquivos no diretório
+   git clone https://github.com/Halbert-Nascimento/QUIZ_ESTUDO_PROJECT.git
    ```
 
-2. **Instale as dependências**:
+2. **Acesse o diretório do projeto**:
+   ```bash
+   cd QUIZ_ESTUDO_PROJECT
+   ```
+
+3. **Instale as dependências**:
+   Este comando irá baixar e instalar todos os pacotes necessários para rodar a aplicação.
    ```bash
    npm install
    ```
 
-3. **Inicie o servidor**:
+4. **Inicie o servidor**:
    ```bash
    npm start
-   # ou
-   node server.js
    ```
+   O servidor será iniciado e você verá mensagens de log no terminal.
 
-4. **Acesse a aplicação**:
-   - Abra o navegador em: `http://localhost:3000`
+5. **Acesse a aplicação**:
+   - Abra seu navegador e acesse: `http://localhost:3000`
    - A aplicação estará pronta para uso!
 
 ### Scripts Disponíveis
 
 ```bash
-npm start     # Inicia o servidor de produção
-npm run dev   # Inicia o servidor (mesmo que start)
+npm start        # Inicia o servidor de produção
+npm run dev      # Inicia o servidor (mesmo que start)
+npm run network  # Inicia o servidor para acesso em rede local
 ```
 
-## 👤 Primeiro Acesso
+## 👤 Primeiro Acesso e Configurações
 
 ### Credenciais Padrão
 - **Usuário**: `admin`
 - **Senha**: `admin123`
 
-### Primeiros Passos
-1. **Acesse o Dashboard**: Visualize as estatísticas iniciais (zeradas)
-2. **Entre no Painel Admin**: Use as credenciais padrão
-3. **Cadastre Questões**: Adicione suas primeiras questões
-4. **Faça um Teste**: Configure e realize seu primeiro quiz
-5. **Visualize o Histórico**: Acompanhe seus resultados
+### Modificando Credenciais de Admin
+Para alterar a senha do usuário `admin` ou adicionar novos usuários, você pode editar o arquivo `dataManager.js` antes da primeira inicialização. Se o arquivo `data/users.json` já foi criado, você pode editá-lo diretamente.
+
+**Exemplo de estrutura em `dataManager.js`:**
+```javascript
+// ...
+if (!fs.existsSync(usersFilePath)) {
+    const initialUsers = {
+        admin: {
+            password: 'nova-senha-segura', // Altere aqui
+            role: 'admin'
+        },
+        // Você pode adicionar outros usuários
+        outro_usuario: {
+            password: 'outra-senha',
+            role: 'user' // Role 'user' ainda não tem permissões especiais
+        }
+    };
+    fs.writeFileSync(usersFilePath, JSON.stringify(initialUsers, null, 2));
+}
+// ...
+```
+
+### Cadastrando Questões Manualmente
+Você pode adicionar questões diretamente no arquivo `data/questions.json`. Esta é uma forma rápida de popular o banco de dados sem usar a interface de administração.
+
+**Estrutura Geral do Arquivo `questions.json`:**
+```json
+{
+  "questions": [
+    // Array de objetos de questão (múltipla escolha e discursivas)
+  ],
+  "nextId": 3 // ID a ser usado para a próxima questão cadastrada
+}
+```
+
+**Estrutura para questão de Múltipla Escolha:**
+```json
+{
+  "id": 1,
+  "type": "multiple-choice",
+  "question": "Qual é a capital do Brasil?",
+  "options": [
+    "Rio de Janeiro",
+    "São Paulo",
+    "Brasília",
+    "Salvador"
+  ],
+  "correctAnswer": "Brasília",
+  "explanation": "Brasília foi inaugurada como capital do Brasil em 1960.",
+  "numberingType": "letters",
+  "createdAt": "2025-09-23T20:44:20.264Z"
+}
+```
+
+**Estrutura para questão Discursiva:**
+```json
+{
+  "id": 2,
+  "type": "essay",
+  "question": "Discorra sobre a importância da Revolução Francesa.",
+  "correctAnswer": "A resposta deve abordar os ideais de Liberdade, Igualdade e Fraternidade, a queda do absolutismo e o impacto na política moderna.",
+  "explanation": "A Revolução Francesa foi um marco para o fim do Antigo Regime e a ascensão da burguesia.",
+  "createdAt": "2025-09-23T20:44:20.264Z"
+}
+```
+
+**Exemplo de arquivo `questions.json` completo:**
+```json
+{
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "question": "Qual é a capital do Brasil?",
+      "options": [
+        "Rio de Janeiro",
+        "São Paulo",
+        "Brasília",
+        "Salvador"
+      ],
+      "correctAnswer": "Brasília",
+      "explanation": "Brasília foi inaugurada como capital do Brasil em 1960.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 2,
+      "type": "essay",
+      "question": "Discorra sobre a importância da Revolução Francesa.",
+      "correctAnswer": "A resposta deve abordar os ideais de Liberdade, Igualdade e Fraternidade, a queda do absolutismo e o impacto na política moderna.",
+      "explanation": "A Revolução Francesa foi um marco para o fim do Antigo Regime e a ascensão da burguesia.",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    }
+  ],
+  "nextId": 3
+}
+```
+
+**Importante**:
+- O campo `id` deve ser único para cada questão.
+- O `type` pode ser `"multiple-choice"` ou `"essay"`.
+- `numberingType` é opcional e define o tipo de numeração das opções (ex: "letters" para a, b, c...).
+- O campo `createdAt` deve estar no formato ISO (você pode usar `new Date().toISOString()`).
+- Mantenha o campo `nextId` correto (deve ser maior que o maior ID existente).
 
 ## 📝 Como Usar
 
@@ -137,11 +258,16 @@ npm run dev   # Inicia o servidor (mesmo que start)
    - **Múltipla Escolha**: Para questões com opções fixas
    - **Discursiva**: Para respostas abertas
 3. **Preencha os Campos**:
-   - Enunciado da questão
+   - Enunciado da questão (com suporte ao editor rico)
    - Opções (se múltipla escolha)
    - Resposta correta
    - Explicação (opcional)
-4. **Salve a Questão**
+4. **Use o Editor de Texto Rico**:
+   - **Negrito**, *Itálico* e ~~Tachado~~
+   - Listas numeradas e com marcadores
+   - Títulos e subtítulos
+   - Inserção de links e imagens
+5. **Salve a Questão**
 
 ### Realizando Testes
 
@@ -149,6 +275,7 @@ npm run dev   # Inicia o servidor (mesmo que start)
 2. **Configure o Teste**:
    - Número de questões (até o máximo disponível)
    - Modo de feedback (imediato ou no final)
+   - Utilize filtros para personalizar seu teste (opcional)
 3. **Responda as Questões**:
    - Uma questão por vez
    - Interface adaptável ao tipo
@@ -156,6 +283,19 @@ npm run dev   # Inicia o servidor (mesmo que start)
    - Pontuação final
    - Detalhamento das respostas
    - Salvamento automático no histórico
+
+### Utilizando Filtros de Questões
+
+1. **Na tela de Dashboard ou Admin**:
+   - Utilize a barra de pesquisa para encontrar questões específicas
+   - Filtre por palavras-chave no enunciado ou explicação
+   - Filtre por tipo de questão (múltipla escolha/discursiva)
+2. **Ao configurar um teste**:
+   - Selecione apenas questões de determinado tema
+   - Combine múltiplos critérios para uma seleção refinada
+3. **No painel administrativo**:
+   - Organize questões por data de criação
+   - Encontre rapidamente questões para edição ou revisão
 
 ### Acompanhando Progresso
 
@@ -204,11 +344,46 @@ const initialUsers = {
 ```
 
 ### Personalizando Porta do Servidor
-Defina a variável de ambiente `PORT` ou modifique `server.js`:
+Por padrão, o servidor está configurado para usar a porta 3000. Se desejar alterá-la, modifique o arquivo `server.js`:
 
 ```javascript
 const PORT = process.env.PORT || 3000;
 ```
+
+### Acessando o Projeto em Rede Local
+O servidor está configurado para ser acessível por outras máquinas na mesma rede local, permitindo que outros dispositivos (como smartphones, tablets ou outros computadores) acessem o sistema de quiz:
+
+1. **Inicie o servidor com o comando específico para rede**:
+   ```bash
+   npm run network
+   ```
+   Este comando inicia o servidor vinculado ao endereço `0.0.0.0`, tornando-o acessível por todas as interfaces de rede.
+
+2. **Encontre seu IP na rede local**:
+   ```bash
+   # No Windows
+   ipconfig
+   # Procure pelo IPv4 Address na sua conexão ativa (geralmente WiFi ou Ethernet)
+
+   # No Linux/Mac
+   ifconfig
+   # ou
+   ip addr
+   # Procure pelo inet na interface de rede ativa
+   ```
+
+3. **Acesse pelo navegador em outros dispositivos**:
+   ```
+   http://SEU_IP_LOCAL:3000
+   ```
+   Por exemplo: `http://192.168.1.5:3000`
+
+4. **Importante**: Todos os dispositivos devem estar conectados à mesma rede local (WiFi ou LAN).
+
+5. **Resolvendo problemas de acesso**:
+   - Verifique se não há firewall bloqueando a porta 4444
+   - Certifique-se de que o computador servidor permite conexões na porta 3000
+   - Verifique se o servidor está rodando corretamente com o comando `npm run network`
 
 ### Backup dos Dados
 Os dados ficam no diretório `data/`. Para backup:
@@ -223,7 +398,7 @@ cp -r data/ backup-data-$(date +%Y%m%d)/
 ### Servidor não inicia
 - Verifique se o Node.js está instalado: `node --version`
 - Verifique se as dependências foram instaladas: `npm install`
-- Verifique se a porta 3000 está livre
+- Verifique se a porta 4444 está livre (você pode alterar a porta em `server.js`)
 
 ### Questões não aparecem
 - Verifique se há questões cadastradas no Admin
