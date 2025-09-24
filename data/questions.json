@@ -1,0 +1,622 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "question": "Os testes de invasão (pentests) são práticas estruturadas de avaliação de segurança que simulam ataques reais contra sistemas de informação, com o objetivo de identificar vulnerabilidades, mensurar riscos e propor melhorias defensivas. Diferentemente de ataques criminosos, os pentests seguem<div>&nbsp;metodologias formais que garantem legalidade, ética e reprodutibilidade dos resultados.&nbsp;</div><div><br></div><div>Uma dessas metodologias é o OSSTMM (Open Source Security Testing Methodology Manual), amplamente reconhecida no mercado como referência para a condução sistemática de testes de segurança. O OSSTMM e metodologias correlatas, como o PTES (Penetration Testing Execution Standard), organizam o processo de pentest em fases que se sucedem logicamente, permitindo ao avaliador planejar, executar e documentar a atividade de forma controlada e mensurável.&nbsp;</div><div><br></div><div>Essas fases têm funções distintas: no início, busca-se definir o escopo e compreender as regras de engajamento; em seguida, parte-se para a coleta de informações e mapeamento do alvo; depois, realizam-se varreduras e enumeração de serviços e portas; na sequência, aplicam-se técnicas de exploração de falhas; quando bem-sucedidas, seguem-se etapas de pós-exploração, como escalonamento de privilégios e movimentação lateral; e, por fim, o processo é consolidado na entrega de um relatório técnico, que documenta evidências, impactos e recomendações de mitigação.&nbsp;</div><div><br></div><br><div>A correta compreensão dessa sequência é fundamental para separar o trabalho ético de segurança ofensiva de ataques improvisados, além de garantir que cada fase alimente a seguinte com informações e resultados claros.&nbsp;</div><div><br></div><div>Com base na metodologia, assinale a alternativa que apresenta a sequência correta das fases de um pentest:</div>",
+      "options": [
+        "Reconhecimento - Varredura e Enumeração - Exploração - Pós-exploração - Relatório - Planejamento e Escopo",
+        "Planejamento e Escopo - Exploração - Reconhecimento - Varredura e Enumeração Relatório - Pós-exploração",
+        "Planejamento e Escopo - Reconhecimento - Varredura e Enumeração - Exploração - Pós-exploração - Relatório",
+        "Reconhecimento - Exploração - Varredura e Enumeração - Pós-exploração - Relatório - Escopo",
+        "Escopo - Relatório - Reconhecimento - Exploração - Varredura e Enumeração - Pós-exploração"
+      ],
+      "correctAnswer": "Planejamento e Escopo - Reconhecimento - Varredura e Enumeração - Exploração - Pós-exploração - Relatório",
+      "explanation": "O texto descreve as fases na seguinte ordem: definir o escopo e as regras de engajamento (Planejamento e Escopo), coleta de informações e mapeamento do alvo (Reconhecimento), varreduras e enumeração de serviços e portas , exploração de falhas, pós-exploração, e a entrega de um relatório.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T01:50:19.704Z"
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "question": "Entre as técnicas de engenharia social, o <b>pretexting </b>(ou pretexto) consiste em criar um cenário falso ou assumir uma identidade fictícia para convencer a vítima a revelar informações ou permitir acesso a sistemas. Esse método explora a credibilidade do atacante, que pode se passar por funcionário, fornecedor ou autoridade, sustentando a história com detalhes plausíveis. Diferencia-se de ataques de phishing por não se limitar a mensagens eletrônicas, mas envolver interações pessoais, ligações telefônicas e outros meios.<div><br><div>I — O pretexting é caracterizado pela apresentação de uma identidade falsa ou cenário fabricado para obter informações sigilosas.</div><div><br></div><div>PORQUE</div><div><br></div><div>II — O pretexting se limita exclusivamente ao envio de e-mails fraudulentos em campanhas de phishing.</div><br><div>Assinale a opção correta:</div></div>",
+      "options": [
+        "As asserções I e II são verdadeiras, e II é uma justificativa correta de I.",
+        "As asserções I e II são verdadeiras, mas II não é uma justificativa correta de I.",
+        "A asserção I é verdadeira, e a II é falsa.",
+        "A asserção I é falsa, e a II é verdadeira.",
+        "As asserções I e II são falsas."
+      ],
+      "correctAnswer": "A asserção I é verdadeira, e a II é falsa.",
+      "explanation": "A asserção I é verdadeira, pois o pretexting é a criação de um cenário falso ou identidade fictícia para obter informações sigilosas. A asserção II é falsa, pois o texto afirma que o pretexting se diferencia do phishing por não se limitar a e-mails e envolver outros meios, como interações pessoais e ligações telefônicas.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:26:49.825Z"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "question": "Em qualquer teste de invasão profissional, a etapa de escopo e autorização é crítica para a legalidade e validade do trabalho. Embora o time técnico (como gerentes de Tl ou até o CIO) possa participar da definição do escopo, quem deve assinar o contrato final é uma autoridade formalmente designada pela organização com poder legal para assumir responsabilidades contratuais. Esse \"signing authority\" garante que a consultoria esteja amparada juridicamente e que a empresa esteja oficialmente vinculada ao acordo. Assinaturas de pessoal técnico sem esse poder não são válidas e não protegem o consultor contra riscos legais.&nbsp;<div><br></div><div>Considerando o texto e as boas práticas em testes de invasão, assinale a alternativa correta sobre quem deve assinar o contrato final do escopo do teste.</div>",
+      "options": [
+        "O responsável legal formalmente designado (signing authority).",
+        "O gerente de TI, já que acompanha a execução técnica.",
+        "O CIO, pois é quem normalmente define metodologias e técnicas utilizadas.",
+        "Qualquer membro da equipe de help-desk, desde que participe da equipe de TI.",
+        "O auditor interno, pois acompanha rotinas de conformidade da empresa."
+      ],
+      "correctAnswer": "O responsável legal formalmente designado (signing authority).",
+      "explanation": "O texto afirma que a assinatura do contrato final deve ser feita por uma autoridade formalmente designada com poder legal, conhecida como 'signing authority'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:27:23.988Z"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "question": "No ciclo de um teste de invasão, a fase de reconhecimento pode assumir diferentes formatos. Em alguns contextos, a coleta de informações deve ser feita de forma silenciosa, sem que o alvo perceba qualquer interação. Esse tipo de abordagem evita levantar alertas em sistemas de monitoramento ou registros de log. Diferente de técnicas ativas, que enviam pacotes e sondas diretamente ao dispositivo, há métodos que exploram fontes abertas e análise indireta de tráfego, de modo a minimizar o risco de detecção pelo alvo. Essa distinção entre reconhecimento passivo e ativo é fundamental para definir a estratégia de ataque em um pentest.&nbsp;<div><br></div><div>Considerando o texto-base e os conceitos estudados em segurança ofensiva, assinale a alternativa que indica corretamente o tipo de reconhecimento mais adequado quando é imperativo que o alvo não perceba a atividade de coleta de informações.</div>",
+      "options": [
+        "Reconhecimento ativo, pois envia pacotes diretamente ao alvo para mapear serviços expostos.",
+        "Reconhecimento passivo, pois utiliza apenas fontes abertas ou tráfego indireto, evitando interação direta com o alvo.",
+        "Reconhecimento de rede, pois sempre envolve o envio de pacotes ICMP ou TCP ao dispositivo alvo.",
+        "Reconhecimento baseado em páginas web, pois analisa exclusivamente conteúdo HTML disponível publicamente.",
+        "Reconhecimento híbrido, pois sempre combina técnicas ativas e passivas em qualquer cenário."
+      ],
+      "correctAnswer": "Reconhecimento passivo, pois utiliza apenas fontes abertas ou tráfego indireto, evitando interação direta com o alvo.",
+      "explanation": "O texto descreve que a coleta de informações de forma silenciosa e sem que o alvo perceba a interação é feita por meio de métodos que exploram fontes abertas e análise indireta de tráfego, o que é o conceito de reconhecimento passivo.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:27:12.423Z"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "question": "Durante a preparação de um teste de invasão, um dos documentos mais importantes é o conjunto de Regras de Engajamento (Rules of Engagement - ROE). Esse documento define limites, responsabilidades e expectativas entre o cliente e a equipe de segurança ofensiva. A clareza nesse documento evita riscos jurídicos, danos colaterais e falhas de comunicação durante a execução do pentest. Considerando as melhores práticas em segurança ofensiva, avalie as afirmações a seguir sobre os elementos que devem obrigatoriamente constar nas Regras de Engajamento (ROE):<br><br>I. Um cronograma detalhado com as fases e prazos previstos para o teste.<br>II. Revisão de leis específicas que regem o alvo e que podem impactar a condução do teste.<br>III. Lista de organizações semelhantes já avaliadas anteriormente, como referência comparativa.<br>IV. Relação completa dos principais concorrentes do cliente.<br>V. Um mapa técnico minucioso da rede-alvo, preparado pela própria equipe contratante.<br><br>É correto apenas o que se afirma em:",
+      "options": [
+        "I e II",
+        "II e III",
+        "I e V",
+        "III e IV",
+        "IV e V"
+      ],
+      "correctAnswer": "I e II",
+      "explanation": "As Regras de Engajamento (ROE) definem limites, responsabilidades e expectativas. Um cronograma detalhado com as fases e prazos (I) é parte da definição de limites, assim como a revisão de leis específicas que podem impactar a condução do teste (II). As outras opções não são elementos obrigatórios desse documento.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "question": "A atuação de hackers éticos (ethical hackers) é parte fundamental dos programas modernos de segurança ofensiva, pois permite que organizações testem seus controles de forma autorizada e supervisionada. O objetivo é identificar falhas antes que sejam exploradas por agentes maliciosos, garantindo que a organização tenha tempo de corrigi-las e reduzir riscos. Esse processo envolve práticas éticas, jurídicas e técnicas, diferindo completamente da atuação de atacantes maliciosos que exploram vulnerabilidades sem autorização.<br><br>I — O hacker ético caracteriza-se por agir com ações escusas e por realizar acessos autorizados, utilizando técnicas como ataques de ransomware para testar a resiliência da organização.<div><br>PORQUE</div><div><br>II — Uma das marcas do hacker ético é a prática de responsible disclosure, ou seja, a comunicação responsável e autorizada das falhas encontradas, respeitando limites legais e acordos estabelecidos.<br><br>Assinale a opção correta:</div>",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+      "correctAnswer": "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+      "explanation": "A asserção I é falsa, pois o texto afirma que a atuação do hacker ético difere completamente da atuação de atacantes maliciosos, não utilizando ações escusas. A asserção II é verdadeira, pois a comunicação responsável e autorizada das falhas (responsible disclosure) é uma prática do hacker ético.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:27:52.864Z"
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "question": "Nos testes de invasão e também em ataques reais, o processo seguido pelos atacantes geralmente é estruturado em fases. Antes de explorar vulnerabilidades ou comprometer sistemas, o adversário precisa conhecer o ambiente-alvo, levantando dados que auxiliem na definição de estratégias. Essa fase inicial envolve atividades como coleta de informações públicas, varreduras de rede, mapeamento de portas e serviços, bem como a análise de perfis de usuários em redes sociais. O objetivo é identificar possíveis pontos fracos que serão explorados em etapas posteriores.&nbsp;<div><br></div><div>Considerando esse contexto, qual é a fase inicial que um atacante realiza ao planejar uma ação para obter acesso ao alvo?</div>",
+      "options": [
+        "Exploitation (Exploração)",
+        "Mapping (Mapeamento)",
+        "Discovery (Descoberta)",
+        "Reconnaissance (Reconhecimento)",
+        "Weaponization (Armazenamento/Preparação de Exploit)"
+      ],
+      "correctAnswer": "Reconnaissance (Reconhecimento)",
+      "explanation": "O texto descreve que a fase inicial, antes da exploração, é a de 'conhecer o ambiente-alvo, levantando dados que auxiliem na definição de estratégias'. Essa fase envolve coleta de informações públicas, varreduras de rede e mapeamento de portas, que são atividades de reconhecimento.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:28:06.040Z"
+    },
+    {
+      "id": 8,
+      "type": "multiple-choice",
+      "question": "O Nmap é uma das ferramentas mais utilizadas por analistas de segurança ofensiva durante a fase de reconhecimento ativo em testes de penetração. Por meio de técnicas de varredura de portas e detecção de serviços, o Nmap permite não apenas identificar hosts ativos e suas respectivas portas abertas, mas também realizar banner grabbing, que é a extração de informações textuais enviadas por serviços, como servidores web ou FTP, quando se conectam. Entretanto, esse tipo de ação pode levantar alertas em sistemas de detecção, além de depender da forma como os serviços foram configurados para responder a requisições. Há opções no Nmap, como -sV para detecção de versão e --script=banner para coleta específica, que podem ou não retornar dados úteis, dependendo do alvo e do contexto de segurança. Durante a execução de uma etapa de reconhecimento ativo em um teste de penetração autorizado, um analista utiliza o Nmap com a intenção de obter informações detalhadas sobre os serviços em execução, incluindo banners e versões. Contudo, ao aplicar as opções -sV e --script=banner, o resultado não apresenta os banners esperados em determinados serviços identificados como abertos.<br><br>I — O parâmetro -script banner do Nmap pode falhar em retornar dados se o serviço estiver configurado para ocultar ou filtrar respostas iniciais a conexões.<div><br>PORQUE</div><div><br>II — O reconhecimento ativo sempre consegue extrair banners dos serviços detectados, desde que as portas estejam abertas e acessíveis.<br><br>Assinale a opção correta:</div>",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+      "correctAnswer": "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+      "explanation": "A asserção I é verdadeira, pois o texto informa que o retorno de dados pode falhar dependendo da configuração do serviço. A asserção II é falsa, pois o texto diz que as opções do Nmap 'podem ou não retornar dados úteis', ou seja, não há garantia de que a extração de banners sempre será bem-sucedida.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:28:41.359Z"
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "question": "Em contratos de testes de invasão (pentest), além de autorização formal e definição de escopo, costuma-se firmar instrumentos jurídicos para resguardar a confidencialidade de dados, códigos, configurações e demais informações sensíveis acessadas durante o trabalho. Tais instrumentos se diferenciam de documentos comerciais (como MSA e SOW) e de cláusulas concorrenciais.<br><br>I - Em um teste de invasão contratado, é indispensável firmar um documento jurídico para proteger a confidencialidade dos dados do cliente antes do início das atividades.<div><br>PORQUE</div><div><br>II - O acordo de confidencialidade (NDA) é o instrumento apropriado para esse fim, pois impõe deveres de sigilo às partes, delimita o que é informação confidencial e prevê penalidades em caso de uso ou divulgação indevidos.<br><br>A respeito dessas asserções, assinale a opção correta:</div>",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+      "correctAnswer": "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+      "explanation": "Ambas as asserções são verdadeiras e a segunda justifica a primeira. O texto afirma que é comum firmar instrumentos jurídicos para resguardar a confidencialidade, e o NDA é o documento apropriado para esse fim, impondo deveres de sigilo.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:29:09.156Z"
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "question": "Na engenharia social, é fundamental distinguir meio e método. O meio refere-se ao canal de comunicação utilizado pelo atacante para abordar a vítima, como e-mail (phishing), SMS (smishing), ligações telefônicas (vishing) ou interação presencial. Já o método diz respeito à tática psicológica empregada: pode envolver pretextos convincentes (pretexting), simulação de identidade (impersonation), intimidação (interrogation) ou apelos emocionais. Essa distinção, muitas vezes negligenciada por profissionais iniciantes, é crucial, pois um mesmo método pode ser aplicado em diferentes meios. Por exemplo: a intimidação pode ocorrer em uma interação física (um auditor falso pressionando um funcionário), mas também pode aparecer em um e-mail de phishing ameaçando o bloqueio imediato de uma conta. Apesar disso, as classificações formais procuram separar a técnica psicológica do canal utilizado, para fins de análise e resposta a incidentes.<br><br>I - Quando um atacante utiliza questionamento intimidador para extrair informações de um colaborador, independentemente do canal utilizado, a técnica é classificada como interrogation, pois o elemento central é a pressão psicológica exercida sobre a vítima.<div><br></div><div>PORQUE</div><div><br>II - Phishing e smishing são exemplos de técnicas de intimidação, já que consistem essencialmente em forçar o usuário a entregar informações por meio de ameaças digitais.<br><br>A respeito dessas asserções, assinale a opção correta:</div>",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+      "correctAnswer": "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+      "explanation": "A asserção I é verdadeira, pois o texto define 'interrogation' como uma tática psicológica que pode ser usada em diferentes meios. A asserção II é falsa, porque o texto classifica phishing e smishing como 'meios' (canais de comunicação), não como 'métodos' (táticas psicológicas).",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:29:28.438Z"
+    },
+    {
+      "id": 11,
+      "type": "multiple-choice",
+      "question": "Ataques \"USB key drop\" exploram comportamento humano: o adversário deixa mídias USB (com rótulos chamativos, por exemplo \"Folha de Pagamento - CONFIDENCIAL\") em locais estratégicos para que alguém as conecte por curiosidade ou senso de dever. A mídia pode conter arquivos maliciosos, links contaminados ou scripts que tentam executar código na máquina da vítima. A técnica frequentemente aparece combinada com outras táticas (ex.: e-mail ou bilhete induzindo o uso do dispositivo). Embora controles modernos (desativação do autorun, AV/EDR, restrições de mídia removível) reduzam o sucesso automático, a prática continua relevante quando encontra lacunas de política, configuração ou treinamento de usuários.<br><br>I- \"USB key drop\" é classificado como ataque de engenharia social, pois depende de que a própria vítima conecte a mídia ao sistema.<div><br>PORQUE<div><br>II - Devido aos mecanismos modernos de proteção, esses ataques deixaram de ser eficazes e praticamente não são mais utilizados.<br><br>Assinale a opção correta:</div></div>",
+      "options": [
+        "As asserções I e II são verdadeiras, e II é uma justificativa correta de I.",
+        "As asserções I e II são verdadeiras, mas II não é uma justificativa correta de I.",
+        "A asserção I é verdadeira, e a II é falsa.",
+        "A asserção I é falsa, e a II é verdadeira.",
+        "As asserções I e II são falsas."
+      ],
+      "correctAnswer": "A asserção I é verdadeira, e a II é falsa.",
+      "explanation": "A asserção I é verdadeira, pois o ataque 'USB key drop' explora o comportamento humano, dependendo da ação da vítima. A asserção II é falsa, pois o texto afirma que a prática 'continua relevante', mesmo com controles modernos.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:29:52.665Z"
+    },
+    {
+      "id": 12,
+      "type": "multiple-choice",
+      "question": "Diferentes metodologias de testes de invasão foram desenvolvidas para atender contextos específicos de segurança da informação. Algumas, como o OSSTMM e o ISSAF, possuem escopo amplo e podem ser aplicadas em auditorias de infraestrutura, redes e sistemas. Outras, como NIST SP 800-115, oferecem diretrizes gerais para planejamento e execução de testes técnicos. Já em ambientes de aplicações web, onde vulnerabilidades como injeção de código, falhas de autenticação e má configuração são predominantes, é necessário um guia especializado que auxilie testadores a identificar, explorar e relatar falhas nesse domínio.<br><br>I- O OSSTMM e o ISSAF são frameworks criadas para pentests em aplicações web, abordando exclusivamente esse tipo de alvo.<div><br>PORQUE<div><br>II - O OWASP Testing Project é a metodologia voltada especificamente para testes de segurança em aplicações web, fornecendo casos de teste práticos alinhados às vulnerabilidades mais comuns.<br><br>Assinale a opção correta:</div></div>",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+      "correctAnswer": "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+      "explanation": "A asserção I é falsa, pois o texto diz que o OSSTMM e o ISSAF possuem 'escopo amplo'. A asserção II é verdadeira, pois o texto menciona que é necessário um guia especializado para aplicações web e o OWASP Testing Project é a metodologia voltada especificamente para esse fim.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:30:22.703Z"
+    },
+    {
+      "id": 13,
+      "type": "multiple-choice",
+      "question": "Em testes de invasão e avaliações de segurança de redes, diferentes modalidades de reconhecimento são empregadas para coletar informações sobre alvos potenciais. Algumas técnicas envolvem apenas a observação de informações públicas e tráfego passivo; outras envolvem o envio deliberado de sondas (probes) e pacotes para o dispositivo ou rede-alvo, com o objetivo de identificar hosts ativos, portas abertas e serviços em execução. Ferramentas como scanners de porta (por exemplo, nmap) e utilitários de varredura ICMP/ARP realizam esse tipo de interação direta com o alvo, o que pode aumentar a probabilidade de detecção pelo defensor. Com base no texto-base, analise as asserções a seguir.<div><br><div>I - O tipo de reconhecimento que envolve o uso de ferramentas que enviam sondas de rede diretamente a um dispositivo-alvo é denominado reconhecimento ativo.</div><div><br></div><div>PORQUE</div><div><br></div><div>II - O reconhecimento ativo implica interação direta com o alvo (por exemplo: varreduras de portas, envio de pacotes ICMP/ARP), o que aumenta a chance de detecção por sistemas de defesa e logs.</div><br><div>A respeito dessas asserções, assinale a opção correta:</div></div>",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+      "correctAnswer": "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+      "explanation": "Ambas as asserções são verdadeiras e a segunda justifica a primeira. O texto define o reconhecimento ativo como o envio de sondas e pacotes diretamente ao alvo (I) e explica que essa interação direta aumenta a chance de detecção (II).",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:41:59.518Z"
+    },
+    {
+      "id": 14,
+      "type": "multiple-choice",
+      "question": "No processo de reconhecimento de redes durante um teste de invasão, o avaliador segue etapas lógicas: inicialmente identifica quais dispositivos estão ativos (hosts up) e, em seguida, obtém informações mais detalhadas que permitem priorizar vetores de ataque. A etapa subsequente costuma transformar hosts \"vivos\" em superfícies de ataque concretas, por meio da coleta de informação sobre portas e serviços em execução, suas versões e configurações, o que orienta varreduras aprofundadas e tentativas de exploração seguras e dirigidas.<div><br><div>I - Após identificar quais dispositivos estão ativos, o próximo passo adequado é a enumeração de <b>serviços</b> (por exemplo: HTTP, SSH, SMB, RDP) expostos nesses hosts.</div><div><br></div><div>PORQUE</div><div><br></div><div>II - A enumeração de serviços permite determinar portas abertas, versões e comportamentos dos serviços, fornecendo dados essenciais para selecionar exploits, validar vetores de ataque e priorizar alvos durante a fase de exploração.</div><br><div>A respeito dessas asserções, assinale a opção correta:</div></div>",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+      "correctAnswer": "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+      "explanation": "Ambas as asserções são verdadeiras. A asserção I está correta pois o texto afirma que após identificar hosts ativos, a etapa subsequente é a coleta de informações sobre portas e serviços. A asserção II justifica esse passo, pois a enumeração de serviços fornece dados essenciais para a exploração.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:32:41.845Z"
+    },
+    {
+      "id": 15,
+      "type": "multiple-choice",
+      "question": "Antes de qualquer tentativa de exploração de vulnerabilidades, a fase de coleta de informações, também conhecida como reconhecimento, é fundamental em qualquer operação de pentest. É nesse momento que o analista mapeia a superfície de ataque, identifica portas e serviços, descobre versões de softwares em uso e analisa o comportamento do alvo no contexto da rede. Essa etapa, quando bem executada, aumenta significativamente a eficácia dos testes subsequentes, reduz o risco de causar interrupções indesejadas e permite que o profissional escolha vetores de ataque mais precisos e silenciosos.&nbsp;<div><br></div><div>Com base nas situações descritas a seguir, identifique a ação que mais representa uma falha na etapa de levantamento de informações e que, por consequência, compromete diretamente a fase de exploração:</div><div><br></div><div>I) Utilização de scripts automatizados sem análise prévia do escopo do\n alvo.&nbsp;</div><div>II) Enumeração de serviços web com coleta de banners e fingerprints.&nbsp;</div><div>III) Escaneamento de rede com definição clara de ranges IP e técnicas de\n evasão.&nbsp;</div><div>IV) Correlação de informações públicas (OSINT) sobre domínios e\n subdomínios.&nbsp;</div><div>V) Testes de exploração iniciados sem mapear previamente os serviços\n rodando no alvo.</div>",
+      "options": [
+        "I – ação correta, pois reduz tempo operacional em campo.",
+        "II – ação incorreta, pois coleta de banner é irrelevante para pentest.",
+        "III – ação incorreta, pois escaneamentos lentos não trazem resultados relevantes.",
+        "IV – ação incorreta, pois OSINT não é necessário para ambientes controlados.",
+        "V – ação incorreta, pois iniciar testes sem reconhecimento adequado  compromete o pentest."
+      ],
+      "correctAnswer": "V – ação incorreta, pois iniciar testes sem reconhecimento adequado  compromete o pentest.",
+      "explanation": "O texto enfatiza que a fase de reconhecimento, que inclui mapear serviços, é fundamental e precede a exploração. Iniciar a exploração sem mapear os serviços (V) é uma falha direta na etapa de levantamento de informações.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:35:08.589Z"
+    },
+    {
+      "id": 16,
+      "type": "multiple-choice",
+      "question": "Os ataques de engenharia social exploram princípios psicológicos universais para manipular o comportamento das vítimas. Em muitos casos, o atacante não depende apenas de falhas técnicas, mas da capacidade de induzir uma resposta rápida e acrítica por parte do alvo. Tais estratégias podem envolver o uso da urgência, da intimidação, do medo, da curiosidade ou do senso de obrigação perante uma figura de autoridade. Considere o seguinte cenário: Sue, funcionária do departamento financeiro, recebe um e-mail supostamente enviado pelo presidente da empresa solicitando que seja emitida uma transferência para um novo fornecedor. No entanto, Sue não reconhece o fornecedor e, ao verificar com o presidente, descobre que ele nunca enviou tal solicitação. O e-mail, portanto, tratava-se de uma tentativa de fraude baseada em manipulação psicológica.&nbsp;<div><br></div><div>Com base nessa situação, qual princípio motivacional da engenharia social o atacante está explorando?</div>",
+      "options": [
+        "Princípio da autoridade",
+        "Princípio do medo",
+        "Princípio da semelhança (likeness)",
+        "Princípio da escassez",
+        "Princípio da prova social (social proof)"
+      ],
+      "correctAnswer": "Princípio da autoridade",
+      "explanation": "O atacante se passa pelo presidente da empresa, uma figura de autoridade, para manipular a vítima. O texto menciona que as estratégias de engenharia social podem envolver o senso de obrigação perante uma figura de autoridade.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:42:16.427Z"
+    },
+    {
+      "id": 17,
+      "type": "multiple-choice",
+      "question": "A Lockheed Martin desenvolveu um modelo estratégico dentro da proposta de Intelligence Driven Defense, voltado à identificação e prevenção de atividades de intrusão cibernética. Esse modelo descreve as etapas que um adversário precisa cumprir para alcançar seus objetivos em um ataque e ficou conhecido como Cyber Kill Chain. Estruturado em sete fases, ele permite que equipes de defesa compreendam melhor o ciclo de vida de um ataque e apliquem medidas de mitigação em cada estágio.&nbsp;<div><br></div><div>Considerando esse modelo, assinale a alternativa que apresenta a sequência correta das fases da Cyber Kill Chain:</div>",
+      "options": [
+        "Reconnaissance - Exploitation - Weaponization - Delivery - Installation - C2 - Actions on Objectives",
+        "Reconnaissance - Weaponization - Delivery - Exploitation - Installation - C2 - Actions on Objectives",
+        "Weaponization - Reconnaissance - Exploitation - Delivery - Installation - C2- Actions on Objectives",
+        "Reconnaissance - Delivery - Weaponization - Exploitation - Installation - C2- Actions on Objectives",
+        "Weaponization - Delivery - Reconnaissance - Exploitation - Installation - Actions on Objectives - C2"
+      ],
+      "correctAnswer": "Reconnaissance - Weaponization - Delivery - Exploitation - Installation - C2 - Actions on Objectives",
+      "explanation": "O modelo Cyber Kill Chain, desenvolvido pela Lockheed Martin, descreve as etapas de um ataque em sete fases. A sequência correta é: Reconnaissance (reconhecimento), Weaponization (armazenamento de exploit), Delivery (entrega), Exploitation (exploração), Installation (instalação), C2 (comando e controle) e Actions on Objectives (ações sobre os objetivos).",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:43:22.070Z"
+    },
+    {
+      "id": 18,
+      "type": "multiple-choice",
+      "question": "Os ataques de engenharia social exploram técnicas de motivação psicológica para influenciar as vítimas e levá-las a tomar decisões precipitadas. Entre essas técnicas estão a <b>escassez</b>, que cria sensação de urgência ao sugerir que um recurso é limitado, e a <b>prova social</b>, que explora o comportamento coletivo para induzir confiança ou conformidade. Ambas podem ser exploradas por atacantes em contextos digitais ou presenciais, desde campanhas de phishing até interações verbais diretas. Compreender essas técnicas é essencial para reconhecer e mitigar riscos. Analise as afirmações a seguir sobre técnicas de motivação usadas em ataques de engenharia social.<br><br>I. A escassez pode ser utilizada para criar sensação de urgência em decisões, mesmo fora de contextos comerciais.<br>II. A prova social influencia a vítima ao demonstrar que um comportamento já foi adotado por várias pessoas.<br>III. A prova social não pode ser aplicada em ataques digitais, pois se restringe a interações presenciais.<br>IV. A escassez e a prova social são frequentemente combinadas para potencializar a manipulação da vítima.<br><br>Assinale a opção correta:",
+      "options": [
+        "I e III",
+        "II e III",
+        "III e IV",
+        "I, II e III",
+        "I, II e IV"
+      ],
+      "correctAnswer": "I, II e IV",
+      "explanation": "A afirmação I é correta, pois a escassez cria uma sensação de urgência. A afirmação II é correta, pois a prova social explora o comportamento coletivo. A afirmação III é incorreta, pois o texto afirma que as técnicas podem ser exploradas em 'contextos digitais ou presenciais'. A afirmação IV é correta, pois a combinação de técnicas de engenharia social é comum para aumentar a eficácia do ataque.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 19,
+      "type": "multiple-choice",
+      "question": "Antes da execução de um teste de invasão, é necessário cumprir as etapas de pré-engajamento (pre-engagement tasks), que garantem o alinhamento entre cliente e equipe técnica, definindo escopo, objetivos, responsabilidades e limites de atuação. Essas atividades visam reduzir riscos legais, manter a comunicação clara entre as partes e registrar formalmente os acordos estabelecidos. Exemplos incluem a criação do Statement of Work (SOW), a assinatura de um Non-Disclosure Agreement (NDA) e a definição de canais de comunicação seguros. Já ações práticas de exploração ou varredura não pertencem a esta etapa, pois fazem parte da execução do teste em si.&nbsp;<div><br></div><div>Considerando esse contexto, qual das opções abaixo <b>não</b> corresponde a uma atividade de pré-engajamento?</div>",
+      "options": [
+        "Criação do Statement of Work (SOW)",
+        "Assinatura de Non-Disclosure Agreement (NDA)",
+        "Estabelecimento de caminhos de comunicação alternativos",
+        "Seleção de alvos por meio de execução de Nmap ou ferramenta similar",
+        "Definição de limites e autorizações formais para o teste"
+      ],
+      "correctAnswer": "Seleção de alvos por meio de execução de Nmap ou ferramenta similar",
+      "explanation": "O texto afirma que ações de 'exploração ou varredura não pertencem a esta etapa, pois fazem parte da execução do teste em si'. A execução de Nmap para selecionar alvos é uma atividade de varredura, portanto, não é uma tarefa de pré-engajamento.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:26:32.540Z"
+    },
+    {
+      "id": 20,
+      "type": "multiple-choice",
+      "question": "No processo de coleta de informações em um teste de invasão, existem técnicas que interagem diretamente com o alvo e outras que utilizam apenas dados disponíveis em fontes abertas, sem contato direto. O uso de informações publicamente acessíveis, como registros de domínios, redes sociais, notícias, motores de busca e repositórios, caracteriza o método chamado Open Source Intelligence (OSINT). Esse processo permite levantar detalhes relevantes para mapear o alvo e definir estratégias de ataque sem gerar alertas nos sistemas defensivos. Com base no texto e nos conceitos estudados em segurança ofensiva, analise as afirmações a seguir sobre métodos de coleta de informações.<br><br>I. O OSINT consiste em utilizar apenas fontes abertas e públicas para coletar e analisar dados sobre o alvo.<br>II. O escaneamento de portas é considerado uma técnica passiva, pois não interage diretamente com o alvo.<br>III. A varredura de vulnerabilidades requer o envio de pacotes ao sistema-alvo, diferindo do conceito de OSINT.<br>IV. O packet crafting cria pacotes personalizados para testar a resposta de sistemas, sendo uma técnica ativa.<br><br>Assinale a opção correta:",
+      "options": [
+        "I e II",
+        "II e III",
+        "III e IV",
+        "I, III e IV",
+        "I, II e IV"
+      ],
+      "correctAnswer": "I, III e IV",
+      "explanation": "A afirmação I está correta, pois define o OSINT. A afirmação II está incorreta, pois o escaneamento de portas é uma técnica ativa. A afirmação III está correta, pois a varredura de vulnerabilidades exige o envio de pacotes, ao contrário do OSINT, que não interage com o alvo. A afirmação IV está correta, pois o 'packet crafting' é uma técnica ativa, que cria e envia pacotes personalizados.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 21,
+      "type": "multiple-choice",
+      "question": "Nos testes de invasão, a quantidade de informação fornecida ao avaliador determina o tipo de abordagem a ser aplicada e a situação que se está simulando. Quando o contratante fornece muitos detalhes (arquitetura, código-fonte, credenciais), o avaliador atua em modo que se aproxima de uma auditoria interna; quando fornece apenas informações parciais, como algumas credenciais ou documentos limitados, o teste assume caráter intermediário; já em situações nas quais o avaliador parte praticamente do zero, o exercício visa reproduzir o ponto de vista de um atacante externo sem acesso privilegiado. Você foi contratado para realizar um teste de invasão e o cliente forneceu apenas um nome de domínio e um endereço IP como informação sobre o alvo. Considerando as classificações padrão de tipos de pentest, qual modalidade o cliente está solicitando?",
+      "options": [
+        "Teste de caixa branca (white-box test)",
+        "Teste de caixa preta (black-box test)",
+        "Teste de caixa cinza (gray-box test)",
+        "Teste de caixa marrom (brown-box test)",
+        "Teste de caixa roxa (purple-box test)"
+      ],
+      "correctAnswer": "Teste de caixa preta (black-box test)",
+      "explanation": "O texto descreve o teste de caixa preta como a modalidade na qual o avaliador parte 'praticamente do zero' e simula a perspectiva de um atacante externo.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 22,
+      "type": "multiple-choice",
+      "question": "Os ataques de engenharia social exploram a confiança e a falta de atenção das pessoas para induzi-las a revelar informações ou executar ações prejudiciais. Entre as variações mais conhecidas está o phishing, que pode ocorrer por e-mail, SMS ou até mesmo por chamadas telefônicas. Quando o golpe é realizado por meio de ligação de voz, geralmente com falsificação de identidade e criação de cenários convincentes, recebe o nome de vishing (voice phishing). O objetivo costuma ser obter credenciais, dados bancários ou informações confidenciais. Diferencia-se de outros termos, como spear phishing (direcionado a indivíduos específicos) e whaling (voltado para executivos de alto escalão). Considerando os diferentes tipos de ataques de engenharia social, analise as afirmações a seguir sobre o voice phishing.<br><br>I. O voice phishing é uma forma de engenharia social realizada por chamadas telefônicas.<br>II. O voice phishing é também chamado de vishing.<br>III. O voice phishing é tecnicamente equivalente ao whaling, que atinge executivos de alto escalão.<br>IV. O voice phishing baseia-se em criar cenários convincentes para induzir a vítima a revelar informações confidenciais.<br><br>Assinale a opção correta:",
+      "options": [
+        "I e III",
+        "II e III",
+        "III e IV",
+        "I, II e IV",
+        "I, II e III"
+      ],
+      "correctAnswer": "I, II e IV",
+      "explanation": "A afirmação I está correta, pois o texto define 'voice phishing' como um golpe por ligação de voz. A afirmação II também está correta, pois o texto afirma que o 'voice phishing' recebe o nome de 'vishing'. A afirmação III é incorreta, pois o texto diferencia 'vishing' de 'whaling'. A afirmação IV é correta, pois o texto descreve o 'vishing' como a criação de cenários convincentes para obter credenciais e dados confidenciais.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 23,
+      "type": "multiple-choice",
+      "question": "Organizações modernas de segurança da informação utilizam diferentes equipes especializadas para simular ataques, defender sistemas e integrar aprendizados. Essas equipes recebem cores como designação para representar seus papéis: algumas focam em simular o comportamento de atacantes reais, explorando vulnerabilidades de forma controlada; outras dedicam-se exclusivamente à defesa, monitorando, detectando e respondendo a incidentes; há ainda as que promovem a integração entre ofensiva e defensiva. Além dessas, existem equipes estruturadas para atuar na resposta formal a incidentes de segurança, geralmente conhecidas como CSIRTS (Computer Security Incident Response Teams). Considerando esse contexto, qual é o grupo de especialistas em cibersegurança e testadores de invasão contratado por uma organização para imitar o comportamento de um agente de ameaça real?",
+      "options": [
+        "Red team",
+        "Blue team",
+        "Purple team",
+        "CSIRT",
+        "Green team"
+      ],
+      "correctAnswer": "Red team",
+      "explanation": "O texto descreve que o 'Red Team' é a equipe que 'foca em simular o comportamento de atacantes reais' e 'explora vulnerabilidades de forma controlada'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 24,
+      "type": "multiple-choice",
+      "question": "Na fase inicial de um teste de invasão, o reconhecimento é usado para levantar informações sobre o alvo. Essa etapa pode ser feita de forma ativa, quando o atacante envia pacotes e sondas diretamente ao sistema, ou de forma passiva, quando a coleta ocorre sem interação direta com o alvo. No reconhecimento passivo, utilizam-se fontes abertas (como motores de busca, redes sociais e bases de dados públicas) ou observação indireta de tráfego, reduzindo significativamente as chances de detecção por sistemas defensivos. Essa distinção é essencial para definir a estratégia de ataque, já que cada método envolve diferentes níveis de risco e visibilidade. Assinale a alternativa que apresenta corretamente o tipo de reconhecimento utilizado quando o objetivo é coletar informações sem ser detectado pelo alvo.",
+      "options": [
+        "Reconhecimento de rede, pois baseia-se no envio de pacotes ICMP ou TCP para identificar dispositivos ativos.",
+        "Reconhecimento ativo, pois depende do envio direto de pacotes e da análise das respostas do sistema.",
+        "Reconhecimento web, pois examina apenas o conteúdo de páginas HTML e links disponíveis.",
+        "Reconhecimento passivo, pois utiliza fontes abertas e observação indireta sem interação direta com o alvo.",
+        "Reconhecimento híbrido, pois sempre combina técnicas de análise passiva e ativa em qualquer situação."
+      ],
+      "correctAnswer": "Reconhecimento passivo, pois utiliza fontes abertas e observação indireta sem interação direta com o alvo.",
+      "explanation": "O texto define o reconhecimento passivo como o método que utiliza 'fontes abertas' ou 'observação indireta de tráfego' para coletar informações sem interação direta com o alvo, o que 'reduzindo significativamente as chances de detecção'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 25,
+      "type": "multiple-choice",
+      "question": "Durante um teste de invasão do tipo gray box, o avaliador precisa intermediar conexões entre o servidor de aplicação web da organização alvo e os navegadores utilizados pelos clientes. Para isso, ferramentas de proxy web específicas podem ser utilizadas no processo de captura, análise e manipulação de requisições e respostas HTTP. Quais das opções a seguir correspondem a ferramentas adequadas para essa finalidade?",
+      "options": [
+        "I. searchsploit",
+        "II. Burp Suite",
+        "III. OWASP ZAP",
+        "IV. Impacket",
+        "V. Empire"
+      ],
+      "correctAnswer": "II e III",
+      "explanation": "O Burp Suite (II) e o OWASP ZAP (III) são ferramentas de proxy web que são amplamente utilizadas para testes de segurança em aplicações web para capturar, analisar e manipular requisições HTTP.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 26,
+      "type": "multiple-choice",
+      "question": "Diversas metodologias de testes de invasão foram desenvolvidas ao longo dos anos para padronizar práticas, garantir consistência e atender demandas específicas de setores regulados. Algumas são de caráter mais amplo, como o OSSTMM, que estabelece padrões para avaliação de segurança em diferentes contextos, enquanto outras têm foco em requisitos específicos de conformidade. No setor financeiro, especialmente em transações com cartões de crédito, surgiram normas que buscam estabelecer requisitos mínimos de segurança para proteger dados sensíveis de titulares e mitigar riscos de fraude. Considerando esse cenário, qual(is) metodologia(s) ou framework(s) está/estão diretamente relacionada(s) à segurança ofensiva, sendo que uma delas foi criada especificamente para atender ao setor de cartões de crédito?",
+      "options": [
+        "ISSAF",
+        "HIPA",
+        "Penetration Testing Framework",
+        "PCI Penetration Testing Guidance",
+        "ISO 32000"
+      ],
+      "correctAnswer": "PCI Penetration Testing Guidance",
+      "explanation": "O texto menciona que surgiram normas para o setor de cartões de crédito e o PCI Penetration Testing Guidance é o guia para testes de invasão que se relaciona diretamente com a segurança desse setor.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 27,
+      "type": "multiple-choice",
+      "question": "Em 2017, diversas empresas e órgãos públicos foram impactados por ataques cibernéticos em escala global. Entre os mais notórios, estavam aqueles que resultaram no bloqueio ou sequestro de informações de usuários finais. Nesses incidentes, os arquivos eram criptografados ou extraídos e, em seguida, os atacantes exigiam pagamento, geralmente em criptomoedas, para restabelecer o acesso ou evitar a divulgação dos dados. Esse tipo de ameaça mostrou-se altamente lucrativo para grupos criminosos e evidenciou a importância de medidas preventivas, como backups regulares e conscientização dos usuários. Considerando as classificações de ataques em segurança da informação, qual tipo corresponde ao cenário descrito?",
+      "options": [
+        "Distributed Denial of Service (DDoS)",
+        "Engenharia Social",
+        "Ransomware",
+        "SQL Injection",
+        "Man-in-The-Middle"
+      ],
+      "correctAnswer": "Ransomware",
+      "explanation": "O ataque descrito, onde os arquivos são criptografados ou sequestrados e um resgate é exigido para a devolução do acesso, é a definição de um ataque de ransomware.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 28,
+      "type": "multiple-choice",
+      "question": "No processo de preparação de um teste de invasão, os profissionais de segurança utilizam diferentes métodos de coleta de informações para mapear o alvo. Entre eles, destaca-se a utilização de fontes públicas e acessíveis a qualquer pessoa, como registros de domínio, redes sociais, motores de busca, notícias e bases de dados abertas. Essa prática, conhecida como Open Source Intelligence (OSINT), permite levantar dados relevantes sem interação direta com o sistema-alvo, auxiliando na definição de superfícies de ataque e reduzindo o risco de detecção. Diferencia-se de técnicas ativas como a varredura de vulnerabilidades ou portas, que interagem diretamente com o ambiente do alvo. A respeito dos métodos de coleta de informações em segurança ofensiva, assinale a alternativa correta.",
+      "options": [
+        "O packet crafting é um método baseado na análise de metadados e registros públicos, sem necessidade de envio de pacotes.",
+        "A varredura de vulnerabilidades consiste em consultar exclusivamente informações públicas para identificar falhas de segurança em sistemas.",
+        "O escaneamento de portas é uma técnica de coleta passiva, pois não interage diretamente com os dispositivos da rede.",
+        "O reconhecimento baseado em OSINT depende exclusivamente de tráfego capturado por sniffers em redes locais.",
+        "A coleta de informações a partir de fontes públicas, como motores de busca e redes sociais, caracteriza o uso de inteligência de código aberto (OSINT)."
+      ],
+      "correctAnswer": "A coleta de informações a partir de fontes públicas, como motores de busca e redes sociais, caracteriza o uso de inteligência de código aberto (OSINT).",
+      "explanation": "O texto descreve o OSINT como a prática de utilizar 'fontes públicas e acessíveis a qualquer pessoa, como registros de domínio, redes sociais, motores de busca, notícias e bases de dados abertas'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 29,
+      "type": "multiple-choice",
+      "question": "No contexto de um teste de invasão, o objetivo nem sempre se limita à identificação de falhas técnicas em redes ou sistemas. Muitas organizações estão igualmente preocupadas com o comportamento humano de seus colaboradores, já que a engenharia social é considerada um dos vetores mais explorados por atacantes em cenários reais. Esse tipo de teste pode incluir desde tentativas de phishing e smishing até abordagens presenciais, avaliando como o fator humano responde a pressões, urgências ou manipulações psicológicas.<br><br>I - Testes de engenharia social fazem parte das metodologias de pentest e permitem avaliar o nível de conscientização e preparação dos funcionários contra ataques que exploram vulnerabilidades humanas.<div><br>PORQUE</div><div><br>II - Testes de rede e de aplicações web também mensuram diretamente a segurança comportamental dos colaboradores, uma vez que a falha em uma aplicação exposta está sempre ligada ao descuido do usuário final.<br><br>A respeito dessas asserções, assinale a opção correta:</div>",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+      "correctAnswer": "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+      "explanation": "A asserção I é verdadeira, pois o texto afirma que testes de engenharia social avaliam como o 'fator humano responde a pressões, urgências ou manipulações psicológicas'. A asserção II é falsa, porque testes de rede e aplicações web focam em falhas técnicas, não mensurando diretamente a segurança comportamental dos colaboradores.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:31:40.377Z"
+    },
+    {
+      "id": 30,
+      "type": "multiple-choice",
+      "question": "Entre os ataques de engenharia social, alguns exploram não apenas a interação verbal ou escrita, mas também a observação física. Um exemplo é o shoulder surfing, técnica em que o atacante obtém informações confidenciais como senhas, dados pessoais (PII) e credenciais ao observar diretamente a tela de um dispositivo (computador, notebook ou celular) ou até o teclado da vítima. Essa prática pode ocorrer em ambientes públicos, como transportes coletivos, cafés ou filas de caixas eletrônicos, onde a proximidade facilita a visualização não autorizada. O objetivo é coletar dados sem que a vítima perceba, explorando falhas de atenção ou descuido.&nbsp;<div><br></div><div>Com base no texto e nos conceitos estudados sobre engenharia social, assinale a alternativa que apresenta corretamente a técnica descrita.</div>",
+      "options": [
+        "Display surfing, pois refere-se à observação direta de telas em locais públicos.",
+        "Screen surfing, técnica associada a capturas de tela por meio de softwares de espionagem.",
+        "Shoulder surfing, pois corresponde à prática de observar informações confidenciais olhando diretamente para a tela ou teclado da vítima.",
+        "Shoulder phishing, caracterizado por tentativas de coleta de informações por meio de chamadas de voz falsas.",
+        "Keylogging, associado ao uso de softwares ou hardwares que registram as teclas digitadas pela vítima."
+      ],
+      "correctAnswer": "Shoulder surfing, pois corresponde à prática de observar informações confidenciais olhando diretamente para a tela ou teclado da vítima.",
+      "explanation": "O texto descreve exatamente a técnica de 'shoulder surfing' como a observação direta da tela de um dispositivo ou do teclado da vítima para obter informações confidenciais.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:35:57.676Z"
+    },
+    {
+      "id": 31,
+      "type": "multiple-choice",
+      "question": "Um teste de invasão só pode ser realizado com <b>autorização formal e documentada</b>, concedida por alguém que tenha legitimidade legal para representar a organização. Essa autorização é normalmente materializada por meio de um contrato ou carta de escopo, assinada por membro da alta gestão, que responde juridicamente pela empresa. Autorizações informais, verbais ou dadas por funcionários sem poder de decisão não são suficientes para proteger o testador nem a organização. A ausência dessa formalização pode caracterizar crime de invasão, mesmo que a intenção seja legítima.&nbsp;<div><br></div><div>Considerando o texto e as boas práticas em segurança ofensiva, assinale a alternativa correta sobre como garantir permissão legal para a execução de um teste de invasão.</div>",
+      "options": [
+        "Solicitar a autorização de um gestor sênior apenas por e-mail, sem documento assinado.",
+        "Solicitar a autorização de um membro da equipe de TI por telefone, desde que registrado.",
+        "Solicitar que um membro da equipe de Tl assine o documento de permissão formal.",
+        "Solicitar que um membro da alta gestão assine o documento formal de autorização.",
+        "Iniciar o teste sem autorização formal, desde que o cliente tenha solicitado verbalmente."
+      ],
+      "correctAnswer": "Solicitar que um membro da alta gestão assine o documento formal de autorização.",
+      "explanation": "O texto enfatiza que a autorização deve ser 'formal e documentada' e assinada por um 'membro da alta gestão, que responde juridicamente pela empresa'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:36:20.881Z"
+    },
+    {
+      "id": 32,
+      "type": "multiple-choice",
+      "question": "Entre as diversas técnicas de ataque, destaca-se o malvertising (\"malicious advertising\"). Nessa prática, criminosos inserem anúncios maliciosos em sites legítimos ou redes de publicidade. Ao clicar no anúncio, o usuário é redirecionado para páginas controladas pelo atacante, que podem explorar vulnerabilidades do navegador ou induzir ao download de malware. Esse ataque é especialmente perigoso porque utiliza a credibilidade de sites conhecidos, confundindo a vítima e tornando difícil a detecção por parte de usuários comuns. Diferencia-se de outras ameaças como o whaling (phishing voltado a executivos de alto escalão), o escalonamento de privilégios (ganho de acesso além do autorizado) e os ataques de negação de serviço (DoS), cujo objetivo é indisponibilizar sistemas.&nbsp;<div><br></div><div>Com base no texto, assinale a alternativa correta que indica o ataque descrito.</div>",
+      "options": [
+        "Whaling, pois consiste em campanhas de phishing direcionadas a executivos.",
+        "Malvertising, pois usa anúncios maliciosos em sites legítimos para redirecionar o usuário a sites controlados por atacantes.",
+        "Escalonamento de privilégios, pois ocorre quando o atacante aumenta seu nível de acesso em um sistema.",
+        "Negação de serviço (DoS), pois visa sobrecarregar um sistema e torná-lo indisponível.",
+        "Phishing tradicional, pois explora apenas mensagens falsas enviadas por e-mail."
+      ],
+      "correctAnswer": "Malvertising, pois usa anúncios maliciosos em sites legítimos para redirecionar o usuário a sites controlados por atacantes.",
+      "explanation": "O texto descreve o 'malvertising' como a prática de inserir 'anúncios maliciosos em sites legítimos' que, ao serem clicados, 'redirecionam o usuário para páginas controladas pelo atacante'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:32:03.978Z"
+    },
+    {
+      "id": 33,
+      "type": "multiple-choice",
+      "question": "A <b>tríade CIA</b> (Confidencialidade, Integridade e Disponibilidade) é um dos fundamentos da Segurança da Informação e serve de base para a análise em testes de invasão. A <b>confidencialidade</b> refere-se à proteção contra acessos não autorizados à informação, garantindo que apenas indivíduos ou sistemas devidamente autenticados e autorizados possam acessá-la. A <b>integridade</b> assegura que os dados não sejam alterados de forma indevida, enquanto a <b>disponibilidade</b> visa garantir que a informação esteja acessível quando necessária aos usuários autorizados. No contexto de pentest, avaliar a confidencialidade significa verificar se mecanismos de controle de acesso, criptografia e segregação de permissões estão corretamente implementados.&nbsp;<div><br></div><div>Com base no texto e nos princípios da tríade CIA, assinale a alternativa correta que melhor descreve o conceito de confidencialidade no contexto de testes de invasão.</div>",
+      "options": [
+        "Prevenir acesso não autorizado à informação.",
+        "Prevenir modificações não autorizadas na informação.",
+        "Garantir que a informação permaneça disponível para acesso autorizado.",
+        "Prevenir o acesso legítimo à informação.",
+        "Garantir redundância para que os dados nunca se percam."
+      ],
+      "correctAnswer": "Prevenir acesso não autorizado à informação.",
+      "explanation": "O texto define a confidencialidade como a 'proteção contra acessos não autorizados à informação'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:36:41.105Z"
+    },
+    {
+      "id": 34,
+      "type": "multiple-choice",
+      "question": "Antes de iniciar qualquer atividade de teste de invasão em uma organização, é fundamental seguir etapas formais de planejamento e conformidade. Atividades como pesquisa preliminar sobre produtos ou infraestrutura, definição do escopo (o que será testado), alocação de orçamento e autorização formal devem ser tratadas no início do trabalho. Em particular, obter autorização escrita para realizar o teste (ter um contrato/termos de autorização e regras de engajamento) é uma exigência legal e ética que protege tanto o cliente quanto o avaliador e precede qualquer ação intrusiva contra sistemas ou pessoas. Analise as afirmações a seguir sobre a ordem de tarefas ao receber a solicitação de realizar um teste de penetração para uma empresa de médio porte que vende peças de motocicleta pela internet.<br><br>I. Pesquisar as ofertas de produtos da organização como primeiro passo, para entender as possíveis superfícies de ataque.<br>II. Determinar o orçamento disponível para o teste como a primeira tarefa a ser executada.<br>III. Identificar o escopo do teste (ativos, limites, métodos permitidos) antes da execução das atividades técnicas.<br>IV. Obter autorização formal para realizar o teste (contrato/ROE/termos de engajamento) antes de qualquer ação intrusiva.<br><br>Assinale a opção correta:",
+      "options": [
+        "I e II",
+        "II e III",
+        "III e IV",
+        "I, II e IV",
+        "IV"
+      ],
+      "correctAnswer": "III e IV",
+      "explanation": "O texto afirma que a 'definição do escopo' e a 'autorização formal' devem ser tratadas no início do trabalho e que a autorização 'precede qualquer ação intrusiva'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z"
+    },
+    {
+      "id": 35,
+      "type": "multiple-choice",
+      "question": "No contexto de consultorias em segurança ofensiva, a formalização contratual é essencial para evitar riscos legais e definir os parâmetros de trabalho. Um dos instrumentos mais comuns é o <b>MSA (Master Service Agreement)</b>, ou Acordo Mestre de Serviços. O MSA estabelece termos gerais de relacionamento entre as partes, como confidencialidade, responsabilidade, prazos e condições para múltiplos projetos futuros. A assinatura desse tipo de contrato geralmente indica a intenção do cliente de firmar uma parceria de longo prazo, não apenas um único teste. Dessa forma, o MSA garante que as futuras contratações ocorram de forma simplificada e com segurança jurídica.&nbsp;<div><br></div><div>Considerando o texto e as boas práticas de formalização de serviços de segurança, assinale a alternativa que melhor descreve a postura adequada quando um cliente solicita a assinatura de um MSA.</div>",
+      "options": [
+        "Encerrar as negociações imediatamente, pois esse tipo de contrato não se aplica a serviços de segurança.",
+        "Alertar a empresa de que o cliente provavelmente tentará entrar com um processo judicial contra a consultoria.",
+        "Informar à empresa que o acordo não irá adiante, já que o cliente não pretende contratar serviços contínuos.",
+        "Entender que a proposta de um MSA demonstra a intenção de engajamento em múltiplos serviços e formalizar o contrato.",
+        "Solicitar ao cliente que substitua o MSA por um contrato de confidencialidade (NDA), pois ele é suficiente para cobrir todas as etapas do trabalho."
+      ],
+      "correctAnswer": "Entender que a proposta de um MSA demonstra a intenção de engajamento em múltiplos serviços e formalizar o contrato.",
+      "explanation": "O texto afirma que o MSA 'estabelece termos gerais de relacionamento... para múltiplos projetos futuros' e que sua assinatura 'geralmente indica a intenção do cliente de firmar uma parceria de longo prazo'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:37:45.535Z"
+    },
+    {
+      "id": 36,
+      "type": "multiple-choice",
+      "question": "Em metodologias de segurança ofensiva, os testes de invasão podem variar conforme o nível de informação fornecido ao avaliador. Essa classificação busca simular cenários diferentes de ataque, aproximando o exercício de pentest da realidade de ameaças externas ou internas. Em alguns casos, o avaliador recebe informações detalhadas sobre a arquitetura de sistemas, simulando um auditor interno. Em outros, o avaliador parte praticamente do zero, simulando um atacante externo que não possui dados privilegiados do ambiente.&nbsp;<div><br></div><div>Considerando esse contexto, qual é o tipo de teste de invasão em que o avaliador inicia com pouquíssimas informações sobre o alvo?</div>",
+      "options": [
+        "White box test (caixa branca)",
+        "Gray box test (caixa cinza)",
+        "Black box test (caixa preta)",
+        "Yellow box test (caixa amarela)",
+        "Purple box test (caixa roxa)"
+      ],
+      "correctAnswer": "Black box test (caixa preta)",
+      "explanation": "O texto descreve o teste de caixa preta como a modalidade em que o avaliador 'parte praticamente do zero, simulando um atacante externo que não possui dados privilegiados do ambiente'.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:38:29.150Z"
+    },
+    {
+      "id": 37,
+      "type": "multiple-choice",
+      "question": "As Regras de Engajamento (ROE) definem os limites e condições sob os quais um teste de invasão será conduzido. Em um teste de <b>caixa-preta</b>, o avaliador não deve ter acesso a informações privilegiadas sobre a rede interna, como mapas, credenciais ou acessos diretos - já que o objetivo é simular a perspectiva de um atacante externo. Além disso, a comunicação entre equipe e cliente deve ocorrer em intervalos regulares, garantindo transparência e permitindo ajustes ou mitigação de riscos durante o processo. A suspensão dos testes em horários de pico, por sua vez, pode ser acordada para reduzir impacto operacional, sem invalidar a metodologia.&nbsp;<div><br></div><div>Considerando o texto e as boas práticas em segurança ofensiva, assinale a alternativa correta sobre o erro cometido na definição das Regras de Engajamento (ROE).</div>",
+      "options": [
+        "Ter solicitado informações internas (mapa da rede, credenciais) contradiz a natureza de um teste de caixa-preta.",
+        "Pausar os testes durante horários de pico torna o processo inválido e não deve ser permitido.",
+        "Deixar a comunicação restrita apenas ao final do teste é incorreto, pois deve haver contato regular com o cliente.",
+        "Nada foi feito incorretamente, já que todos os itens estão de acordo com as boas práticas.",
+        "O uso de pausas invalida o contrato, pois todos os testes devem ser contínuos até a finalização."
+      ],
+      "correctAnswer": "Ter solicitado informações internas (mapa da rede, credenciais) contradiz a natureza de um teste de caixa-preta.",
+      "explanation": "O texto afirma que, em um teste de caixa-preta, o avaliador 'não deve ter acesso a informações privilegiadas sobre a rede interna, como mapas, credenciais ou acessos diretos'. Solicitar essas informações seria um erro na definição das ROE para este tipo de teste.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:38:46.490Z"
+    }
+  ],
+  "nextId": 38
+}
