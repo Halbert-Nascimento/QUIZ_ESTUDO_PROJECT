@@ -4,7 +4,7 @@ const path = require('path');
 const DataManager = require('./dataManager');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4444;
 const dataManager = new DataManager();
 
 // Middleware
@@ -262,10 +262,14 @@ app.use((error, req, res, next) => {
 });
 
 // Iniciar servidor
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Servidor rodando na porta ${PORT}`);
-    console.log(`📝 Acesse a aplicação em: http://localhost:${PORT}`);
+    console.log(`📝 Acesso local: http://localhost:${PORT}`);
+    console.log(`🌐 Acesso externo: http://[SEU_IP]:${PORT}`);
     console.log(`👤 Login admin: username=admin, password=admin123`);
+    console.log(`\n📋 Para descobrir seu IP:`);
+    console.log(`   Windows: ipconfig`);
+    console.log(`   Linux/Mac: ifconfig ou ip addr`);
 });
 
 module.exports = app;
