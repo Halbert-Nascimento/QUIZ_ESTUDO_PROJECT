@@ -794,6 +794,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 30px; /* Espaço para o botão de toggle */
     margin-bottom: var(--space-sm);
 }
 
@@ -903,7 +904,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 400px;
+    min-height: 500px; /* Aumentando a altura para centralizar melhor na página */
+    width: 100%;
+    position: relative; /* Para garantir posicionamento consistente */
 }
 
 .login-card {
@@ -913,6 +916,11 @@ body {
     box-shadow: var(--shadow-lg);
     width: 100%;
     max-width: 400px;
+    margin: 0 auto; /* Centralização horizontal adicional */
+    position: absolute; /* Posicionamento absoluto para centralização precisa */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centralização perfeita */
 }
 
 .login-header {
@@ -929,20 +937,11 @@ body {
 .login-header h3 {
     color: var(--gray-900);
     font-size: var(--font-size-xl);
+    font-weight: 700; /* Mais negrito para melhor visibilidade */
+    margin-bottom: var(--space-md); /* Espaço adicional embaixo */
 }
 
-.login-info {
-    margin-top: var(--space-lg);
-    text-align: center;
-    color: var(--gray-500);
-}
-
-.login-info code {
-    background: var(--gray-100);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    font-family: monospace;
-}
+/* Informações de login removidas conforme solicitado */
 
 .admin-nav {
     display: flex;
@@ -1707,6 +1706,18 @@ body {
     .login-card {
         margin: var(--space-md);
         padding: var(--space-lg);
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        max-width: 90%;
+    }
+    
+    .admin-login {
+        min-height: 350px;
+        padding: var(--space-lg) 0;
+        display: flex;
+        align-items: center;
     }
 }
 
