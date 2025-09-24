@@ -71,7 +71,7 @@
     {
       "id": 5,
       "type": "multiple-choice",
-      "question": "Durante a preparação de um teste de invasão, um dos documentos mais importantes é o conjunto de Regras de Engajamento (Rules of Engagement - ROE). Esse documento define limites, responsabilidades e expectativas entre o cliente e a equipe de segurança ofensiva. A clareza nesse documento evita riscos jurídicos, danos colaterais e falhas de comunicação durante a execução do pentest. Considerando as melhores práticas em segurança ofensiva, avalie as afirmações a seguir sobre os elementos que devem obrigatoriamente constar nas Regras de Engajamento (ROE):<br><br>I. Um cronograma detalhado com as fases e prazos previstos para o teste.<br>II. Revisão de leis específicas que regem o alvo e que podem impactar a condução do teste.<br>III. Lista de organizações semelhantes já avaliadas anteriormente, como referência comparativa.<br>IV. Relação completa dos principais concorrentes do cliente.<br>V. Um mapa técnico minucioso da rede-alvo, preparado pela própria equipe contratante.<br><br>É correto apenas o que se afirma em:",
+      "question": "Durante a preparação de um teste de invasão, um dos documentos mais importantes é o conjunto de Regras de Engajamento (Rules of Engagement - ROE). Esse documento define limites, responsabilidades e expectativas entre o cliente e a equipe de segurança ofensiva. A clareza nesse documento evita riscos jurídicos, danos colaterais e falhas de comunicação durante a execução do pentest.&nbsp;<div><br></div><div>Considerando as melhores práticas em segurança ofensiva, avalie as afirmações a seguir sobre os elementos que devem obrigatoriamente constar nas Regras de Engajamento (ROE):<br><br>I. Um cronograma detalhado com as fases e prazos previstos para o teste.<br>II. Revisão de leis específicas que regem o alvo e que podem impactar a condução do teste.<br>III. Lista de organizações semelhantes já avaliadas anteriormente, como referência comparativa.<br>IV. Relação completa dos principais concorrentes do cliente.<br>V. Um mapa técnico minucioso da rede-alvo, preparado pela própria equipe contratante.<br><br>É correto apenas o que se afirma em:</div>",
       "options": [
         "I e II",
         "II e III",
@@ -82,7 +82,8 @@
       "correctAnswer": "I e II",
       "explanation": "As Regras de Engajamento (ROE) definem limites, responsabilidades e expectativas. Um cronograma detalhado com as fases e prazos (I) é parte da definição de limites, assim como a revisão de leis específicas que podem impactar a condução do teste (II). As outras opções não são elementos obrigatórios desse documento.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:59:51.212Z"
     },
     {
       "id": 6,
@@ -206,7 +207,7 @@
     {
       "id": 13,
       "type": "multiple-choice",
-      "question": "Em testes de invasão e avaliações de segurança de redes, diferentes modalidades de reconhecimento são empregadas para coletar informações sobre alvos potenciais. Algumas técnicas envolvem apenas a observação de informações públicas e tráfego passivo; outras envolvem o envio deliberado de sondas (probes) e pacotes para o dispositivo ou rede-alvo, com o objetivo de identificar hosts ativos, portas abertas e serviços em execução. Ferramentas como scanners de porta (por exemplo, nmap) e utilitários de varredura ICMP/ARP realizam esse tipo de interação direta com o alvo, o que pode aumentar a probabilidade de detecção pelo defensor. Com base no texto-base, analise as asserções a seguir.<div><br><div>I - O tipo de reconhecimento que envolve o uso de ferramentas que enviam sondas de rede diretamente a um dispositivo-alvo é denominado reconhecimento ativo.</div><div><br></div><div>PORQUE</div><div><br></div><div>II - O reconhecimento ativo implica interação direta com o alvo (por exemplo: varreduras de portas, envio de pacotes ICMP/ARP), o que aumenta a chance de detecção por sistemas de defesa e logs.</div><br><div>A respeito dessas asserções, assinale a opção correta:</div></div>",
+      "question": "Em testes de invasão e avaliações de segurança de redes, diferentes modalidades de reconhecimento são empregadas para coletar informações sobre alvos potenciais. Algumas técnicas envolvem apenas a observação de informações públicas e tráfego passivo; outras envolvem o envio deliberado de sondas (probes) e pacotes para o dispositivo ou rede-alvo, com o objetivo de identificar hosts ativos, portas abertas e serviços em execução. Ferramentas como scanners de porta (por exemplo, nmap) e utilitários de varredura ICMP/ARP realizam esse tipo de interação direta com o alvo, o que pode aumentar a probabilidade de detecção pelo defensor.&nbsp;<div><br></div><div>Com base no texto-base, analise as asserções a seguir.<div><br><div>I - O tipo de reconhecimento que envolve o uso de ferramentas que enviam sondas de rede diretamente a um dispositivo-alvo é denominado reconhecimento ativo.</div><div><br></div><div>PORQUE</div><div><br></div><div>II - O reconhecimento ativo implica interação direta com o alvo (por exemplo: varreduras de portas, envio de pacotes ICMP/ARP), o que aumenta a chance de detecção por sistemas de defesa e logs.</div><br><div>A respeito dessas asserções, assinale a opção correta:</div></div></div>",
       "options": [
         "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
         "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
@@ -218,7 +219,7 @@
       "explanation": "Ambas as asserções são verdadeiras e a segunda justifica a primeira. O texto define o reconhecimento ativo como o envio de sondas e pacotes diretamente ao alvo (I) e explica que essa interação direta aumenta a chance de detecção (II).",
       "numberingType": "letters",
       "createdAt": "2025-09-23T20:44:20.264Z",
-      "updatedAt": "2025-09-24T13:41:59.518Z"
+      "updatedAt": "2025-09-24T14:01:04.272Z"
     },
     {
       "id": 14,
@@ -286,12 +287,12 @@
       "explanation": "O modelo Cyber Kill Chain, desenvolvido pela Lockheed Martin, descreve as etapas de um ataque em sete fases. A sequência correta é: Reconnaissance (reconhecimento), Weaponization (armazenamento de exploit), Delivery (entrega), Exploitation (exploração), Installation (instalação), C2 (comando e controle) e Actions on Objectives (ações sobre os objetivos).",
       "numberingType": "letters",
       "createdAt": "2025-09-23T20:44:20.264Z",
-      "updatedAt": "2025-09-24T13:43:22.070Z"
+      "updatedAt": "2025-09-24T14:01:51.011Z"
     },
     {
       "id": 18,
       "type": "multiple-choice",
-      "question": "Os ataques de engenharia social exploram técnicas de motivação psicológica para influenciar as vítimas e levá-las a tomar decisões precipitadas. Entre essas técnicas estão a <b>escassez</b>, que cria sensação de urgência ao sugerir que um recurso é limitado, e a <b>prova social</b>, que explora o comportamento coletivo para induzir confiança ou conformidade. Ambas podem ser exploradas por atacantes em contextos digitais ou presenciais, desde campanhas de phishing até interações verbais diretas. Compreender essas técnicas é essencial para reconhecer e mitigar riscos. Analise as afirmações a seguir sobre técnicas de motivação usadas em ataques de engenharia social.<br><br>I. A escassez pode ser utilizada para criar sensação de urgência em decisões, mesmo fora de contextos comerciais.<br>II. A prova social influencia a vítima ao demonstrar que um comportamento já foi adotado por várias pessoas.<br>III. A prova social não pode ser aplicada em ataques digitais, pois se restringe a interações presenciais.<br>IV. A escassez e a prova social são frequentemente combinadas para potencializar a manipulação da vítima.<br><br>Assinale a opção correta:",
+      "question": "Os ataques de engenharia social exploram técnicas de motivação psicológica para influenciar as vítimas e levá-las a tomar decisões precipitadas. Entre essas técnicas estão a <b>escassez</b>, que cria sensação de urgência ao sugerir que um recurso é limitado, e a <b>prova social</b>, que explora o comportamento coletivo para induzir confiança ou conformidade. Ambas podem ser exploradas por atacantes em contextos digitais ou presenciais, desde campanhas de phishing até interações verbais diretas. Compreender essas técnicas é essencial para reconhecer e mitigar riscos.&nbsp;<div><br></div><div>Analise as afirmações a seguir sobre técnicas de motivação usadas em ataques de engenharia social.<br><br>I. A escassez pode ser utilizada para criar sensação de urgência em decisões, mesmo fora de contextos comerciais.<br>II. A prova social influencia a vítima ao demonstrar que um comportamento já foi adotado por várias pessoas.<br>III. A prova social não pode ser aplicada em ataques digitais, pois se restringe a interações presenciais.<br>IV. A escassez e a prova social são frequentemente combinadas para potencializar a manipulação da vítima.<br><br>Assinale a opção correta:</div>",
       "options": [
         "I e III",
         "II e III",
@@ -302,7 +303,8 @@
       "correctAnswer": "I, II e IV",
       "explanation": "A afirmação I é correta, pois a escassez cria uma sensação de urgência. A afirmação II é correta, pois a prova social explora o comportamento coletivo. A afirmação III é incorreta, pois o texto afirma que as técnicas podem ser exploradas em 'contextos digitais ou presenciais'. A afirmação IV é correta, pois a combinação de técnicas de engenharia social é comum para aumentar a eficácia do ataque.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T14:02:26.631Z"
     },
     {
       "id": 19,
@@ -324,7 +326,7 @@
     {
       "id": 20,
       "type": "multiple-choice",
-      "question": "No processo de coleta de informações em um teste de invasão, existem técnicas que interagem diretamente com o alvo e outras que utilizam apenas dados disponíveis em fontes abertas, sem contato direto. O uso de informações publicamente acessíveis, como registros de domínios, redes sociais, notícias, motores de busca e repositórios, caracteriza o método chamado Open Source Intelligence (OSINT). Esse processo permite levantar detalhes relevantes para mapear o alvo e definir estratégias de ataque sem gerar alertas nos sistemas defensivos. Com base no texto e nos conceitos estudados em segurança ofensiva, analise as afirmações a seguir sobre métodos de coleta de informações.<br><br>I. O OSINT consiste em utilizar apenas fontes abertas e públicas para coletar e analisar dados sobre o alvo.<br>II. O escaneamento de portas é considerado uma técnica passiva, pois não interage diretamente com o alvo.<br>III. A varredura de vulnerabilidades requer o envio de pacotes ao sistema-alvo, diferindo do conceito de OSINT.<br>IV. O packet crafting cria pacotes personalizados para testar a resposta de sistemas, sendo uma técnica ativa.<br><br>Assinale a opção correta:",
+      "question": "No processo de coleta de informações em um teste de invasão, existem técnicas que interagem diretamente com o alvo e outras que utilizam apenas dados disponíveis em fontes abertas, sem contato direto. O uso de informações publicamente acessíveis, como registros de domínios, redes sociais, notícias, motores de busca e repositórios, caracteriza o método chamado Open Source Intelligence (OSINT). Esse processo permite levantar detalhes relevantes para mapear o alvo e definir estratégias de ataque sem gerar alertas nos sistemas defensivos.&nbsp;<div><br></div><div>Com base no texto e nos conceitos estudados em segurança ofensiva, analise as afirmações a seguir sobre métodos de coleta de informações.<br><br>I. O OSINT consiste em utilizar apenas fontes abertas e públicas para coletar e analisar dados sobre o alvo.<br>II. O escaneamento de portas é considerado uma técnica passiva, pois não interage diretamente com o alvo.<br>III. A varredura de vulnerabilidades requer o envio de pacotes ao sistema-alvo, diferindo do conceito de OSINT.<br>IV. O packet crafting cria pacotes personalizados para testar a resposta de sistemas, sendo uma técnica ativa.<br><br>Assinale a opção correta:</div>",
       "options": [
         "I e II",
         "II e III",
@@ -335,7 +337,8 @@
       "correctAnswer": "I, III e IV",
       "explanation": "A afirmação I está correta, pois define o OSINT. A afirmação II está incorreta, pois o escaneamento de portas é uma técnica ativa. A afirmação III está correta, pois a varredura de vulnerabilidades exige o envio de pacotes, ao contrário do OSINT, que não interage com o alvo. A afirmação IV está correta, pois o 'packet crafting' é uma técnica ativa, que cria e envia pacotes personalizados.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T14:02:44.759Z"
     },
     {
       "id": 21,
@@ -357,7 +360,7 @@
     {
       "id": 22,
       "type": "multiple-choice",
-      "question": "Os ataques de engenharia social exploram a confiança e a falta de atenção das pessoas para induzi-las a revelar informações ou executar ações prejudiciais. Entre as variações mais conhecidas está o phishing, que pode ocorrer por e-mail, SMS ou até mesmo por chamadas telefônicas. Quando o golpe é realizado por meio de ligação de voz, geralmente com falsificação de identidade e criação de cenários convincentes, recebe o nome de vishing (voice phishing). O objetivo costuma ser obter credenciais, dados bancários ou informações confidenciais. Diferencia-se de outros termos, como spear phishing (direcionado a indivíduos específicos) e whaling (voltado para executivos de alto escalão). Considerando os diferentes tipos de ataques de engenharia social, analise as afirmações a seguir sobre o voice phishing.<br><br>I. O voice phishing é uma forma de engenharia social realizada por chamadas telefônicas.<br>II. O voice phishing é também chamado de vishing.<br>III. O voice phishing é tecnicamente equivalente ao whaling, que atinge executivos de alto escalão.<br>IV. O voice phishing baseia-se em criar cenários convincentes para induzir a vítima a revelar informações confidenciais.<br><br>Assinale a opção correta:",
+      "question": "Os ataques de engenharia social exploram a confiança e a falta de atenção das pessoas para induzi-las a revelar informações ou executar ações prejudiciais. Entre as variações mais conhecidas está o phishing, que pode ocorrer por e-mail, SMS ou até mesmo por chamadas telefônicas. Quando o golpe é realizado por meio de ligação de voz, geralmente com falsificação de identidade e criação de cenários convincentes, recebe o nome de vishing (voice phishing). O objetivo costuma ser obter credenciais, dados bancários ou informações confidenciais. Diferencia-se de outros termos, como spear phishing (direcionado a indivíduos específicos) e whaling (voltado para executivos de alto escalão).&nbsp;<div><br></div><div>Considerando os diferentes tipos de ataques de engenharia social, analise as afirmações a seguir sobre o voice phishing.<br><br>I. O voice phishing é uma forma de engenharia social realizada por chamadas telefônicas.<br>II. O voice phishing é também chamado de vishing.<br>III. O voice phishing é tecnicamente equivalente ao whaling, que atinge executivos de alto escalão.<br>IV. O voice phishing baseia-se em criar cenários convincentes para induzir a vítima a revelar informações confidenciais.<br><br>Assinale a opção correta:</div>",
       "options": [
         "I e III",
         "II e III",
@@ -368,7 +371,8 @@
       "correctAnswer": "I, II e IV",
       "explanation": "A afirmação I está correta, pois o texto define 'voice phishing' como um golpe por ligação de voz. A afirmação II também está correta, pois o texto afirma que o 'voice phishing' recebe o nome de 'vishing'. A afirmação III é incorreta, pois o texto diferencia 'vishing' de 'whaling'. A afirmação IV é correta, pois o texto descreve o 'vishing' como a criação de cenários convincentes para obter credenciais e dados confidenciais.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T14:03:11.429Z"
     },
     {
       "id": 23,
@@ -424,7 +428,7 @@
     {
       "id": 26,
       "type": "multiple-choice",
-      "question": "Diversas metodologias de testes de invasão foram desenvolvidas ao longo dos anos para padronizar práticas, garantir consistência e atender demandas específicas de setores regulados. Algumas são de caráter mais amplo, como o OSSTMM, que estabelece padrões para avaliação de segurança em diferentes contextos, enquanto outras têm foco em requisitos específicos de conformidade. No setor financeiro, especialmente em transações com cartões de crédito, surgiram normas que buscam estabelecer requisitos mínimos de segurança para proteger dados sensíveis de titulares e mitigar riscos de fraude. Considerando esse cenário, qual(is) metodologia(s) ou framework(s) está/estão diretamente relacionada(s) à segurança ofensiva, sendo que uma delas foi criada especificamente para atender ao setor de cartões de crédito?",
+      "question": "Diversas metodologias de testes de invasão foram desenvolvidas ao longo dos anos para padronizar práticas, garantir consistência e atender demandas específicas de setores regulados. Algumas são de caráter mais amplo, como o OSSTMM, que estabelece padrões para avaliação de segurança em diferentes contextos, enquanto outras têm foco em requisitos específicos de conformidade. No setor financeiro, especialmente em transações com cartões de crédito, surgiram normas que buscam estabelecer requisitos mínimos de segurança para proteger dados sensíveis de titulares e mitigar riscos de fraude.&nbsp;<div><br></div><div>Considerando esse cenário, qual(is) metodologia(s) ou framework(s) está/estão diretamente relacionada(s) à segurança ofensiva, sendo que uma delas foi criada especificamente para atender ao setor de cartões de crédito?</div>",
       "options": [
         "ISSAF",
         "HIPA",
@@ -435,12 +439,13 @@
       "correctAnswer": "PCI Penetration Testing Guidance",
       "explanation": "O texto menciona que surgiram normas para o setor de cartões de crédito e o PCI Penetration Testing Guidance é o guia para testes de invasão que se relaciona diretamente com a segurança desse setor.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T14:03:38.726Z"
     },
     {
       "id": 27,
       "type": "multiple-choice",
-      "question": "Em 2017, diversas empresas e órgãos públicos foram impactados por ataques cibernéticos em escala global. Entre os mais notórios, estavam aqueles que resultaram no bloqueio ou sequestro de informações de usuários finais. Nesses incidentes, os arquivos eram criptografados ou extraídos e, em seguida, os atacantes exigiam pagamento, geralmente em criptomoedas, para restabelecer o acesso ou evitar a divulgação dos dados. Esse tipo de ameaça mostrou-se altamente lucrativo para grupos criminosos e evidenciou a importância de medidas preventivas, como backups regulares e conscientização dos usuários. Considerando as classificações de ataques em segurança da informação, qual tipo corresponde ao cenário descrito?",
+      "question": "Em 2017, diversas empresas e órgãos públicos foram impactados por ataques cibernéticos em escala global. Entre os mais notórios, estavam aqueles que resultaram no bloqueio ou sequestro de informações de usuários finais. Nesses incidentes, os arquivos eram criptografados ou extraídos e, em seguida, os atacantes exigiam pagamento, geralmente em criptomoedas, para restabelecer o acesso ou evitar a divulgação dos dados. Esse tipo de ameaça mostrou-se altamente lucrativo para grupos criminosos e evidenciou a importância de medidas preventivas, como backups regulares e conscientização dos usuários.&nbsp;<div><br></div><div>Considerando as classificações de ataques em segurança da informação, qual tipo corresponde ao cenário descrito?</div>",
       "options": [
         "Distributed Denial of Service (DDoS)",
         "Engenharia Social",
@@ -451,12 +456,13 @@
       "correctAnswer": "Ransomware",
       "explanation": "O ataque descrito, onde os arquivos são criptografados ou sequestrados e um resgate é exigido para a devolução do acesso, é a definição de um ataque de ransomware.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T14:03:52.928Z"
     },
     {
       "id": 28,
       "type": "multiple-choice",
-      "question": "No processo de preparação de um teste de invasão, os profissionais de segurança utilizam diferentes métodos de coleta de informações para mapear o alvo. Entre eles, destaca-se a utilização de fontes públicas e acessíveis a qualquer pessoa, como registros de domínio, redes sociais, motores de busca, notícias e bases de dados abertas. Essa prática, conhecida como Open Source Intelligence (OSINT), permite levantar dados relevantes sem interação direta com o sistema-alvo, auxiliando na definição de superfícies de ataque e reduzindo o risco de detecção. Diferencia-se de técnicas ativas como a varredura de vulnerabilidades ou portas, que interagem diretamente com o ambiente do alvo. A respeito dos métodos de coleta de informações em segurança ofensiva, assinale a alternativa correta.",
+      "question": "No processo de preparação de um teste de invasão, os profissionais de segurança utilizam diferentes métodos de coleta de informações para mapear o alvo. Entre eles, destaca-se a utilização de fontes públicas e acessíveis a qualquer pessoa, como registros de domínio, redes sociais, motores de busca, notícias e bases de dados abertas. Essa prática, conhecida como Open Source Intelligence (OSINT), permite levantar dados relevantes sem interação direta com o sistema-alvo, auxiliando na definição de superfícies de ataque e reduzindo o risco de detecção. Diferencia-se de técnicas ativas como a varredura de vulnerabilidades ou portas, que interagem diretamente com o ambiente do alvo.&nbsp;<div><br></div><div>A respeito dos métodos de coleta de informações em segurança ofensiva, assinale a alternativa correta.</div>",
       "options": [
         "O packet crafting é um método baseado na análise de metadados e registros públicos, sem necessidade de envio de pacotes.",
         "A varredura de vulnerabilidades consiste em consultar exclusivamente informações públicas para identificar falhas de segurança em sistemas.",
@@ -467,7 +473,8 @@
       "correctAnswer": "A coleta de informações a partir de fontes públicas, como motores de busca e redes sociais, caracteriza o uso de inteligência de código aberto (OSINT).",
       "explanation": "O texto descreve o OSINT como a prática de utilizar 'fontes públicas e acessíveis a qualquer pessoa, como registros de domínio, redes sociais, motores de busca, notícias e bases de dados abertas'.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T14:04:10.875Z"
     },
     {
       "id": 29,
@@ -557,7 +564,7 @@
     {
       "id": 34,
       "type": "multiple-choice",
-      "question": "Antes de iniciar qualquer atividade de teste de invasão em uma organização, é fundamental seguir etapas formais de planejamento e conformidade. Atividades como pesquisa preliminar sobre produtos ou infraestrutura, definição do escopo (o que será testado), alocação de orçamento e autorização formal devem ser tratadas no início do trabalho. Em particular, obter autorização escrita para realizar o teste (ter um contrato/termos de autorização e regras de engajamento) é uma exigência legal e ética que protege tanto o cliente quanto o avaliador e precede qualquer ação intrusiva contra sistemas ou pessoas. Analise as afirmações a seguir sobre a ordem de tarefas ao receber a solicitação de realizar um teste de penetração para uma empresa de médio porte que vende peças de motocicleta pela internet.<br><br>I. Pesquisar as ofertas de produtos da organização como primeiro passo, para entender as possíveis superfícies de ataque.<br>II. Determinar o orçamento disponível para o teste como a primeira tarefa a ser executada.<br>III. Identificar o escopo do teste (ativos, limites, métodos permitidos) antes da execução das atividades técnicas.<br>IV. Obter autorização formal para realizar o teste (contrato/ROE/termos de engajamento) antes de qualquer ação intrusiva.<br><br>Assinale a opção correta:",
+      "question": "Antes de iniciar qualquer atividade de teste de invasão em uma organização, é fundamental seguir etapas formais de planejamento e conformidade. Atividades como pesquisa preliminar sobre produtos ou infraestrutura, definição do escopo (o que será testado), alocação de orçamento e autorização formal devem ser tratadas no início do trabalho. Em particular, obter autorização escrita para realizar o teste (ter um contrato/termos de autorização e regras de engajamento) é uma exigência legal e ética que protege tanto o cliente quanto o avaliador e precede qualquer ação intrusiva contra sistemas ou pessoas.&nbsp;<div><br></div><div>Analise as afirmações a seguir sobre a ordem de tarefas ao receber a solicitação de realizar um teste de penetração para uma empresa de médio porte que vende peças de motocicleta pela internet.<br><br>I. Pesquisar as ofertas de produtos da organização como primeiro passo, para entender as possíveis superfícies de ataque.<br>II. Determinar o orçamento disponível para o teste como a primeira tarefa a ser executada.<br>III. Identificar o escopo do teste (ativos, limites, métodos permitidos) antes da execução das atividades técnicas.<br>IV. Obter autorização formal para realizar o teste (contrato/ROE/termos de engajamento) antes de qualquer ação intrusiva.<br><br>Assinale a opção correta:</div>",
       "options": [
         "I e II",
         "II e III",
@@ -568,7 +575,8 @@
       "correctAnswer": "III e IV",
       "explanation": "O texto afirma que a 'definição do escopo' e a 'autorização formal' devem ser tratadas no início do trabalho e que a autorização 'precede qualquer ação intrusiva'.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T14:04:54.195Z"
     },
     {
       "id": 35,
