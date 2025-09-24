@@ -551,28 +551,55 @@ function displayQuizResults(results) {
     
     results.questions.forEach((q, index) => {
         const questionDiv = document.createElement('div');
-        questionDiv.className = 'question-result';
-        questionDiv.innerHTML = `
-            <div class="question-result-header">
-                <h4>Questão ${index + 1}: ${q.isCorrect ? '✅' : '❌'}</h4>
-            </div>
-            <div class="question-result-content">
-                <p><strong>Pergunta:</strong> ${q.question}</p>
-                <p><strong>Sua resposta:</strong> ${q.userAnswer}</p>
-                <p><strong>Resposta correta:</strong> ${q.correctAnswer}</p>
-                ${q.explanation ? `<p><strong>Explicação:</strong> ${q.explanation}</p>` : ''}
-            </div>
-        `;
+        questionDiv.className = 'question-item';
         
-        questionDiv.style.cssText = `
-            background: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid ${q.isCorrect ? 'var(--success-color)' : 'var(--error-color)'};
+        // Cria um identificador único para essa questão
+        const questionContentId = `quiz-result-content-${index}`;
+        
+        questionDiv.innerHTML = `
+            <div class="question-header" data-question-id="${index}">
+                <div class="question-number"><strong>Questão ${index + 1}</strong></div>
+                <div class="question-preview">${truncateText(q.question, 50)}</div>
+                <div class="question-status">${q.isCorrect ? '✅' : '❌'}</div>
+                <div class="question-toggle"><i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="question-content" id="${questionContentId}" style="display:none;">
+                <div class="question-text">
+                    <strong>Pergunta:</strong> ${q.question}
+                </div>
+                <div class="question-answer">
+                    <strong>Sua resposta:</strong> ${q.userAnswer}
+                </div>
+                <div class="question-correct">
+                    <strong>Resposta correta:</strong> ${q.correctAnswer}
+                </div>
+                ${q.explanation ? `
+                <div class="question-explanation">
+                    <strong>Explicação:</strong> ${q.explanation}
+                </div>
+                ` : ''}
+            </div>
         `;
         
         detailsContainer.appendChild(questionDiv);
+        
+        // Adiciona event listener para expansão/colapso
+        const header = questionDiv.querySelector('.question-header');
+        header.addEventListener('click', (event) => {
+            // Impede que o evento seja propagado para elementos pais
+            event.stopPropagation();
+            
+            const content = document.getElementById(questionContentId);
+            const icon = header.querySelector('.question-toggle i');
+            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                icon.className = 'fas fa-chevron-up';
+            } else {
+                content.style.display = 'none';
+                icon.className = 'fas fa-chevron-down';
+            }
+        });
     });
 }
 
@@ -630,22 +657,30 @@ function displayHistory(history) {
         const score = Math.round((session.correctAnswers / session.totalQuestions) * 100);
         
         sessionDiv.innerHTML = `
-            <div class="history-header">
-                <div class="history-title">Sessão ${history.length - index}</div>
-                <div class="history-date">${date}</div>
-            </div>
-            <div class="history-stats">
-                <span><i class="fas fa-question-circle"></i> ${session.totalQuestions} questões</span>
-                <span><i class="fas fa-check-circle text-success"></i> ${session.correctAnswers} corretas</span>
-                <span><i class="fas fa-times-circle text-error"></i> ${session.wrongAnswers} erradas</span>
-                <span><i class="fas fa-percentage"></i> ${score}%</span>
+            <div class="history-clickable-area">
+                <div class="history-header">
+                    <div class="history-title">Sessão ${history.length - index}</div>
+                    <div class="history-date">${date}</div>
+                </div>
+                <div class="history-stats">
+                    <span><i class="fas fa-question-circle"></i> ${session.totalQuestions} questões</span>
+                    <span><i class="fas fa-check-circle text-success"></i> ${session.correctAnswers} corretas</span>
+                    <span><i class="fas fa-times-circle text-error"></i> ${session.wrongAnswers} erradas</span>
+                    <span><i class="fas fa-percentage"></i> ${score}%</span>
+                </div>
+                <div class="history-toggle">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
             </div>
             <div class="history-details" style="display: none;">
                 <div id="session-details-${session.id}"></div>
             </div>
         `;
         
-        sessionDiv.addEventListener('click', () => toggleSessionDetails(session, sessionDiv));
+        // Adicionar evento apenas na área clicável
+        const clickableArea = sessionDiv.querySelector('.history-clickable-area');
+        clickableArea.addEventListener('click', () => toggleSessionDetails(session, sessionDiv));
+        
         container.appendChild(sessionDiv);
     });
 }
@@ -653,24 +688,73 @@ function displayHistory(history) {
 function toggleSessionDetails(session, element) {
     const details = element.querySelector('.history-details');
     const detailsContainer = element.querySelector(`#session-details-${session.id}`);
+    const toggleIcon = element.querySelector('.history-toggle i');
     
     if (details.style.display === 'none') {
         // Show details
+        details.style.display = 'block';
+        toggleIcon.className = 'fas fa-chevron-up';
+        
         if (!detailsContainer.innerHTML) {
             // Load details if not already loaded
             detailsContainer.innerHTML = session.questions.map((q, index) => `
-                <div style="margin-bottom: 1rem; padding: 0.5rem; background: var(--gray-50); border-radius: 0.25rem;">
-                    <strong>Q${index + 1}:</strong> ${q.question}<br>
-                    <strong>Sua resposta:</strong> ${q.userAnswer}<br>
-                    <strong>Resposta correta:</strong> ${q.correctAnswer}<br>
-                    <strong>Status:</strong> ${q.isCorrect ? '✅ Correto' : '❌ Incorreto'}
+                <div class="question-item">
+                    <div class="question-header" data-question-id="${index}">
+                        <div class="question-number"><strong>Questão ${index + 1}</strong></div>
+                        <div class="question-preview">${truncateText(q.question, 50)}</div>
+                        <div class="question-status">${q.isCorrect ? '✅' : '❌'}</div>
+                        <div class="question-toggle"><i class="fas fa-chevron-down"></i></div>
+                    </div>
+                    <div class="question-content" id="question-content-${session.id}-${index}" style="display:none;">
+                        <div class="question-text">
+                            <strong>Pergunta:</strong> ${q.question}
+                        </div>
+                        <div class="question-answer">
+                            <strong>Sua resposta:</strong> ${q.userAnswer}
+                        </div>
+                        <div class="question-correct">
+                            <strong>Resposta correta:</strong> ${q.correctAnswer}
+                        </div>
+                        ${q.explanation ? `
+                        <div class="question-explanation">
+                            <strong>Explicação:</strong> ${q.explanation}
+                        </div>
+                        ` : ''}
+                    </div>
                 </div>
             `).join('');
+            
+            // Adicionar listeners para os cabeçalhos das questões
+            detailsContainer.querySelectorAll('.question-header').forEach(header => {
+                header.addEventListener('click', (event) => {
+                    // Impede que o evento seja propagado para elementos pais
+                    event.stopPropagation();
+                    
+                    const questionId = header.getAttribute('data-question-id');
+                    const content = document.getElementById(`question-content-${session.id}-${questionId}`);
+                    const icon = header.querySelector('.question-toggle i');
+                    
+                    if (content.style.display === 'none') {
+                        content.style.display = 'block';
+                        icon.className = 'fas fa-chevron-up';
+                    } else {
+                        content.style.display = 'none';
+                        icon.className = 'fas fa-chevron-down';
+                    }
+                });
+            });
         }
-        details.style.display = 'block';
+        // já configurado acima
     } else {
         details.style.display = 'none';
+        toggleIcon.className = 'fas fa-chevron-down';
     }
+}
+
+// Função auxiliar para truncar texto
+function truncateText(text, maxLength) {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
 }
 
 // Admin Functions

@@ -775,7 +775,6 @@ body {
     padding: var(--space-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    cursor: pointer;
     transition: var(--transition-fast);
 }
 
@@ -784,11 +783,29 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+.history-clickable-area {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 .history-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--space-sm);
+}
+
+.history-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xs);
 }
 
 .history-title {
@@ -812,6 +829,73 @@ body {
     margin-top: var(--space-lg);
     padding-top: var(--space-lg);
     border-top: 1px solid var(--gray-200);
+}
+
+/* Estilos para os itens de questão expandíveis */
+.question-item {
+    margin-bottom: 1.5rem;
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+}
+
+.question-header {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--gray-50);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    gap: 0.5rem;
+}
+
+.question-header:hover {
+    background: var(--gray-100);
+}
+
+.question-number {
+    flex: 0 0 auto;
+    color: var(--primary-color);
+}
+
+.question-preview {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--gray-700);
+    font-size: var(--font-size-sm);
+    margin: 0 0.5rem;
+}
+
+.question-status {
+    flex: 0 0 auto;
+    margin-right: 0.5rem;
+}
+
+.question-toggle {
+    flex: 0 0 auto;
+    color: var(--gray-500);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question-content {
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid var(--gray-100);
+}
+
+.question-text, 
+.question-answer, 
+.question-correct, 
+.question-explanation {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
 }
 
 /* Admin Styles */
