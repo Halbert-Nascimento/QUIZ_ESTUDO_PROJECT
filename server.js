@@ -4,7 +4,7 @@ const path = require('path');
 const DataManager = require('./dataManager');
 
 const app = express();
-const PORT = process.env.PORT || 4444;
+const PORT = process.env.PORT || 3000;
 const dataManager = new DataManager();
 
 // Middleware
