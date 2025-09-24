@@ -340,7 +340,7 @@
     {
       "id": 21,
       "type": "multiple-choice",
-      "question": "Nos testes de invasão, a quantidade de informação fornecida ao avaliador determina o tipo de abordagem a ser aplicada e a situação que se está simulando. Quando o contratante fornece muitos detalhes (arquitetura, código-fonte, credenciais), o avaliador atua em modo que se aproxima de uma auditoria interna; quando fornece apenas informações parciais, como algumas credenciais ou documentos limitados, o teste assume caráter intermediário; já em situações nas quais o avaliador parte praticamente do zero, o exercício visa reproduzir o ponto de vista de um atacante externo sem acesso privilegiado. Você foi contratado para realizar um teste de invasão e o cliente forneceu apenas um nome de domínio e um endereço IP como informação sobre o alvo. Considerando as classificações padrão de tipos de pentest, qual modalidade o cliente está solicitando?",
+      "question": "Nos testes de invasão, a quantidade de informação fornecida ao avaliador determina o tipo de abordagem a ser aplicada e a situação que se está simulando. Quando o contratante fornece muitos detalhes (arquitetura, código-fonte, credenciais), o avaliador atua em modo que se aproxima de uma auditoria interna; quando fornece apenas informações parciais, como algumas credenciais ou documentos limitados, o teste assume caráter intermediário; já em situações nas quais o avaliador parte praticamente do zero, o exercício visa reproduzir o ponto de vista de um atacante externo sem acesso privilegiado. Você foi contratado para realizar um teste de invasão e o cliente forneceu apenas um nome de domínio e um endereço IP como informação sobre o alvo.&nbsp;<div><br></div><div>Considerando as classificações padrão de tipos de pentest, qual modalidade o cliente está solicitando?</div>",
       "options": [
         "Teste de caixa branca (white-box test)",
         "Teste de caixa preta (black-box test)",
@@ -351,7 +351,8 @@
       "correctAnswer": "Teste de caixa preta (black-box test)",
       "explanation": "O texto descreve o teste de caixa preta como a modalidade na qual o avaliador parte 'praticamente do zero' e simula a perspectiva de um atacante externo.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:44:12.480Z"
     },
     {
       "id": 22,
@@ -372,7 +373,7 @@
     {
       "id": 23,
       "type": "multiple-choice",
-      "question": "Organizações modernas de segurança da informação utilizam diferentes equipes especializadas para simular ataques, defender sistemas e integrar aprendizados. Essas equipes recebem cores como designação para representar seus papéis: algumas focam em simular o comportamento de atacantes reais, explorando vulnerabilidades de forma controlada; outras dedicam-se exclusivamente à defesa, monitorando, detectando e respondendo a incidentes; há ainda as que promovem a integração entre ofensiva e defensiva. Além dessas, existem equipes estruturadas para atuar na resposta formal a incidentes de segurança, geralmente conhecidas como CSIRTS (Computer Security Incident Response Teams). Considerando esse contexto, qual é o grupo de especialistas em cibersegurança e testadores de invasão contratado por uma organização para imitar o comportamento de um agente de ameaça real?",
+      "question": "Organizações modernas de segurança da informação utilizam diferentes equipes especializadas para simular ataques, defender sistemas e integrar aprendizados. Essas equipes recebem cores como designação para representar seus papéis: algumas focam em simular o comportamento de atacantes reais, explorando vulnerabilidades de forma controlada; outras dedicam-se exclusivamente à defesa, monitorando, detectando e respondendo a incidentes; há ainda as que promovem a integração entre ofensiva e defensiva. Além dessas, existem equipes estruturadas para atuar na resposta formal a incidentes de segurança, geralmente conhecidas como CSIRTS (Computer Security Incident Response Teams).&nbsp;<div><br></div><div>Considerando esse contexto, qual é o grupo de especialistas em cibersegurança e testadores de invasão contratado por uma organização para imitar o comportamento de um agente de ameaça real?</div>",
       "options": [
         "Red team",
         "Blue team",
@@ -383,12 +384,13 @@
       "correctAnswer": "Red team",
       "explanation": "O texto descreve que o 'Red Team' é a equipe que 'foca em simular o comportamento de atacantes reais' e 'explora vulnerabilidades de forma controlada'.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:44:31.364Z"
     },
     {
       "id": 24,
       "type": "multiple-choice",
-      "question": "Na fase inicial de um teste de invasão, o reconhecimento é usado para levantar informações sobre o alvo. Essa etapa pode ser feita de forma ativa, quando o atacante envia pacotes e sondas diretamente ao sistema, ou de forma passiva, quando a coleta ocorre sem interação direta com o alvo. No reconhecimento passivo, utilizam-se fontes abertas (como motores de busca, redes sociais e bases de dados públicas) ou observação indireta de tráfego, reduzindo significativamente as chances de detecção por sistemas defensivos. Essa distinção é essencial para definir a estratégia de ataque, já que cada método envolve diferentes níveis de risco e visibilidade. Assinale a alternativa que apresenta corretamente o tipo de reconhecimento utilizado quando o objetivo é coletar informações sem ser detectado pelo alvo.",
+      "question": "Na fase inicial de um teste de invasão, o reconhecimento é usado para levantar informações sobre o alvo. Essa etapa pode ser feita de forma ativa, quando o atacante envia pacotes e sondas diretamente ao sistema, ou de forma passiva, quando a coleta ocorre sem interação direta com o alvo. No reconhecimento passivo, utilizam-se fontes abertas (como motores de busca, redes sociais e bases de dados públicas) ou observação indireta de tráfego, reduzindo significativamente as chances de detecção por sistemas defensivos. Essa distinção é essencial para definir a estratégia de ataque, já que cada método envolve diferentes níveis de risco e visibilidade.&nbsp;<div><br></div><div>Assinale a alternativa que apresenta corretamente o tipo de reconhecimento utilizado quando o objetivo é coletar informações sem ser detectado pelo alvo.</div>",
       "options": [
         "Reconhecimento de rede, pois baseia-se no envio de pacotes ICMP ou TCP para identificar dispositivos ativos.",
         "Reconhecimento ativo, pois depende do envio direto de pacotes e da análise das respostas do sistema.",
@@ -399,23 +401,25 @@
       "correctAnswer": "Reconhecimento passivo, pois utiliza fontes abertas e observação indireta sem interação direta com o alvo.",
       "explanation": "O texto define o reconhecimento passivo como o método que utiliza 'fontes abertas' ou 'observação indireta de tráfego' para coletar informações sem interação direta com o alvo, o que 'reduzindo significativamente as chances de detecção'.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:44:50.969Z"
     },
     {
       "id": 25,
       "type": "multiple-choice",
-      "question": "Durante um teste de invasão do tipo gray box, o avaliador precisa intermediar conexões entre o servidor de aplicação web da organização alvo e os navegadores utilizados pelos clientes. Para isso, ferramentas de proxy web específicas podem ser utilizadas no processo de captura, análise e manipulação de requisições e respostas HTTP. Quais das opções a seguir correspondem a ferramentas adequadas para essa finalidade?",
+      "question": "Durante um teste de invasão do tipo gray box, o avaliador precisa intermediar conexões entre o servidor de aplicação web da organização alvo e os navegadores utilizados pelos clientes. Para isso, ferramentas de proxy web específicas podem ser utilizadas no processo de captura, análise e manipulação de requisições e respostas HTTP.&nbsp;<div><br></div><div>Quais das opções a seguir correspondem a ferramentas adequadas para essa finalidade?</div><div><br></div><div>I. searchsploit&nbsp;</div><div>II. Burp Suite&nbsp;</div><div>III. OWASP ZAP</div><div>IV. Impacket&nbsp;</div><div>V. Empire</div>",
       "options": [
-        "I. searchsploit",
-        "II. Burp Suite",
-        "III. OWASP ZAP",
-        "IV. Impacket",
-        "V. Empire"
+        "I e II",
+        "II e III",
+        "I, IV e V",
+        "I, IV e V",
+        "II, III e V"
       ],
       "correctAnswer": "II e III",
       "explanation": "O Burp Suite (II) e o OWASP ZAP (III) são ferramentas de proxy web que são amplamente utilizadas para testes de segurança em aplicações web para capturar, analisar e manipular requisições HTTP.",
       "numberingType": "letters",
-      "createdAt": "2025-09-23T20:44:20.264Z"
+      "createdAt": "2025-09-23T20:44:20.264Z",
+      "updatedAt": "2025-09-24T13:46:44.658Z"
     },
     {
       "id": 26,
