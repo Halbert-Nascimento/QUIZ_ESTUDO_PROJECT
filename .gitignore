@@ -163,6 +163,9 @@ data/questions.json
 data/history.json
 data/users.json
 
+# Paste here to ignore all files in the backup-data directory
+backup-data/*
+
 # But allow empty data files for initial setup
 !data/.gitkeep
 
