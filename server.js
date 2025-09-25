@@ -302,49 +302,88 @@ app.get('/api/export/session/:id/pdf', (req, res) => {
             
             // Detalhes de cada questão
             session.questions.forEach((q, index) => {
-                // Verificar se precisa de nova página
-                if (currentY > 250) {
-                    doc.addPage();
-                    currentY = 20;
-                }
+                // Função auxiliar para verificar espaço e adicionar nova página se necessário
+                const checkPageBreak = (neededSpace) => {
+                    if (currentY + neededSpace > 270) { // Maior margem para evitar cortes
+                        doc.addPage();
+                        currentY = 20;
+                    }
+                };
+                
+                // Função auxiliar para adicionar texto com quebra de página automática
+                const addTextWithPageBreak = (text, x, startY, maxWidth = 170) => {
+                    const lines = doc.splitTextToSize(text, maxWidth);
+                    let textY = startY;
+                    
+                    for (let i = 0; i < lines.length; i++) {
+                        checkPageBreak(8); // Espaço mínimo para uma linha
+                        doc.text(lines[i], x, currentY);
+                        currentY += 5;
+                        textY += 5;
+                    }
+                    return textY;
+                };
+                
+                // Calcular espaço necessário para toda a questão
+                const cleanQuestion = (q.question || '').replace(/<[^>]*>/g, '');
+                const questionLines = doc.splitTextToSize(cleanQuestion, 170);
+                const userAnswerLines = doc.splitTextToSize(q.userAnswer || 'N/A', 170);
+                const correctAnswerLines = doc.splitTextToSize(q.correctAnswer || 'N/A', 170);
+                const explanationLines = q.explanation ? doc.splitTextToSize(q.explanation, 170) : [];
+                
+                const estimatedSpace = 20 + // cabeçalho
+                    (questionLines.length * 5) + 15 + // pergunta
+                    (userAnswerLines.length * 5) + 15 + // resposta do usuário
+                    (!q.isCorrect ? (correctAnswerLines.length * 5) + 15 : 0) + // resposta correta (só se errou)
+                    (explanationLines.length * 5) + 15; // explicação
+                
+                checkPageBreak(Math.min(estimatedSpace, 100)); // Verificar pelo menos 100 pontos de espaço
                 
                 // Número e status da questão
                 const status = q.isCorrect ? 'CORRETO' : 'INCORRETO';
                 doc.setFont(undefined, 'bold');
                 doc.text(`Questão ${index + 1} - ${status}`, 20, currentY);
-                currentY += 8;
+                currentY += 10;
                 
                 doc.setFont(undefined, 'normal');
                 
-                // Pergunta (limitada para caber na página)
-                const cleanQuestion = (q.question || '').replace(/<[^>]*>/g, '');
-                const questionLines = doc.splitTextToSize(cleanQuestion, 170);
+                // Pergunta (sem limite de linhas)
+                doc.setFont(undefined, 'bold');
                 doc.text('Pergunta:', 20, currentY);
                 currentY += 6;
-                doc.text(questionLines.slice(0, 3), 25, currentY); // Máximo 3 linhas
-                currentY += (Math.min(questionLines.length, 3) * 5) + 5;
+                doc.setFont(undefined, 'normal');
+                addTextWithPageBreak(cleanQuestion, 25, currentY);
+                currentY += 5;
                 
-                // Resposta do usuário
+                // Resposta do usuário (sem limite de linhas)
+                checkPageBreak(20);
+                doc.setFont(undefined, 'bold');
                 doc.text('Sua Resposta:', 20, currentY);
                 currentY += 6;
-                const userAnswerLines = doc.splitTextToSize(q.userAnswer || 'N/A', 170);
-                doc.text(userAnswerLines.slice(0, 2), 25, currentY); // Máximo 2 linhas
-                currentY += (Math.min(userAnswerLines.length, 2) * 5) + 5;
+                doc.setFont(undefined, 'normal');
+                addTextWithPageBreak(q.userAnswer || 'N/A', 25, currentY);
+                currentY += 5;
                 
-                // Resposta correta
-                doc.text('Resposta Correta:', 20, currentY);
-                currentY += 6;
-                const correctAnswerLines = doc.splitTextToSize(q.correctAnswer || 'N/A', 170);
-                doc.text(correctAnswerLines.slice(0, 2), 25, currentY); // Máximo 2 linhas
-                currentY += (Math.min(correctAnswerLines.length, 2) * 5) + 5;
+                // Resposta correta (apenas se o usuário errou)
+                if (!q.isCorrect) {
+                    checkPageBreak(20);
+                    doc.setFont(undefined, 'bold');
+                    doc.text('Resposta Correta:', 20, currentY);
+                    currentY += 6;
+                    doc.setFont(undefined, 'normal');
+                    addTextWithPageBreak(q.correctAnswer || 'N/A', 25, currentY);
+                    currentY += 5;
+                }
                 
-                // Explicação (se houver)
+                // Explicação (se houver, sem limite de linhas)
                 if (q.explanation) {
+                    checkPageBreak(20);
+                    doc.setFont(undefined, 'bold');
                     doc.text('Explicação:', 20, currentY);
                     currentY += 6;
-                    const explanationLines = doc.splitTextToSize(q.explanation, 170);
-                    doc.text(explanationLines.slice(0, 2), 25, currentY); // Máximo 2 linhas
-                    currentY += (Math.min(explanationLines.length, 2) * 5) + 5;
+                    doc.setFont(undefined, 'normal');
+                    addTextWithPageBreak(q.explanation, 25, currentY);
+                    currentY += 5;
                 }
                 
                 currentY += 10; // Espaço entre questões
