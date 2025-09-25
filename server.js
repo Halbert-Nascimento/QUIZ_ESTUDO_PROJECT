@@ -324,12 +324,25 @@ app.get('/api/export/session/:id/pdf', (req, res) => {
                     return textY;
                 };
                 
+                // Função auxiliar para sanitizar HTML de forma segura
+                const sanitizeHtml = (text) => {
+                    if (!text) return '';
+                    // Remove HTML tags de forma mais segura, repetindo até não haver mais tags
+                    let cleaned = text.toString();
+                    let previousLength;
+                    do {
+                        previousLength = cleaned.length;
+                        cleaned = cleaned.replace(/<[^>]*>/g, '');
+                    } while (cleaned.length !== previousLength);
+                    return cleaned;
+                };
+                
                 // Calcular espaço necessário para toda a questão
-                const cleanQuestion = (q.question || '').replace(/<[^>]*>/g, '');
+                const cleanQuestion = sanitizeHtml(q.question);
                 const questionLines = doc.splitTextToSize(cleanQuestion, 170);
                 const userAnswerLines = doc.splitTextToSize(q.userAnswer || 'N/A', 170);
                 const correctAnswerLines = doc.splitTextToSize(q.correctAnswer || 'N/A', 170);
-                const explanationLines = q.explanation ? doc.splitTextToSize(q.explanation, 170) : [];
+                const explanationLines = q.explanation ? doc.splitTextToSize(sanitizeHtml(q.explanation), 170) : [];
                 
                 const estimatedSpace = 20 + // cabeçalho
                     (questionLines.length * 5) + 15 + // pergunta
@@ -382,7 +395,7 @@ app.get('/api/export/session/:id/pdf', (req, res) => {
                     doc.text('Explicação:', 20, currentY);
                     currentY += 6;
                     doc.setFont(undefined, 'normal');
-                    addTextWithPageBreak(q.explanation, 25, currentY);
+                    addTextWithPageBreak(sanitizeHtml(q.explanation), 25, currentY);
                     currentY += 5;
                 }
                 
