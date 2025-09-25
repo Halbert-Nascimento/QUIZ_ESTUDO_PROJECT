@@ -184,7 +184,7 @@ app.get('/api/history/:id', (req, res) => {
 
 app.post('/api/history', (req, res) => {
     try {
-        const { totalQuestions, correctAnswers, wrongAnswers, questions, feedbackMode } = req.body;
+        const { totalQuestions, correctAnswers, wrongAnswers, questions, feedbackMode, duration } = req.body;
         
         const sessionData = {
             totalQuestions,
@@ -192,6 +192,7 @@ app.post('/api/history', (req, res) => {
             wrongAnswers,
             questions,
             feedbackMode,
+            duration,
             score: totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0
         };
 
