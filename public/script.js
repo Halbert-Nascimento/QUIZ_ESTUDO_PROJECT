@@ -8,6 +8,7 @@ let currentQuiz = {
 };
 
 let isLoggedIn = false;
+let quizTimerInterval = null;
 
 // DOM Elements
 const sections = {
@@ -133,6 +134,11 @@ function navigateToSection(sectionName) {
 }
 
 function showSection(sectionName) {
+    // Stop quiz timer when leaving quiz section
+    if (quizTimerInterval && sectionName !== 'quiz') {
+        stopQuizTimer();
+    }
+    
     // Hide all sections
     Object.values(sections).forEach(section => {
         if (section) section.classList.remove('active');
@@ -336,6 +342,7 @@ async function startQuiz() {
         showSection('quiz');
         displayCurrentQuestion();
         updateQuizProgress();
+        startQuizTimer();
         
     } catch (error) {
         showToast('Erro ao iniciar quiz', 'error');
@@ -506,6 +513,9 @@ async function finishQuiz() {
     try {
         showLoading();
         
+        // Stop the timer
+        stopQuizTimer();
+        
         // Calculate results
         const correctAnswers = currentQuiz.answers.filter(a => a.isCorrect).length;
         const wrongAnswers = currentQuiz.answers.length - correctAnswers;
@@ -544,6 +554,7 @@ function displayQuizResults(results) {
     document.getElementById('correct-count').textContent = results.correctAnswers;
     document.getElementById('wrong-count').textContent = results.wrongAnswers;
     document.getElementById('total-count').textContent = results.totalQuestions;
+    document.getElementById('total-time').textContent = formatTime(results.duration || 0);
     
     // Populate detailed results
     const detailsContainer = document.getElementById('detailed-results');
@@ -1172,6 +1183,38 @@ function cancelEdit() {
 }
 
 // Utility Functions
+
+// Timer Functions
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+function startQuizTimer() {
+    if (quizTimerInterval) {
+        clearInterval(quizTimerInterval);
+    }
+    
+    const startTime = currentQuiz.startTime;
+    const timerElement = document.getElementById('quiz-timer');
+    
+    quizTimerInterval = setInterval(() => {
+        const elapsedTime = Math.floor((new Date() - startTime) / 1000);
+        timerElement.textContent = formatTime(elapsedTime);
+    }, 1000);
+    
+    // Set initial display
+    timerElement.textContent = '00:00';
+}
+
+function stopQuizTimer() {
+    if (quizTimerInterval) {
+        clearInterval(quizTimerInterval);
+        quizTimerInterval = null;
+    }
+}
+
 async function fetchAPI(url, options = {}) {
     const defaultOptions = {
         headers: {
