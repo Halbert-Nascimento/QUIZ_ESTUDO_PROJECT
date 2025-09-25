@@ -804,7 +804,6 @@ body {
     padding: var(--space-lg);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    cursor: pointer;
     transition: var(--transition-fast);
 }
 
@@ -813,11 +812,30 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+.history-clickable-area {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 .history-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 30px; /* Espaço para o botão de toggle */
     margin-bottom: var(--space-sm);
+}
+
+.history-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xs);
 }
 
 .history-title {
@@ -843,12 +861,81 @@ body {
     border-top: 1px solid var(--gray-200);
 }
 
+/* Estilos para os itens de questão expandíveis */
+.question-item {
+    margin-bottom: 1.5rem;
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+}
+
+.question-header {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--gray-50);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    gap: 0.5rem;
+}
+
+.question-header:hover {
+    background: var(--gray-100);
+}
+
+.question-number {
+    flex: 0 0 auto;
+    color: var(--primary-color);
+}
+
+.question-preview {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--gray-700);
+    font-size: var(--font-size-sm);
+    margin: 0 0.5rem;
+}
+
+.question-status {
+    flex: 0 0 auto;
+    margin-right: 0.5rem;
+}
+
+.question-toggle {
+    flex: 0 0 auto;
+    color: var(--gray-500);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question-content {
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid var(--gray-100);
+}
+
+.question-text, 
+.question-answer, 
+.question-correct, 
+.question-explanation {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
 /* Admin Styles */
 .admin-login {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 400px;
+    min-height: 500px; /* Aumentando a altura para centralizar melhor na página */
+    width: 100%;
+    position: relative; /* Para garantir posicionamento consistente */
 }
 
 .login-card {
@@ -858,6 +945,11 @@ body {
     box-shadow: var(--shadow-lg);
     width: 100%;
     max-width: 400px;
+    margin: 0 auto; /* Centralização horizontal adicional */
+    position: absolute; /* Posicionamento absoluto para centralização precisa */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centralização perfeita */
 }
 
 .login-header {
@@ -874,20 +966,11 @@ body {
 .login-header h3 {
     color: var(--gray-900);
     font-size: var(--font-size-xl);
+    font-weight: 700; /* Mais negrito para melhor visibilidade */
+    margin-bottom: var(--space-md); /* Espaço adicional embaixo */
 }
 
-.login-info {
-    margin-top: var(--space-lg);
-    text-align: center;
-    color: var(--gray-500);
-}
-
-.login-info code {
-    background: var(--gray-100);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    font-family: monospace;
-}
+/* Informações de login removidas conforme solicitado */
 
 .admin-nav {
     display: flex;
@@ -1661,6 +1744,18 @@ body {
     .login-card {
         margin: var(--space-md);
         padding: var(--space-lg);
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        max-width: 90%;
+    }
+    
+    .admin-login {
+        min-height: 350px;
+        padding: var(--space-lg) 0;
+        display: flex;
+        align-items: center;
     }
 }
 
