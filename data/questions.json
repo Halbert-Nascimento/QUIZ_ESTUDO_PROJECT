@@ -628,7 +628,255 @@
       "numberingType": "letters",
       "createdAt": "2025-09-23T20:44:20.264Z",
       "updatedAt": "2025-09-24T13:38:46.490Z"
+    },
+    {
+      "id": 38,
+      "type": "multiple-choice",
+      "question": "Durante uma reunião da equipe técnica da empresa Delta Farma Digital, especializada em prontuários eletrônicos, um analista júnior questionou o significado exato do termo <b>vulnerabilidade</b>, após o relatório de avaliação de riscos apontar que 'vulnerabilidades críticas em endpoints expõem a rede corporativa a ataques de ransomware'.<div><br></div><div>Considerando os fundamentos da segurança da informação, qual das definições a seguir mais se alinha ao conceito técnico de vulnerabilidade?</div>",
+      "options": [
+        "É qualquer ataque realizado contra um ativo de informação da organização.",
+        "É a consequência de um incidente que causa impacto financeiro ou operacional.",
+        "É uma falha ou fraqueza que pode ser explorada por uma ameaça para causar dano.",
+        "É um ativo que possui alto valor estratégico e, por isso, precisa de mais proteção.",
+        "É o conjunto de políticas que definem como reagir a um evento de segurança."
+      ],
+      "correctAnswer": "É uma falha ou fraqueza que pode ser explorada por uma ameaça para causar dano.",
+      "explanation": "Vulnerabilidade é uma fragilidade explorável em um ativo, controle ou processo que pode ser acionada por uma ameaça para causar impacto.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:00.000Z"
+    },
+    {
+      "id": 39,
+      "type": "multiple-choice",
+      "question": "Durante um treinamento interno, foram apresentadas situações para associar a cada uma um tipo de ataque: Interrupção, Interceptação, Modificação e Fabricação.<div><br></div><div>Situações: I) Disco rígido destruído por sabotagem. II) Arquivos confidenciais copiados sem autorização. III) Alteração de salários em planilha protegida. IV) Inserção automatizada de registros falsos em logs.</div><div><br></div><div>Assinale a sequência correta de associação:</div>",
+      "options": [
+        "I–2 II–1 III–3 IV–4",
+        "I–1 II–2 III–3 IV–4",
+        "I–4 II–3 III–2 IV–1",
+        "I–1 II–3 III–2 IV–4",
+        "I–2 II–1 III–4 IV–3"
+      ],
+      "correctAnswer": "I–1 II–2 III–3 IV–4",
+      "explanation": "Interrupção (I) afeta disponibilidade; Interceptação (II) viola confidencialidade; Modificação (III) altera integridade; Fabricação (IV) insere dados inexistentes.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:05.000Z"
+    },
+    {
+      "id": 40,
+      "type": "multiple-choice",
+      "question": "Em uma reunião, o CISO apresentou três incidentes e pediu para identificar os princípios da tríade CIA violados: I) Acesso não autorizado a dados médicos. II) Interrupção de e-mail por DDoS. III) Alteração não autorizada em registros contábeis.<div><br></div><div>Assinale a alternativa correta.</div>",
+      "options": [
+        "I–Confidencialidade, II–Disponibilidade, III–Integridade",
+        "I–Disponibilidade, II–Integridade, III–Confidencialidade",
+        "I–Integridade, II–Disponibilidade, III–Autenticidade",
+        "I–Disponibilidade, II–Confidencialidade, III–Integridade",
+        "I–Autenticidade, II–Disponibilidade, III–Confidencialidade"
+      ],
+      "correctAnswer": "I–Confidencialidade, II–Disponibilidade, III–Integridade",
+      "explanation": "Acesso indevido viola confidencialidade; DDoS afeta disponibilidade; alteração de dados compromete integridade.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:10.000Z"
+    },
+    {
+      "id": 41,
+      "type": "multiple-choice",
+      "question": "Backups armazenados na mesma sala dos servidores de produção expõem tanto dados ativos quanto cópias ao mesmo evento (ex.: incêndio).<div><br></div><div>Qual princípio fundamental é comprometido nesse cenário?</div>",
+      "options": [
+        "Confidencialidade",
+        "Integridade",
+        "Disponibilidade",
+        "Autenticidade",
+        "Rastreabilidade"
+      ],
+      "correctAnswer": "Disponibilidade",
+      "explanation": "A guarda co-localizada aumenta o risco de indisponibilidade simultânea de produção e backup, afetando continuidade.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:15.000Z"
+    },
+    {
+      "id": 42,
+      "type": "multiple-choice",
+      "question": "Senhas de administradores compartilhadas em planilhas de rede acessíveis a vários colaboradores dificultam a identificação de responsáveis e expõem credenciais.<div><br></div><div>Que conceito é mais afetado nesse contexto?</div>",
+      "options": [
+        "Confidencialidade",
+        "Integridade",
+        "Disponibilidade",
+        "Autenticidade",
+        "Responsabilidade/Accountability"
+      ],
+      "correctAnswer": "Responsabilidade/Accountability",
+      "explanation": "O compartilhamento impede a rastreabilidade individual de ações, comprometendo accountability; também afeta confidencialidade, mas o impacto principal é na responsabilização.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:20.000Z"
+    },
+    {
+      "id": 43,
+      "type": "multiple-choice",
+      "question": "Uma empresa notifica extrajudicialmente a rede social pedindo remoção de conteúdo difamatório; o provedor alega que só age com ordem judicial. Com base no art. 19 do Marco Civil da Internet e jurisprudência do STF/STJ, assinale a correta.",
+      "options": [
+        "O provedor agiu corretamente, pois sua responsabilidade depende sempre de ordem judicial específica, não havendo exceções.",
+        "O provedor só poderia ser responsabilizado se descumprisse ordem judicial, exceto em situações de flagrante violação de direitos de difícil reversão, como conteúdo de ódio ou ilícito evidente.",
+        "O provedor deveria ter removido o conteúdo assim que recebeu a notificação extrajudicial, sob pena de responsabilização civil imediata.",
+        "A responsabilidade do provedor é automática sempre que terceiros gerarem conteúdo ilícito, independentemente de ordem judicial ou notificação.",
+        "O provedor não poderia ser responsabilizado em nenhuma hipótese, já que não foi o autor direto do conteúdo."
+      ],
+      "correctAnswer": "O provedor só poderia ser responsabilizado se descumprisse ordem judicial, exceto em situações de flagrante violação de direitos de difícil reversão, como conteúdo de ódio ou ilícito evidente.",
+      "explanation": "A regra geral do art. 19 exige ordem judicial; a jurisprudência admite exceções pontuais para ilícitos evidentes de difícil reversão (p.ex., conteúdo íntimo não consentido).",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:25.000Z"
+    },
+    {
+      "id": 44,
+      "type": "multiple-choice",
+      "question": "Gestão de riscos em SI requer aspectos técnicos e organizacionais. Qual alternativa combina ambos de forma essencial?",
+      "options": [
+        "Utilização de métricas quantitativas para priorização de riscos e implementação de backups incrementais.",
+        "Aplicação de escalas de probabilidade x impacto e promoção de uma cultura de segurança entre os colaboradores.",
+        "Adoção de firewall de próxima geração e elaboração de relatório anual para órgãos reguladores.",
+        "Criação de um plano de continuidade de negócios e substituição de todos os ativos legados.",
+        "Uso de ferramentas de varredura automática e terceirização completa da gestão de TI."
+      ],
+      "correctAnswer": "Aplicação de escalas de probabilidade x impacto e promoção de uma cultura de segurança entre os colaboradores.",
+      "explanation": "Probabilidade x impacto é técnica central; cultura de segurança é elemento organizacional crítico para efetividade.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:30.000Z"
+    },
+    {
+      "id": 45,
+      "type": "multiple-choice",
+      "question": "Uma empresa revisou o tratamento de riscos conforme ISO 31000/27005. Associe: I) MFA. II) Seguro cibernético. III) Encerrar serviço de alto risco. IV) Manter risco baixo pelo custo de controle. Quais estratégias?",
+      "options": [
+        "I–1 II–2 III–3 IV–4",
+        "I–4 II–1 III–2 IV–3",
+        "I–1 II–3 III–4 IV–2",
+        "I–2 II–1 III–3 IV–4",
+        "I–3 II–4 III–1 IV–2"
+      ],
+      "correctAnswer": "I–1 II–2 III–3 IV–4",
+      "explanation": "MFA reduz; seguro transfere; encerrar serviço evita; manter risco baixo é aceitação.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:35.000Z"
+    },
+    {
+      "id": 46,
+      "type": "multiple-choice",
+      "question": "Após controles, alguns cenários (spear phishing, zero-day) permanecem possíveis. Sobre risco residual, assinale a correta:",
+      "options": [
+        "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+        "As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I.",
+        "A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.",
+        "A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.",
+        "As asserções I e II são proposições falsas."
+      ],
+  "correctAnswer": "As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.",
+      "explanation": "Risco residual é o risco remanescente após tratamento; a avaliação considera eficácia e custo-benefício ante a exposição residual.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:40.000Z"
+    },
+    {
+      "id": 47,
+      "type": "multiple-choice",
+      "question": "Uma empresa AgroVet quer implementar um SGSI ISO/IEC 27001 e foram vistos problemas: sem inventário de ativos, análise de riscos sem alta direção, controles do Anexo A sem relação com riscos, e falta de ações corretivas. Qual ação é mais coerente?",
+      "options": [
+        "Exigir a aplicação integral dos 114 controles do Anexo A, independentemente do perfil de riscos.",
+        "Centralizar a gestão do SGSI exclusivamente na equipe de TI.",
+        "Desenvolver inventário de ativos e realizar nova análise de riscos com envolvimento da alta direção.",
+        "Manter registro informal de incidentes para evitar burocracia.",
+        "Priorizar a obtenção do certificado ISO/IEC 27001 antes da implementação completa."
+      ],
+      "correctAnswer": "Desenvolver inventário de ativos e realizar nova análise de riscos com envolvimento da alta direção.",
+      "explanation": "27001 é risco-centrada: inventário e participação da alta direção são pilares; controles devem derivar de riscos identificados.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:45.000Z"
+    },
+    {
+      "id": 48,
+      "type": "multiple-choice",
+      "question": "Empresa com SGSI ISO/IEC 27001 não tinha ROPA/RIPD nem políticas de consentimento; ANPD investigou vazamento. Sobre ISO 27001 e LGPD, assinale:",
+      "options": [
+        "Asserções I e II verdadeiras, e II justifica I.",
+        "Asserções I e II verdadeiras, mas II não justifica I.",
+        "I verdadeira, II falsa.",
+        "I falsa, II verdadeira.",
+        "Ambas falsas."
+      ],
+      "correctAnswer": "I verdadeira, II falsa.",
+      "explanation": "ISO 27001 fortalece segurança técnica, mas não garante, por si só, plena conformidade jurídica com a LGPD sem governança específica.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:50.000Z"
+    },
+    {
+      "id": 49,
+      "type": "multiple-choice",
+      "question": "Para valorar dados consideram-se fatores como uso no negócio, indispensabilidade, conteúdo e possibilidade de recuperação em caso de perda. Qual fator a seguir <b>não</b> é relevante para determinar o valor do dado?",
+      "options": [
+        "O conteúdo do dado.",
+        "O grau em que pode ser recuperado.",
+        "Sua indispensabilidade para o negócio.",
+        "A importância dos processos de negócio que usam o dado.",
+        "As exigências legais relacionadas à guarda e uso."
+      ],
+      "correctAnswer": "As exigências legais relacionadas à guarda e uso.",
+      "explanation": "No escopo apresentado, os fatores listados para valorar dados foram conteúdo, indispensabilidade, uso no processo e recuperabilidade; exigências legais impactam conformidade, não o valor intrínseco segundo o enunciado.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:25:55.000Z"
+    },
+    {
+      "id": 50,
+      "type": "multiple-choice",
+      "question": "Sobre obrigações na LGPD: I. Controlador e operador devem adotar medidas adequadas. II. Controlador comunica incidentes com risco/dano relevante. III. Operador responde solidariamente em qualquer incidente, mesmo sem culpa. IV. Ausência de comunicação pode gerar sanções pela ANPD. Está correto apenas:",
+      "options": [
+        "I e II",
+        "I, II e IV",
+        "II e III",
+        "I, III e IV",
+        "I, II, III e IV"
+      ],
+      "correctAnswer": "I, II e IV",
+      "explanation": "A LGPD impõe deveres a controlador e operador (I), notificação quando houver risco/dano relevante (II) e prevê sanções por omissão (IV). Responsabilidade solidária do operador não é absoluta (III é falsa).",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:26:00.000Z"
+    },
+    {
+      "id": 51,
+      "type": "multiple-choice",
+      "question": "Incêndio em filial destruiu parte dos servidores; fitas de backup na sala adjacente danificadas pelo calor; houve ainda danos por água e produtos químicos usados no combate. Qual exemplo corresponde a <b>dano indireto</b>?",
+      "options": [
+        "Queima de servidores e computadores principais.",
+        "Perda de documentos originais em papel.",
+        "Danificação das fitas de backup pelo calor.",
+        "Perda de contratos arquivados em pastas físicas.",
+        "Danos estruturais adicionais provocados pela água e produtos químicos."
+      ],
+      "correctAnswer": "Danos estruturais adicionais provocados pela água e produtos químicos.",
+      "explanation": "Os danos decorrentes do combate ao incêndio são efeitos indiretos/consequenciais do evento primário.",
+      "numberingType": "letters",
+      "createdAt": "2025-09-24T14:26:05.000Z"
+    },
+    {
+      "id": 52,
+      "type": "essay",
+      "question": "Em um corredor de acesso livre dentro de uma empresa, há uma impressora de rede multifuncional sem autenticação; documentos confidenciais ficam esquecidos na bandeja, expostos a não autorizados. Discorra sobre: (1) princípios da tríade CIA afetados; (2) vulnerabilidades/falhas de controle; (3) medidas técnicas e administrativas para mitigar.",
+      "correctAnswer": "Afeta confidencialidade (exposição de documentos), integridade (risco de adulteração/rasura) e disponibilidade (remoção/uso indevido pode impedir acesso pelo legítimo). Vulnerabilidades: ausência de autenticação na impressão/liberação, falta de política de impressão segura, localização em área de trânsito, retenção de trabalhos na fila/bandeja, logs inexistentes. Medidas: ativar impressão segura com liberação por PIN/badge, exigir autenticação e controle por usuário, configurar limpeza automática de fila e coleta imediata (pull printing), posicionar a impressora em área controlada, adotar retenção de menos páginas na bandeja, implantar DLP para impressão, sensibilizar usuários e treinar, estabelecer política de mesa limpa e de manuseio de documentos, registrar e auditar usos da impressora.",
+      "explanation": "Resposta modelo com pontos esperados para avaliação objetiva dos itens pedidos.",
+      "createdAt": "2025-09-24T14:26:10.000Z"
+    },
+    {
+      "id": 53,
+      "type": "essay",
+      "question": "LGPD (2018) e GDPR (2016) compartilham princípios (finalidade, adequação, necessidade, segurança, responsabilização), mas têm diferenças. Explique: (a) duas semelhanças fundamentais; (b) duas diferenças práticas que impactam o DPO em multinacionais; (c) um risco comum mitigável por controles do SGSI (ISO/IEC 27001). Limite: 15 linhas.",
+      "correctAnswer": "Semelhanças: base em princípios (finalidade, minimização/necessidade, transparência), direitos dos titulares (acesso, retificação, eliminação/anonimização), obrigação de medidas técnicas/administrativas de segurança e reporte de incidentes com risco relevante. Diferenças: bases legais e ênfases (GDPR detalha 'legitimate interests' e DPIA; LGPD traz bases específicas como proteção ao crédito), autoridades e multas (GDPR: até 4% do faturamento global; LGPD: até 2% limitado a R$ 50 mi por infração), escopos territoriais e regras de transferência internacional. Risco comum: vazamento de dados pessoais (quebra de confidencialidade); controles 27001: gestão de acessos, criptografia, classificação de informação, registro de eventos, gestão de vulnerabilidades, resposta a incidentes, treinamento de usuários e avaliações de impacto (DPIA/RIPD).",
+      "explanation": "Resumo objetivo para orientar correção e balizar nível de detalhe esperado.",
+      "createdAt": "2025-09-24T14:26:15.000Z"
+    },
+    {
+      "id": 54,
+      "type": "essay",
+      "question": "Três incidentes ocorridos: (A) 250.000 contas expostas por falha de configuração. (B) 1.200 contas tiveram acessos não autorizados com uso fraudulento de dados de pagamento. (C) 50.000 registros apagados por erro de rotina de backup. A empresa comunicou apenas o incidente B. Com base na LGPD (art. 48) e no Marco Civil, responda: quais incidentes exigem comunicação obrigatória à ANPD e aos titulares e quais sanções/ responsabilizações podem recair pela omissão?",
+      "correctAnswer": "Devem ser comunicados A e B, pois há risco/dano relevante aos titulares (exposição maciça e uso fraudulento). O incidente C pode exigir avaliação de impacto: se a perda afetar direitos/interesses (indisponibilidade prolongada, prejuízo a serviços essenciais ou impossibilidade de exercício de direitos), também deve ser comunicado; se rapidamente restaurado sem risco relevante, pode não ser obrigatório. Sanções administrativas (art. 52 LGPD): advertência, multa simples/diária (até 2% do faturamento, limite de R$ 50 mi por infração), publicização da infração, bloqueio/eliminação de dados, suspensão parcial do funcionamento do banco de dados do incidente, suspensão/proibição do exercício da atividade de tratamento. Responsabilização civil por danos materiais e morais (arts. 42–45), inclusive por omissão e falta de cooperação com ANPD; no Marco Civil, dever de guarda/colaboração e responsabilização por descumprimento de ordens.",
+      "explanation": "Critério: risco/dano relevante e cooperação com a autoridade; listar sanções do art. 52 e responsabilização civil.",
+      "createdAt": "2025-09-24T14:26:20.000Z"
     }
   ],
-  "nextId": 38
+  "nextId": 55
 }
