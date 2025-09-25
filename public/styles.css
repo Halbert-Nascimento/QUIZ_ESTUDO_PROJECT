@@ -490,6 +490,10 @@ body {
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
     margin-bottom: var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-lg);
 }
 
 .progress-info {
@@ -497,6 +501,31 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--space-md);
+    flex: 1;
+}
+
+/* Timer Display */
+.timer-display {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--gray-50);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--primary-light);
+    min-width: 80px;
+}
+
+.timer-display i {
+    color: var(--primary-color);
+    font-size: var(--font-size-lg);
+}
+
+#quiz-timer {
+    font-family: 'Courier New', monospace;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--gray-700);
 }
 
 #question-counter {
@@ -1528,6 +1557,15 @@ body {
     .progress-info {
         flex-direction: column;
         gap: var(--space-sm);
+    }
+    
+    .quiz-header {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .timer-display {
+        align-self: center;
     }
     
     .progress-bar {
