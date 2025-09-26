@@ -139,30 +139,59 @@ npm run network  # Inicia o servidor para acesso em rede local
 
 ## 👤 Primeiro Acesso e Configurações
 
-### Credenciais Padrão
-- **Usuário**: `admin`
-- **Senha**: `admin123`
+### Credenciais dos Diferentes Usuários
+O sistema agora suporta diferentes perfis de acesso. As credenciais padrão são:
 
-### Modificando Credenciais de Admin
-Para alterar a senha do usuário `admin` ou adicionar novos usuários, você pode editar o arquivo `dataManager.js` antes da primeira inicialização. Se o arquivo `data/users.json` já foi criado, você pode editá-lo diretamente.
+- **Admin**: `admin` / `admin123`
+- **Usuário**: `usuario1` / `user123`
+- **Aluno**: `aluno1` / `student123`
+- **Professor**: `professor1` / `teacher123`
+- **Visitante**: `visitante1` / `visitor123`
+
+### Roles/Perfis Disponíveis
+- **admin**: Acesso completo ao painel administrativo
+- **usuario**: Usuário padrão do sistema
+- **aluno**: Perfil para estudantes
+- **professor**: Perfil para educadores
+- **visitante**: Perfil para acesso limitado
+
+*Nota: Atualmente, todas as roles permitem login e identificação. Futuramente, serão implementadas permissões específicas para cada perfil.*
+
+### Modificando Credenciais e Adicionando Usuários
+Para alterar senhas ou adicionar novos usuários, você pode editar o arquivo `data/users.json` diretamente ou modificar `dataManager.js` antes da primeira execução.
+
+**Exemplo de estrutura em `data/users.json`:**
+```json
+{
+  "admin": {
+    "password": "admin123",
+    "role": "admin"
+  },
+  "novo_usuario": {
+    "password": "nova-senha",
+    "role": "usuario"
+  },
+  "professor2": {
+    "password": "prof456",
+    "role": "professor"
+  }
+}
+```
 
 **Exemplo de estrutura em `dataManager.js`:**
 ```javascript
 // ...
-if (!fs.existsSync(usersFilePath)) {
-    const initialUsers = {
-        admin: {
-            password: 'nova-senha-segura', // Altere aqui
-            role: 'admin'
-        },
-        // Você pode adicionar outros usuários
-        outro_usuario: {
-            password: 'outra-senha',
-            role: 'user' // Role 'user' ainda não tem permissões especiais
-        }
-    };
-    fs.writeFileSync(usersFilePath, JSON.stringify(initialUsers, null, 2));
-}
+const initialUsers = {
+    admin: {
+        password: 'nova-senha-segura', // Altere aqui
+        role: 'admin'
+    },
+    // Adicione novos usuários
+    outro_usuario: {
+        password: 'outra-senha',
+        role: 'usuario' // Roles disponíveis: admin, usuario, aluno, professor, visitante
+    }
+};
 // ...
 ```
 

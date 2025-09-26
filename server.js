@@ -226,14 +226,15 @@ app.post('/api/login', (req, res) => {
             return res.status(400).json({ error: 'Username e password são obrigatórios' });
         }
 
-        const isValid = dataManager.validateLogin(username, password);
-        if (!isValid) {
+        const loginResult = dataManager.validateLogin(username, password);
+        if (!loginResult) {
             return res.status(401).json({ error: 'Credenciais inválidas' });
         }
 
         res.json({ 
             message: 'Login realizado com sucesso',
-            role: 'admin'
+            username: loginResult.username,
+            role: loginResult.role
         });
     } catch (error) {
         res.status(500).json({ error: 'Erro interno do servidor' });
@@ -266,7 +267,12 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Servidor rodando na porta ${PORT}`);
     console.log(`📝 Acesso local: http://localhost:${PORT}`);
     console.log(`🌐 Acesso externo: http://[SEU_IP]:${PORT}`);
-    console.log(`👤 Login admin: username=admin, password=admin123`);
+    console.log(`\n👥 Usuários disponíveis:`);
+    console.log(`   Admin: admin / admin123`);
+    console.log(`   Usuário: usuario1 / user123`);
+    console.log(`   Aluno: aluno1 / student123`);
+    console.log(`   Professor: professor1 / teacher123`);
+    console.log(`   Visitante: visitante1 / visitor123`);
     console.log(`\n📋 Para descobrir seu IP:`);
     console.log(`   Windows: ipconfig`);
     console.log(`   Linux/Mac: ifconfig ou ip addr`);
