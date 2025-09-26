@@ -35,12 +35,28 @@ class DataManager {
             this.writeFile(this.historyFile, initialHistory);
         }
 
-        // Inicializar arquivo de usuários (para login admin)
+        // Inicializar arquivo de usuários (para diferentes roles)
         if (!fs.existsSync(this.usersFile)) {
             const initialUsers = {
                 admin: {
                     password: 'admin123', // Em produção, isso deveria ser hasheado
                     role: 'admin'
+                },
+                usuario1: {
+                    password: 'user123',
+                    role: 'usuario'
+                },
+                aluno1: {
+                    password: 'student123',
+                    role: 'aluno'
+                },
+                professor1: {
+                    password: 'teacher123',
+                    role: 'professor'
+                },
+                visitante1: {
+                    password: 'visitor123',
+                    role: 'visitante'
                 }
             };
             this.writeFile(this.usersFile, initialUsers);
@@ -205,7 +221,27 @@ class DataManager {
             return false;
         }
 
-        return users[username].password === password;
+        if (users[username].password === password) {
+            return {
+                username: username,
+                role: users[username].role
+            };
+        }
+
+        return false;
+    }
+
+    // Método para obter informações do usuário
+    getUserRole(username) {
+        const users = this.readFile(this.usersFile);
+        if (!users || !users[username]) {
+            return null;
+        }
+
+        return {
+            username: username,
+            role: users[username].role
+        };
     }
 
     // Método para obter estatísticas
