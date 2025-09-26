@@ -109,6 +109,65 @@ app.delete('/api/questions/:id', (req, res) => {
     }
 });
 
+// API para obter questões erradas para modo revisão
+app.get('/api/quiz/wrong-answers', (req, res) => {
+    try {
+        const limit = parseInt(req.query.limit) || null; // Limitar às últimas N sessões
+        
+        const history = dataManager.getAllHistory();
+        
+        // Se houver limite, considera apenas as últimas N sessões
+        const sessionsToConsider = limit ? history.slice(-limit) : history;
+        
+        // Coleta todas as questões erradas de forma única
+        const wrongAnswersMap = new Map();
+        
+        sessionsToConsider.forEach(session => {
+            if (session.questions && Array.isArray(session.questions)) {
+                session.questions.forEach(q => {
+                    if (!q.isCorrect) {
+                        // Usa o questionId como chave para evitar duplicatas
+                        wrongAnswersMap.set(q.questionId, {
+                            id: q.questionId,
+                            question: q.question,
+                            correctAnswer: q.correctAnswer,
+                            explanation: q.explanation,
+                            userAnswer: q.userAnswer, // Para referência
+                            lastAttemptDate: session.date
+                        });
+                    }
+                });
+            }
+        });
+        
+        const wrongAnswers = Array.from(wrongAnswersMap.values());
+        
+        // Busca as questões completas no banco de dados
+        const questionsForReview = [];
+        wrongAnswers.forEach(wrongAnswer => {
+            const fullQuestion = dataManager.getQuestionById(wrongAnswer.id);
+            if (fullQuestion) {
+                questionsForReview.push({
+                    id: fullQuestion.id,
+                    type: fullQuestion.type,
+                    question: fullQuestion.question,
+                    options: fullQuestion.options,
+                    numberingType: fullQuestion.numberingType,
+                    lastAttemptDate: wrongAnswer.lastAttemptDate
+                });
+            }
+        });
+        
+        res.json({
+            totalWrongQuestions: questionsForReview.length,
+            questions: questionsForReview
+        });
+        
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao obter questões para revisão' });
+    }
+});
+
 // API para obter questões aleatórias para teste
 app.get('/api/quiz/:count', (req, res) => {
     try {
