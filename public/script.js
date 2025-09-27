@@ -52,17 +52,9 @@ function setupEventListeners() {
     document.getElementById('start-quiz-btn').addEventListener('click', startQuiz);
     document.getElementById('question-count').addEventListener('input', updateMaxQuestions);
     
-    // Review mode configuration
-    document.getElementById('start-review-btn').addEventListener('click', startReviewMode);
-    
     // Question type filter change
     document.querySelectorAll('input[name="question-type-filter"]').forEach(radio => {
         radio.addEventListener('change', updateQuestionTypeFilter);
-    });
-    
-    // Review scope filter change
-    document.querySelectorAll('input[name="review-scope"]').forEach(radio => {
-        radio.addEventListener('change', updateReviewInfo);
     });
     
     // Quiz actions
@@ -129,9 +121,6 @@ function navigateToSection(sectionName) {
         case 'quiz-config':
             loadQuizConfig();
             break;
-        case 'review-config':
-            loadReviewConfig();
-            break;
         case 'history':
             loadHistory();
             break;
@@ -176,21 +165,6 @@ async function loadDashboardData() {
         } else {
             hideElement('no-questions-message');
             showElement('quick-actions');
-            
-            // Check if review mode should be available
-            try {
-                const wrongAnswers = await fetchAPI('/api/quiz/wrong-answers');
-                const reviewBtn = document.getElementById('review-mode-btn');
-                
-                if (wrongAnswers.totalWrongQuestions > 0) {
-                    reviewBtn.style.display = 'inline-flex';
-                } else {
-                    reviewBtn.style.display = 'none';
-                }
-            } catch (error) {
-                // If there's an error loading wrong answers, hide the review button
-                document.getElementById('review-mode-btn').style.display = 'none';
-            }
         }
     } catch (error) {
         showToast('Erro ao carregar dados do dashboard', 'error');
@@ -216,9 +190,6 @@ function handleQuickAction(e) {
             break;
         case 'view-history':
             navigateToSection('history');
-            break;
-        case 'review-mode':
-            navigateToSection('review-config');
             break;
         case 'manage-questions':
             navigateToSection('admin');
@@ -376,95 +347,6 @@ async function startQuiz() {
     } catch (error) {
         showToast('Erro ao iniciar quiz', 'error');
         console.error('Error starting quiz:', error);
-    } finally {
-        hideLoading();
-    }
-}
-
-// Review Mode Functions
-async function loadReviewConfig() {
-    try {
-        showLoading();
-        
-        // Load initial review information
-        await updateReviewInfo();
-        
-        // Check if review mode should be available
-        const reviewBtn = document.getElementById('review-mode-btn');
-        const wrongAnswers = await fetchAPI('/api/quiz/wrong-answers');
-        
-        if (wrongAnswers.totalWrongQuestions > 0) {
-            reviewBtn.style.display = 'inline-flex';
-        }
-        
-    } catch (error) {
-        showToast('Erro ao carregar configurações de revisão', 'error');
-        console.error('Error loading review config:', error);
-    } finally {
-        hideLoading();
-    }
-}
-
-async function updateReviewInfo() {
-    try {
-        const reviewScope = document.querySelector('input[name="review-scope"]:checked').value;
-        const limit = reviewScope === 'recent' ? 5 : null;
-        
-        const wrongAnswers = await fetchAPI(`/api/quiz/wrong-answers${limit ? `?limit=${limit}` : ''}`);
-        
-        document.getElementById('total-wrong-count').textContent = wrongAnswers.totalWrongQuestions;
-        
-        const noWrongAnswers = document.getElementById('no-wrong-answers');
-        const startReviewBtn = document.getElementById('start-review-btn');
-        
-        if (wrongAnswers.totalWrongQuestions === 0) {
-            noWrongAnswers.style.display = 'block';
-            startReviewBtn.disabled = true;
-        } else {
-            noWrongAnswers.style.display = 'none';
-            startReviewBtn.disabled = false;
-        }
-        
-    } catch (error) {
-        showToast('Erro ao atualizar informações de revisão', 'error');
-        console.error('Error updating review info:', error);
-    }
-}
-
-async function startReviewMode() {
-    try {
-        showLoading();
-        
-        const reviewScope = document.querySelector('input[name="review-scope"]:checked').value;
-        const feedbackMode = document.querySelector('input[name="review-feedback-mode"]:checked').value;
-        const limit = reviewScope === 'recent' ? 5 : null;
-        
-        const wrongAnswersData = await fetchAPI(`/api/quiz/wrong-answers${limit ? `?limit=${limit}` : ''}`);
-        
-        if (wrongAnswersData.totalWrongQuestions === 0) {
-            showToast('Nenhuma questão errada encontrada para revisão', 'warning');
-            return;
-        }
-        
-        // Initialize review state (reusing quiz structure)
-        currentQuiz = {
-            questions: wrongAnswersData.questions,
-            currentIndex: 0,
-            answers: [],
-            feedbackMode: feedbackMode,
-            questionTypeFilter: 'mixed', // Review mode supports mixed types
-            startTime: new Date(),
-            isReviewMode: true // Flag to indicate this is a review session
-        };
-        
-        showSection('quiz');
-        displayCurrentQuestion();
-        updateQuizProgress();
-        startQuizTimer();
-        
-    } catch (error) {
-        showToast('Erro ao iniciar modo revisão', 'error');
-        console.error('Error starting review mode:', error);
     } finally {
         hideLoading();
     }
@@ -647,7 +529,8 @@ async function finishQuiz() {
             questions: currentQuiz.answers,
             feedbackMode: currentQuiz.feedbackMode,
             duration: Math.round((new Date() - currentQuiz.startTime) / 1000), // in seconds
-            isReviewMode: currentQuiz.isReviewMode || false // Mark if this was a review session
+            isReviewMode: currentQuiz.isReviewMode || false, // Mark if this was a review session
+            reviewSessionId: currentQuiz.reviewSessionId || null // Reference to original session if review
         };
         
         await fetchAPI('/api/history', {
@@ -662,6 +545,46 @@ async function finishQuiz() {
     } catch (error) {
         showToast('Erro ao finalizar quiz', 'error');
         console.error('Error finishing quiz:', error);
+    } finally {
+        hideLoading();
+    }
+}
+
+// Review Mode Function
+async function startReviewMode(sessionId) {
+    try {
+        showLoading();
+        
+        // Get wrong answers for this specific session
+        const reviewData = await fetchAPI(`/api/quiz/wrong-answers/${sessionId}`);
+        
+        if (reviewData.totalWrongQuestions === 0) {
+            showToast('Nenhuma questão errada encontrada nesta sessão', 'info');
+            return;
+        }
+        
+        // Initialize review state (reusing quiz structure)
+        currentQuiz = {
+            questions: reviewData.questions,
+            currentIndex: 0,
+            answers: [],
+            feedbackMode: 'immediate', // Default to immediate feedback for reviews
+            questionTypeFilter: 'mixed',
+            startTime: new Date(),
+            isReviewMode: true, // Flag to indicate this is a review session
+            reviewSessionId: sessionId // Store original session ID
+        };
+        
+        showSection('quiz');
+        displayCurrentQuestion();
+        updateQuizProgress();
+        startQuizTimer();
+        
+        showToast(`Iniciando revisão: ${reviewData.totalWrongQuestions} questão(ões) errada(s)`, 'info');
+        
+    } catch (error) {
+        showToast('Erro ao iniciar revisão', 'error');
+        console.error('Error starting review mode:', error);
     } finally {
         hideLoading();
     }
@@ -786,6 +709,13 @@ function displayHistory(history) {
         const date = new Date(session.date).toLocaleString('pt-BR');
         const score = Math.round((session.correctAnswers / session.totalQuestions) * 100);
         
+        // Check if session has wrong answers to show review button
+        const hasWrongAnswers = session.wrongAnswers > 0;
+        const reviewButtonHtml = hasWrongAnswers ? 
+            `<button class="btn btn-sm btn-secondary review-wrong-btn" data-session-id="${session.id}" onclick="startReviewMode(${session.id})">
+                <i class="fas fa-redo"></i> Revisar Erradas
+            </button>` : '';
+        
         sessionDiv.innerHTML = `
             <div class="history-clickable-area">
                 <div class="history-header">
@@ -798,8 +728,11 @@ function displayHistory(history) {
                     <span><i class="fas fa-times-circle text-error"></i> ${session.wrongAnswers} erradas</span>
                     <span><i class="fas fa-percentage"></i> ${score}%</span>
                 </div>
-                <div class="history-toggle">
-                    <i class="fas fa-chevron-down"></i>
+                <div class="history-actions">
+                    ${reviewButtonHtml}
+                    <div class="history-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </div>
             </div>
             <div class="history-details" style="display: none;">
@@ -807,9 +740,14 @@ function displayHistory(history) {
             </div>
         `;
         
-        // Adicionar evento apenas na área clicável
+        // Adicionar evento apenas na área clicável (excluindo botões)
         const clickableArea = sessionDiv.querySelector('.history-clickable-area');
-        clickableArea.addEventListener('click', () => toggleSessionDetails(session, sessionDiv));
+        const historyToggle = sessionDiv.querySelector('.history-toggle');
+        historyToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleSessionDetails(session, sessionDiv);
+        });
         
         container.appendChild(sessionDiv);
     });
@@ -1608,3 +1546,4 @@ window.editQuestion = editQuestion;
 window.deleteQuestion = deleteQuestion;
 window.removeOption = removeOption;
 window.handleCorrectOptionChange = handleCorrectOptionChange;
+window.startReviewMode = startReviewMode;
