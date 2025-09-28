@@ -158,6 +158,49 @@ app.post('/api/quiz/check', (req, res) => {
     }
 });
 
+// API para obter questões erradas de uma sessão específica para revisão
+app.get('/api/quiz/wrong-answers/:sessionId', (req, res) => {
+    try {
+        const sessionId = parseInt(req.params.sessionId);
+        
+        if (isNaN(sessionId)) {
+            return res.status(400).json({ error: 'ID de sessão inválido' });
+        }
+        
+        const session = dataManager.getSessionById(sessionId);
+        if (!session) {
+            return res.status(404).json({ error: 'Sessão não encontrada' });
+        }
+        
+        // Filtrar apenas as questões erradas desta sessão
+        const wrongQuestions = session.questions ? session.questions.filter(q => !q.isCorrect) : [];
+        
+        // Buscar as questões completas no banco de dados
+        const questionsForReview = [];
+        wrongQuestions.forEach(wrongAnswer => {
+            const fullQuestion = dataManager.getQuestionById(wrongAnswer.questionId);
+            if (fullQuestion) {
+                questionsForReview.push({
+                    id: fullQuestion.id,
+                    type: fullQuestion.type,
+                    question: fullQuestion.question,
+                    options: fullQuestion.options,
+                    numberingType: fullQuestion.numberingType
+                });
+            }
+        });
+        
+        res.json({
+            sessionId: sessionId,
+            totalWrongQuestions: questionsForReview.length,
+            questions: questionsForReview
+        });
+        
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao obter questões para revisão' });
+    }
+});
+
 // APIs para Histórico
 app.get('/api/history', (req, res) => {
     try {
