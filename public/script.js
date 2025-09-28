@@ -9,6 +9,7 @@ let currentQuiz = {
 
 let isLoggedIn = false;
 let quizTimerInterval = null;
+let browserSessionId = null;
 
 // DOM Elements
 const sections = {
@@ -39,6 +40,23 @@ function initializeApp() {
             navigateToSection(section);
         });
     });
+    
+    // Initialize browser session ID for individual history
+    initializeBrowserSessionId();
+}
+
+// Generate or retrieve browser session ID for individual history
+function initializeBrowserSessionId() {
+    // Check if we already have a session ID in sessionStorage
+    browserSessionId = sessionStorage.getItem('quizBrowserSessionId');
+    
+    if (!browserSessionId) {
+        // Generate a new unique session ID
+        browserSessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        sessionStorage.setItem('quizBrowserSessionId', browserSessionId);
+    }
+    
+    console.log('Browser Session ID:', browserSessionId);
 }
 
 // Setup Event Listeners
@@ -530,7 +548,8 @@ async function finishQuiz() {
             feedbackMode: currentQuiz.feedbackMode,
             duration: Math.round((new Date() - currentQuiz.startTime) / 1000), // in seconds
             isReviewMode: currentQuiz.isReviewMode || false, // Mark if this was a review session
-            reviewSessionId: currentQuiz.reviewSessionId || null // Reference to original session if review
+            reviewSessionId: currentQuiz.reviewSessionId || null, // Reference to original session if review
+            browserSessionId: browserSessionId // Individual session identifier
         };
         
         await fetchAPI('/api/history', {
@@ -676,7 +695,7 @@ async function loadHistory() {
         hideElement('history-list');
         hideElement('no-history');
         
-        const history = await fetchAPI('/api/history');
+        const history = await fetchAPI(`/api/history?browserSessionId=${encodeURIComponent(browserSessionId)}`);
         
         if (history.length === 0) {
             hideElement('history-loading');
@@ -1245,7 +1264,8 @@ async function clearHistory() {
         showLoading();
         
         await fetchAPI('/api/history/clear', {
-            method: 'DELETE'
+            method: 'DELETE',
+            body: JSON.stringify({ browserSessionId: browserSessionId })
         });
         
         showToast('Histórico limpo com sucesso!', 'success');

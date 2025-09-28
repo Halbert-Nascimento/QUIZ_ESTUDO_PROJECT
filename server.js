@@ -206,7 +206,8 @@ app.get('/api/quiz/wrong-answers/:sessionId', (req, res) => {
 // APIs para Histórico
 app.get('/api/history', (req, res) => {
     try {
-        const history = dataManager.getAllHistory();
+        const browserSessionId = req.query.browserSessionId;
+        const history = dataManager.getAllHistory(browserSessionId);
         res.json(history);
     } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar histórico' });
@@ -227,7 +228,7 @@ app.get('/api/history/:id', (req, res) => {
 
 app.post('/api/history', (req, res) => {
     try {
-        const { totalQuestions, correctAnswers, wrongAnswers, questions, feedbackMode, duration } = req.body;
+        const { totalQuestions, correctAnswers, wrongAnswers, questions, feedbackMode, duration, browserSessionId } = req.body;
         
         const sessionData = {
             totalQuestions,
@@ -236,6 +237,7 @@ app.post('/api/history', (req, res) => {
             questions,
             feedbackMode,
             duration,
+            browserSessionId,
             score: totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0
         };
 
@@ -253,7 +255,8 @@ app.post('/api/history', (req, res) => {
 // API para limpar histórico
 app.delete('/api/history/clear', (req, res) => {
     try {
-        const success = dataManager.clearHistory();
+        const { browserSessionId } = req.body;
+        const success = dataManager.clearHistory(browserSessionId);
         if (!success) {
             return res.status(500).json({ error: 'Erro ao limpar histórico' });
         }
