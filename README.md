@@ -425,12 +425,17 @@ cp -r data/ backup-data-$(date +%Y%m%d)/
 ## 🚀 Desenvolvimento Futuro
 
 ### Funcionalidades Planejadas
-- [ ] Sistema de categorias/tags para questões
-- [ ] Temporizador por questão
-- [ ] Sistema de múltiplos usuários
-- [ ] Integração com bancos de dados
-- [ ] API para integração externa
-- [ ] Modo offline (PWA)
+- [ ] **Sistema de autenticação avançado** - Login/registro de usuários com diferentes perfis
+- [ ] **Categorização por matéria/tema** - Organização de questões por disciplinas e assuntos
+- [ ] **Desafios em grupo e competições** - Modo multiplayer com rankings e torneios
+- [ ] **Sistema de feedback detalhado** - Comentários e explicações personalizadas por questão
+- [ ] **Gerenciamento de permissões** - Controle de acesso granular por usuário e grupo
+- [ ] **Temporizador por questão** - Controle de tempo individual e configurável
+- [ ] **Sistema de badges e conquistas** - Gamificação com recompensas por progresso
+- [ ] **Relatórios avançados de performance** - Analytics detalhados de desempenho
+- [ ] **Integração com bancos de dados** - Suporte a PostgreSQL, MySQL, MongoDB
+- [ ] **API para integração externa** - RESTful API para conectar com outros sistemas
+- [ ] **Modo offline (PWA)** - Funcionamento sem conexão com sincronização posterior
 
 ### Funcionalidades Implementadas
 - [x] **Exportação de relatórios em PDF** - Sistema completo de geração de relatórios em PDF
