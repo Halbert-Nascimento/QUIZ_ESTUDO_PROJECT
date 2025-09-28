@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const DataManager = require('./dataManager');
+const { jsPDF } = require('jspdf');
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -225,7 +227,7 @@ app.get('/api/history/:id', (req, res) => {
 
 app.post('/api/history', (req, res) => {
     try {
-        const { totalQuestions, correctAnswers, wrongAnswers, questions, feedbackMode } = req.body;
+        const { totalQuestions, correctAnswers, wrongAnswers, questions, feedbackMode, duration } = req.body;
         
         const sessionData = {
             totalQuestions,
@@ -233,6 +235,7 @@ app.post('/api/history', (req, res) => {
             wrongAnswers,
             questions,
             feedbackMode,
+            duration,
             score: totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0
         };
 
@@ -292,6 +295,277 @@ app.get('/api/stats', (req, res) => {
         res.status(500).json({ error: 'Erro ao buscar estatísticas' });
     }
 });
+
+// API para exportar sessão em PDF
+app.get('/api/export/session/:id/pdf', (req, res) => {
+    try {
+        const session = dataManager.getSessionById(req.params.id);
+        if (!session) {
+            return res.status(404).json({ error: 'Sessão não encontrada' });
+        }
+
+        // Criar PDF
+        const doc = new jsPDF();
+        let currentY = 20;
+        
+        // Configurar título
+        doc.setFontSize(20);
+        doc.text('Relatório do Teste - Quiz de Estudos', 20, currentY);
+        currentY += 20;
+        
+        // Informações gerais
+        doc.setFontSize(12);
+        const date = new Date(session.date).toLocaleString('pt-BR');
+        const score = Math.round((session.correctAnswers / session.totalQuestions) * 100);
+        const duration = session.duration ? formatDuration(session.duration) : 'N/A';
+        
+        doc.text(`Data: ${date}`, 20, currentY);
+        currentY += 10;
+        doc.text(`Questões Totais: ${session.totalQuestions}`, 20, currentY);
+        currentY += 10;
+        doc.text(`Respostas Corretas: ${session.correctAnswers}`, 20, currentY);
+        currentY += 10;
+        doc.text(`Respostas Erradas: ${session.wrongAnswers}`, 20, currentY);
+        currentY += 10;
+        doc.text(`Pontuação Final: ${score}%`, 20, currentY);
+        currentY += 10;
+        doc.text(`Tempo Gasto: ${duration}`, 20, currentY);
+        currentY += 20;
+        
+        // Verificar se há questões
+        if (!session.questions || session.questions.length === 0) {
+            doc.text('Nenhum detalhe de questão disponível', 20, currentY);
+        } else {
+            // Título das questões
+            doc.setFontSize(14);
+            doc.text('Detalhes das Questões:', 20, currentY);
+            currentY += 15;
+            
+            doc.setFontSize(10);
+            
+            // Detalhes de cada questão
+            session.questions.forEach((q, index) => {
+                // Função auxiliar para verificar espaço e adicionar nova página se necessário
+                const checkPageBreak = (neededSpace) => {
+                    if (currentY + neededSpace > 270) { // Maior margem para evitar cortes
+                        doc.addPage();
+                        currentY = 20;
+                    }
+                };
+                
+                // Função auxiliar para adicionar texto com quebra de página automática
+                const addTextWithPageBreak = (text, x, startY, maxWidth = 170) => {
+                    const lines = doc.splitTextToSize(text, maxWidth);
+                    let textY = startY;
+                    
+                    for (let i = 0; i < lines.length; i++) {
+                        checkPageBreak(8); // Espaço mínimo para uma linha
+                        doc.text(lines[i], x, currentY);
+                        currentY += 5;
+                        textY += 5;
+                    }
+                    return textY;
+                };
+                
+                // Função auxiliar para sanitizar HTML de forma segura
+                const sanitizeHtml = (text) => {
+                    if (!text) return '';
+                    // Remove HTML tags de forma mais segura, repetindo até não haver mais tags
+                    let cleaned = text.toString();
+                    let previousLength;
+                    do {
+                        previousLength = cleaned.length;
+                        cleaned = cleaned.replace(/<[^>]*>/g, '');
+                    } while (cleaned.length !== previousLength);
+                    return cleaned;
+                };
+                
+                // Calcular espaço necessário para toda a questão
+                const cleanQuestion = sanitizeHtml(q.question);
+                const questionLines = doc.splitTextToSize(cleanQuestion, 170);
+                const userAnswerLines = doc.splitTextToSize(q.userAnswer || 'N/A', 170);
+                const correctAnswerLines = doc.splitTextToSize(q.correctAnswer || 'N/A', 170);
+                const explanationLines = q.explanation ? doc.splitTextToSize(sanitizeHtml(q.explanation), 170) : [];
+                
+                const estimatedSpace = 20 + // cabeçalho
+                    (questionLines.length * 5) + 15 + // pergunta
+                    (userAnswerLines.length * 5) + 15 + // resposta do usuário
+                    (!q.isCorrect ? (correctAnswerLines.length * 5) + 15 : 0) + // resposta correta (só se errou)
+                    (explanationLines.length * 5) + 15; // explicação
+                
+                checkPageBreak(Math.min(estimatedSpace, 100)); // Verificar pelo menos 100 pontos de espaço
+                
+                // Número e status da questão
+                const status = q.isCorrect ? 'CORRETO' : 'INCORRETO';
+                doc.setFont(undefined, 'bold');
+                doc.text(`Questão ${index + 1} - ${status}`, 20, currentY);
+                currentY += 10;
+                
+                doc.setFont(undefined, 'normal');
+                
+                // Pergunta (sem limite de linhas)
+                doc.setFont(undefined, 'bold');
+                doc.text('Pergunta:', 20, currentY);
+                currentY += 6;
+                doc.setFont(undefined, 'normal');
+                addTextWithPageBreak(cleanQuestion, 25, currentY);
+                currentY += 5;
+                
+                // Resposta do usuário (sem limite de linhas)
+                checkPageBreak(20);
+                doc.setFont(undefined, 'bold');
+                doc.text('Sua Resposta:', 20, currentY);
+                currentY += 6;
+                doc.setFont(undefined, 'normal');
+                addTextWithPageBreak(q.userAnswer || 'N/A', 25, currentY);
+                currentY += 5;
+                
+                // Resposta correta (apenas se o usuário errou)
+                if (!q.isCorrect) {
+                    checkPageBreak(20);
+                    doc.setFont(undefined, 'bold');
+                    doc.text('Resposta Correta:', 20, currentY);
+                    currentY += 6;
+                    doc.setFont(undefined, 'normal');
+                    addTextWithPageBreak(q.correctAnswer || 'N/A', 25, currentY);
+                    currentY += 5;
+                }
+                
+                // Explicação (se houver, sem limite de linhas)
+                if (q.explanation) {
+                    checkPageBreak(20);
+                    doc.setFont(undefined, 'bold');
+                    doc.text('Explicação:', 20, currentY);
+                    currentY += 6;
+                    doc.setFont(undefined, 'normal');
+                    addTextWithPageBreak(sanitizeHtml(q.explanation), 25, currentY);
+                    currentY += 5;
+                }
+                
+                currentY += 10; // Espaço entre questões
+            });
+        }
+        
+        // Configurar resposta
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="resultado_teste_${session.id}.pdf"`);
+        
+        // Enviar PDF como string Base64 para evitar problemas com buffer
+        const pdfOutput = doc.output('datauristring');
+        const pdfBase64 = pdfOutput.split(',')[1];
+        const pdfBuffer = Buffer.from(pdfBase64, 'base64');
+        res.send(pdfBuffer);
+        
+    } catch (error) {
+        console.error('Erro ao gerar PDF:', error);
+        res.status(500).json({ error: 'Erro ao gerar relatório PDF' });
+    }
+});
+
+// API para exportar sessão em CSV
+app.get('/api/export/session/:id/csv', (req, res) => {
+    try {
+        const session = dataManager.getSessionById(req.params.id);
+        if (!session) {
+            return res.status(404).json({ error: 'Sessão não encontrada' });
+        }
+
+        // Preparar dados para CSV
+        const date = new Date(session.date).toLocaleString('pt-BR');
+        const score = Math.round((session.correctAnswers / session.totalQuestions) * 100);
+        const duration = session.duration ? formatDuration(session.duration) : 'N/A';
+        
+        // Preparar dados para CSV
+        const csvData = [];
+        
+        // Adicionar linha de cabeçalho geral
+        csvData.push({
+            questao: 'INFORMAÇÕES GERAIS',
+            sua_resposta: '',
+            resposta_correta: '',
+            status: '',
+            explicacao: ''
+        });
+        
+        csvData.push({
+            questao: `Data: ${date}`,
+            sua_resposta: `Total de Questões: ${session.totalQuestions}`,
+            resposta_correta: `Corretas: ${session.correctAnswers}`,
+            status: `Erradas: ${session.wrongAnswers}`,
+            explicacao: `Pontuação: ${score}% | Tempo: ${duration}`
+        });
+        
+        // Linha em branco
+        csvData.push({
+            questao: '',
+            sua_resposta: '',
+            resposta_correta: '',
+            status: '',
+            explicacao: ''
+        });
+        
+        // Cabeçalho das questões
+        csvData.push({
+            questao: 'QUESTÃO',
+            sua_resposta: 'SUA RESPOSTA',
+            resposta_correta: 'RESPOSTA CORRETA',
+            status: 'STATUS',
+            explicacao: 'EXPLICAÇÃO'
+        });
+        
+        // Verificar se há questões
+        if (!session.questions || session.questions.length === 0) {
+            csvData.push({
+                questao: 'Nenhum detalhe de questão disponível',
+                sua_resposta: '',
+                resposta_correta: '',
+                status: '',
+                explicacao: ''
+            });
+        } else {
+            // Dados das questões
+            session.questions.forEach((q, index) => {
+                csvData.push({
+                    questao: `${index + 1}. ${(q.question || '').replace(/<[^>]*>/g, '')}`,
+                    sua_resposta: q.userAnswer || 'N/A',
+                    resposta_correta: q.correctAnswer || 'N/A',
+                    status: q.isCorrect ? 'CORRETO' : 'INCORRETO',
+                    explicacao: q.explanation || 'N/A'
+                });
+            });
+        }
+        
+        // Gerar CSV
+        let csvContent = 'Questão,Sua Resposta,Resposta Correta,Status,Explicação\n';
+        csvData.forEach(row => {
+            // Escapar aspas duplas no CSV
+            const escapeField = (field) => `"${(field || '').toString().replace(/"/g, '""')}"`;
+            csvContent += `${escapeField(row.questao)},${escapeField(row.sua_resposta)},${escapeField(row.resposta_correta)},${escapeField(row.status)},${escapeField(row.explicacao)}\n`;
+        });
+        
+        // Configurar resposta
+        res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+        res.setHeader('Content-Disposition', `attachment; filename="resultado_teste_${session.id}.csv"`);
+        
+        // Adicionar BOM para UTF-8
+        res.write('\ufeff');
+        res.end(csvContent);
+        
+    } catch (error) {
+        console.error('Erro ao gerar CSV:', error);
+        res.status(500).json({ error: 'Erro ao gerar relatório CSV' });
+    }
+});
+
+// Função auxiliar para formatar duração
+function formatDuration(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    if (minutes > 0) {
+        return `${minutes}m ${remainingSeconds}s`;
+    }
+    return `${remainingSeconds}s`;
+}
 
 // Middleware para tratar rotas não encontradas
 app.use((req, res) => {

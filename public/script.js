@@ -736,6 +736,14 @@ function displayHistory(history) {
                 </div>
             </div>
             <div class="history-details" style="display: none;">
+                <div class="export-actions">
+                    <button class="btn btn-small btn-outline" onclick="exportSession(${session.id}, 'pdf')" title="Exportar como PDF">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </button>
+                    <button class="btn btn-small btn-outline" onclick="exportSession(${session.id}, 'csv')" title="Exportar como CSV">
+                        <i class="fas fa-file-csv"></i> CSV
+                    </button>
+                </div>
                 <div id="session-details-${session.id}"></div>
             </div>
         `;
@@ -823,6 +831,42 @@ function toggleSessionDetails(session, element) {
 function truncateText(text, maxLength) {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
+}
+
+// Função para exportar sessão
+async function exportSession(sessionId, format) {
+    try {
+        showToast('Gerando arquivo...', 'info');
+        
+        const response = await fetch(`/api/export/session/${sessionId}/${format}`);
+        
+        if (!response.ok) {
+            throw new Error('Erro ao exportar arquivo');
+        }
+        
+        // Criar link para download
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        
+        // Definir nome do arquivo baseado no formato
+        const fileName = format === 'pdf' ? 
+            `resultado_teste_${sessionId}.pdf` : 
+            `resultado_teste_${sessionId}.csv`;
+            
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+        
+        showToast(`Arquivo ${format.toUpperCase()} baixado com sucesso!`, 'success');
+        
+    } catch (error) {
+        console.error('Erro ao exportar:', error);
+        showToast(`Erro ao exportar arquivo ${format.toUpperCase()}`, 'error');
+    }
 }
 
 // Admin Functions
@@ -1547,3 +1591,4 @@ window.deleteQuestion = deleteQuestion;
 window.removeOption = removeOption;
 window.handleCorrectOptionChange = handleCorrectOptionChange;
 window.startReviewMode = startReviewMode;
+
