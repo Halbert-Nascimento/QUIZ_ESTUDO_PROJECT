@@ -712,7 +712,7 @@ function displayHistory(history) {
         // Check if session has wrong answers to show review button
         const hasWrongAnswers = session.wrongAnswers > 0;
         const reviewButtonHtml = hasWrongAnswers ? 
-            `<button class="btn btn-sm btn-secondary review-wrong-btn" data-session-id="${session.id}" onclick="startReviewMode(${session.id})">
+            `<button class="btn btn-small btn-secondary review-wrong-btn" data-session-id="${session.id}" onclick="startReviewMode(${session.id})">
                 <i class="fas fa-redo"></i> Revisar Erradas
             </button>` : '';
         
