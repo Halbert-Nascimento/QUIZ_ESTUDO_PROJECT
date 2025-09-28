@@ -14,6 +14,7 @@ let browserSessionId = null;
 // DOM Elements
 const sections = {
     dashboard: document.getElementById('dashboard'),
+    'personal-dashboard': document.getElementById('personal-dashboard'),
     quizConfig: document.getElementById('quiz-config'),
     quiz: document.getElementById('quiz'),
     quizResults: document.getElementById('quiz-results'),
@@ -136,6 +137,9 @@ function navigateToSection(sectionName) {
         case 'dashboard':
             loadDashboardData();
             break;
+        case 'personal-dashboard':
+            loadPersonalDashboard();
+            break;
         case 'quiz-config':
             loadQuizConfig();
             break;
@@ -199,14 +203,81 @@ function updateDashboardStats(stats) {
     document.getElementById('total-correct').textContent = stats.totalCorrect;
 }
 
+// Personal Dashboard Functions
+async function loadPersonalDashboard() {
+    try {
+        showLoading();
+        
+        // Get personal statistics based on browser session
+        const personalHistory = await fetchAPI(`/api/history?browserSessionId=${encodeURIComponent(browserSessionId)}`);
+        
+        if (personalHistory.length === 0) {
+            // Show empty state
+            showElement('personal-no-history');
+            hideElement('personal-quick-actions');
+        } else {
+            // Calculate personal stats
+            const personalStats = calculatePersonalStats(personalHistory);
+            updatePersonalDashboardStats(personalStats);
+            
+            hideElement('personal-no-history');
+            showElement('personal-quick-actions');
+        }
+    } catch (error) {
+        showToast('Erro ao carregar dashboard pessoal', 'error');
+        console.error('Error loading personal dashboard:', error);
+    } finally {
+        hideLoading();
+    }
+}
+
+function calculatePersonalStats(sessions) {
+    if (!sessions || sessions.length === 0) {
+        return {
+            totalSessions: 0,
+            averageScore: 0,
+            totalCorrect: 0,
+            totalWrong: 0
+        };
+    }
+    
+    let totalQuestions = 0;
+    let totalCorrect = 0;
+    let totalWrong = 0;
+    
+    sessions.forEach(session => {
+        totalQuestions += session.totalQuestions || 0;
+        totalCorrect += session.correctAnswers || 0;
+        totalWrong += session.wrongAnswers || 0;
+    });
+    
+    const averageScore = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+    
+    return {
+        totalSessions: sessions.length,
+        averageScore: averageScore,
+        totalCorrect: totalCorrect,
+        totalWrong: totalWrong
+    };
+}
+
+function updatePersonalDashboardStats(stats) {
+    document.getElementById('personal-total-sessions').textContent = stats.totalSessions;
+    document.getElementById('personal-average-score').textContent = stats.averageScore + '%';
+    document.getElementById('personal-total-correct').textContent = stats.totalCorrect;
+    document.getElementById('personal-total-wrong').textContent = stats.totalWrong;
+}
+
 function handleQuickAction(e) {
     const action = e.target.closest('[data-action]').dataset.action;
     
     switch(action) {
         case 'start-quiz':
+        case 'new-quiz':
             navigateToSection('quiz-config');
             break;
         case 'view-history':
+        case 'view-personal-history':
             navigateToSection('history');
             break;
         case 'manage-questions':
@@ -215,6 +286,37 @@ function handleQuickAction(e) {
         case 'start-new-quiz':
             navigateToSection('quiz-config');
             break;
+        case 'review-mistakes':
+            reviewLatestMistakes();
+            break;
+    }
+}
+
+async function reviewLatestMistakes() {
+    try {
+        // Get personal history to find the latest session with wrong answers
+        const personalHistory = await fetchAPI(`/api/history?browserSessionId=${encodeURIComponent(browserSessionId)}`);
+        
+        if (personalHistory.length === 0) {
+            showToast('Nenhum teste encontrado para revisão', 'info');
+            return;
+        }
+        
+        // Find the latest session with wrong answers
+        const latestSessionWithMistakes = personalHistory.find(session => 
+            session.wrongAnswers && session.wrongAnswers > 0
+        );
+        
+        if (!latestSessionWithMistakes) {
+            showToast('Parabéns! Você não tem erros para revisar', 'success');
+            return;
+        }
+        
+        // Start review mode with the latest session
+        startReviewMode(latestSessionWithMistakes.id);
+    } catch (error) {
+        showToast('Erro ao iniciar revisão', 'error');
+        console.error('Error starting review:', error);
     }
 }
 
