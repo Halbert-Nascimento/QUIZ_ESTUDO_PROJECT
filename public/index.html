@@ -17,7 +17,10 @@
             </div>
             <nav class="nav">
                 <button class="nav-btn active" data-section="dashboard">
-                    <i class="fas fa-home"></i> Dashboard
+                    <i class="fas fa-home"></i> Dashboard Geral
+                </button>
+                <button class="nav-btn" data-section="personal-dashboard">
+                    <i class="fas fa-user"></i> Meu Dashboard
                 </button>
                 <button class="nav-btn" data-section="quiz-config">
                     <i class="fas fa-play"></i> Novo Teste
@@ -39,8 +42,8 @@
             <!-- Dashboard Section -->
             <section id="dashboard" class="section active">
                 <div class="dashboard-header">
-                    <h2>Dashboard</h2>
-                    <p>Bem-vindo à sua plataforma de estudos!</p>
+                    <h2>Dashboard Geral</h2>
+                    <p>Visão geral da plataforma de estudos</p>
                 </div>
                 
                 <div class="stats-grid">
@@ -110,6 +113,84 @@
                     <button class="btn btn-primary" data-action="manage-questions">
                         <i class="fas fa-plus"></i>
                         Cadastrar Primeira Questão
+                    </button>
+                </div>
+            </section>
+
+            <!-- Personal Dashboard Section -->
+            <section id="personal-dashboard" class="section">
+                <div class="dashboard-header">
+                    <h2>Meu Dashboard</h2>
+                    <p>Meu progresso individual de estudos</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="personal-total-sessions">0</h3>
+                            <p>Meus Testes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="personal-average-score">0%</h3>
+                            <p>Minha Média</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="personal-total-correct">0</h3>
+                            <p>Minhas Respostas Corretas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="personal-total-wrong">0</h3>
+                            <p>Minhas Respostas Erradas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="personal-quick-actions" class="quick-actions">
+                    <h3>Ações Pessoais</h3>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" data-action="new-quiz">
+                            <i class="fas fa-play"></i>
+                            Começar Novo Teste
+                        </button>
+                        <button class="btn btn-secondary" data-action="view-personal-history">
+                            <i class="fas fa-history"></i>
+                            Ver Meu Histórico
+                        </button>
+                        <button class="btn btn-outline" data-action="review-mistakes">
+                            <i class="fas fa-redo"></i>
+                            Revisar Erros
+                        </button>
+                    </div>
+                </div>
+
+                <div id="personal-no-history" class="empty-state" style="display: none;">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Nenhum teste realizado ainda</h3>
+                    <p>Comece fazendo seu primeiro teste para ver suas estatísticas pessoais!</p>
+                    <button class="btn btn-primary" data-section="quiz-config">
+                        <i class="fas fa-play"></i>
+                        Fazer Primeiro Teste
                     </button>
                 </div>
             </section>

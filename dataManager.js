@@ -126,9 +126,16 @@ class DataManager {
     }
 
     // Métodos para Histórico de Testes
-    getAllHistory() {
+    getAllHistory(browserSessionId = null) {
         const data = this.readFile(this.historyFile);
-        return data ? data.sessions : [];
+        let sessions = data ? data.sessions : [];
+        
+        // If browserSessionId is provided, filter by it
+        if (browserSessionId) {
+            sessions = sessions.filter(session => session.browserSessionId === browserSessionId);
+        }
+        
+        return sessions;
     }
 
     addTestSession(sessionData) {
@@ -239,13 +246,19 @@ class DataManager {
         };
     }
 
-    clearHistory() {
+    clearHistory(browserSessionId = null) {
         try {
             const data = this.readFile(this.historyFile);
             if (!data) return false;
             
-            data.sessions = [];
-            data.nextId = 1;
+            if (browserSessionId) {
+                // Clear only sessions for specific browser session
+                data.sessions = data.sessions.filter(session => session.browserSessionId !== browserSessionId);
+            } else {
+                // Clear all sessions (admin functionality)
+                data.sessions = [];
+                data.nextId = 1;
+            }
             
             return this.writeFile(this.historyFile, data);
         } catch (error) {
