@@ -4,17 +4,17 @@ Uma aplicação web completa para gerenciar questões de estudo, realizar testes
 
 ## 📸 Interface do Sistema
 
-### Dashboard Principal
-![Dashboard Geral](https://github.com/user-attachments/assets/66633cd7-4c57-4ac6-9e88-e1d7528e13ae)
-*Visão geral da plataforma com estatísticas em tempo real*
+### Dashboard Geral
+![Dashboard Geral](https://github.com/user-attachments/assets/057e37a1-d99e-4b82-b975-cd832d291287)
+*Visão geral da plataforma com estatísticas em tempo real e métricas de desempenho*
 
-### Configuração de Teste
-![Configuração de Teste](https://github.com/user-attachments/assets/7c0b98c8-1bb2-4ab6-a8a2-10d552669162)
-*Interface para configurar tipos de questões, quantidade e modo de feedback*
+### Meu Dashboard
+![Meu Dashboard](https://github.com/user-attachments/assets/6727e528-3309-4242-8fb3-0fed1c43525c)
+*Dashboard pessoal com progresso individual e ações personalizadas*
 
-### Painel Administrativo
-![Painel Admin](https://github.com/user-attachments/assets/348ff157-b689-4979-b23d-371eaccc70bd)
-*Gerenciamento completo de questões com editor avançado*
+### Histórico de Testes
+![Histórico de Testes](https://github.com/user-attachments/assets/fc244da3-6d90-4127-9839-bcae26eed174)
+*Histórico completo com opções de exportação PDF e CSV e análise detalhada*
 
 ##  Índice
 
@@ -426,6 +426,7 @@ cp -r data/ backup-data-$(date +%Y%m%d)/
 
 ### Funcionalidades Planejadas
 - [ ] **Sistema de autenticação avançado** - Login/registro de usuários com diferentes perfis
+- [ ] **Compartilhamento de estudos** - Geração de código para que colegas respondam ao mesmo teste e comparem resultados
 - [ ] **Categorização por matéria/tema** - Organização de questões por disciplinas e assuntos
 - [ ] **Desafios em grupo e competições** - Modo multiplayer com rankings e torneios
 - [ ] **Sistema de feedback detalhado** - Comentários e explicações personalizadas por questão
