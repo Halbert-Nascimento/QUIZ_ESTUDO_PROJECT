@@ -2,8 +2,23 @@
 
 Uma aplicação web completa para gerenciar questões de estudo, realizar testes interativos e acompanhar o progresso de aprendizado. Desenvolvida com Node.js, Express e tecnologias web modernas.
 
+## 📸 Interface do Sistema
+
+### Dashboard Geral
+![Dashboard Geral](https://github.com/user-attachments/assets/057e37a1-d99e-4b82-b975-cd832d291287)
+*Visão geral da plataforma com estatísticas em tempo real e métricas de desempenho*
+
+### Meu Dashboard
+![Meu Dashboard](https://github.com/user-attachments/assets/6727e528-3309-4242-8fb3-0fed1c43525c)
+*Dashboard pessoal com progresso individual e ações personalizadas*
+
+### Histórico de Testes
+![Histórico de Testes](https://github.com/user-attachments/assets/fc244da3-6d90-4127-9839-bcae26eed174)
+*Histórico completo com opções de exportação PDF e CSV e análise detalhada*
+
 ##  Índice
 
+- [Interface do Sistema](#-interface-do-sistema)
 - [Características Principais](#-características-principais)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
@@ -19,7 +34,7 @@ Uma aplicação web completa para gerenciar questões de estudo, realizar testes
 - [Contribuições](#-contribuições)
 - [Suporte](#-suporte)
 
-## Características Principais
+## ✨ Características Principais
 
 ### 📊 Dashboard Inteligente
 - Visão geral das estatísticas de estudo
@@ -28,20 +43,20 @@ Uma aplicação web completa para gerenciar questões de estudo, realizar testes
 - Ações rápidas para facilitar a navegação
 
 ### 🎯 Sistema de Quiz Avançado
-- **Questões de Múltipla Escolha**: Com suporte a número variável de opções
+- **Questões de Múltipla Escolha**: Com numeração configurável (letras/números)
 - **Questões Discursivas**: Para respostas abertas e desenvolvimento
-- **Editor de Texto Rico**: Formatação avançada para questões e explicações
-- **Feedback Configurável**: 
-  - Imediato (após cada questão)
-  - No final (relatório completo)
-- **Seleção Aleatória**: Questões escolhidas randomicamente
-- **Progresso Visual**: Barra de progresso e contador de questões
+- **Editor de Texto Rico**: Formatação avançada com HTML e toolbar visual
+- **Configuração Flexível**: 
+  - Escolha de tipos de questões (múltipla, discursiva ou mista)
+  - Quantidade personalizável (de 1 até todas as questões disponíveis)
+  - Modos de feedback (imediato ou final)
+- **Sistema de Explicações**: Cada questão pode conter explicação detalhada
 
-### 📈 Histórico Detalhado
-- Salvamento automático de todas as sessões
-- Estatísticas por teste (acertos, erros, pontuação)
-- Visualização detalhada das respostas
-- Ordenação cronológica das sessões
+### 📈 Histórico e Relatórios
+- **Histórico Completo**: Todas as sessões são automaticamente salvas
+- **Exportação em PDF**: Relatórios detalhados com respostas e estatísticas
+- **Exportação em CSV**: Dados estruturados para análise externa
+- **Visualização Detalhada**: Análise questão por questão com feedback
 
 ### 🔧 Painel Administrativo
 - **Login Seguro**: Acesso protegido para gerenciamento
@@ -134,7 +149,6 @@ quiz_estudo_project/
 ```bash
 npm start        # Inicia o servidor de produção
 npm run dev      # Inicia o servidor (mesmo que start)
-npm run network  # Inicia o servidor para acesso em rede local
 ```
 
 ## 👤 Primeiro Acesso e Configurações
@@ -353,11 +367,10 @@ const PORT = process.env.PORT || 3000;
 ### Acessando o Projeto em Rede Local
 O servidor está configurado para ser acessível por outras máquinas na mesma rede local, permitindo que outros dispositivos (como smartphones, tablets ou outros computadores) acessem o sistema de quiz:
 
-1. **Inicie o servidor com o comando específico para rede**:
+1. **Inicie o servidor normalmente**:
    ```bash
-   npm run network
+   npm start
    ```
-   Este comando inicia o servidor vinculado ao endereço `0.0.0.0`, tornando-o acessível por todas as interfaces de rede.
 
 2. **Encontre seu IP na rede local**:
    ```bash
@@ -381,9 +394,9 @@ O servidor está configurado para ser acessível por outras máquinas na mesma r
 4. **Importante**: Todos os dispositivos devem estar conectados à mesma rede local (WiFi ou LAN).
 
 5. **Resolvendo problemas de acesso**:
-   - Verifique se não há firewall bloqueando a porta 4444
+   - Verifique se não há firewall bloqueando a porta 3000
    - Certifique-se de que o computador servidor permite conexões na porta 3000
-   - Verifique se o servidor está rodando corretamente com o comando `npm run network`
+   - Verifique se o servidor está rodando corretamente
 
 ### Backup dos Dados
 Os dados ficam no diretório `data/`. Para backup:
@@ -398,7 +411,7 @@ cp -r data/ backup-data-$(date +%Y%m%d)/
 ### Servidor não inicia
 - Verifique se o Node.js está instalado: `node --version`
 - Verifique se as dependências foram instaladas: `npm install`
-- Verifique se a porta 4444 está livre (você pode alterar a porta em `server.js`)
+- Verifique se a porta 3000 está livre (você pode alterar a porta em `server.js`)
 
 ### Questões não aparecem
 - Verifique se há questões cadastradas no Admin
@@ -412,13 +425,27 @@ cp -r data/ backup-data-$(date +%Y%m%d)/
 ## 🚀 Desenvolvimento Futuro
 
 ### Funcionalidades Planejadas
-- [ ] Sistema de categorias/tags para questões
-- [ ] Temporizador por questão
-- [ ] Exportação de relatórios em PDF
-- [ ] Sistema de múltiplos usuários
-- [ ] Integração com bancos de dados
-- [ ] API para integração externa
-- [ ] Modo offline (PWA)
+- [ ] **Sistema de autenticação avançado** - Login/registro de usuários com diferentes perfis
+- [ ] **Compartilhamento de estudos** - Geração de código para que colegas respondam ao mesmo teste e comparem resultados
+- [ ] **Categorização por matéria/tema** - Organização de questões por disciplinas e assuntos
+- [ ] **Desafios em grupo e competições** - Modo multiplayer com rankings e torneios
+- [ ] **Sistema de feedback detalhado** - Comentários e explicações personalizadas por questão
+- [ ] **Gerenciamento de permissões** - Controle de acesso granular por usuário e grupo
+- [ ] **Temporizador por questão** - Controle de tempo individual e configurável
+- [ ] **Sistema de badges e conquistas** - Gamificação com recompensas por progresso
+- [ ] **Relatórios avançados de performance** - Analytics detalhados de desempenho
+- [ ] **Integração com bancos de dados** - Suporte a PostgreSQL, MySQL, MongoDB
+- [ ] **API para integração externa** - RESTful API para conectar com outros sistemas
+- [ ] **Modo offline (PWA)** - Funcionamento sem conexão com sincronização posterior
+
+### Funcionalidades Implementadas
+- [x] **Exportação de relatórios em PDF** - Sistema completo de geração de relatórios em PDF
+- [x] **Exportação de dados em CSV** - Opção para exportar resultados em formato CSV
+- [x] **Sistema de questões múltipla escolha e discursivas**
+- [x] **Interface administrativa completa**
+- [x] **Dashboard com estatísticas**
+- [x] **Sistema de feedback configurável**
+- [x] **Histórico de testes realizados**
 
 ### Melhorias Técnicas
 - [ ] Testes automatizados
