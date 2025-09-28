@@ -796,7 +796,7 @@ body {
 .history-list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-xl); /* Increased spacing between cards for better visual separation */
 }
 
 .history-item {
@@ -836,6 +836,50 @@ body {
     align-items: center;
     justify-content: center;
     padding: var(--space-xs);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.history-toggle:hover {
+    color: var(--gray-700);
+}
+
+.history-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-lg); /* More space from stats */
+    position: relative;
+    border-top: 1px solid var(--gray-200); /* Subtle separator */
+    padding-top: var(--space-md); /* Padding above the actions */
+}
+
+.history-actions .review-wrong-btn {
+    margin-right: auto; /* Push the review button to the left */
+    background: var(--warning-color) !important; /* Distinctive warning color for review */
+    color: white;
+    font-weight: 600;
+    border: none;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.history-actions .review-wrong-btn:hover {
+    background: #d97706 !important; /* Darker warning color on hover */
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.history-actions .history-toggle {
+    position: static; /* Override absolute positioning when in actions */
+    margin-left: auto; /* Push toggle to the right */
+    padding: var(--space-sm); /* More clickable area */
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.history-actions .history-toggle:hover {
+    background: var(--gray-100);
 }
 
 .history-title {

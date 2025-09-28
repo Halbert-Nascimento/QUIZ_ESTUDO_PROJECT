@@ -528,7 +528,9 @@ async function finishQuiz() {
             wrongAnswers: wrongAnswers,
             questions: currentQuiz.answers,
             feedbackMode: currentQuiz.feedbackMode,
-            duration: Math.round((new Date() - currentQuiz.startTime) / 1000) // in seconds
+            duration: Math.round((new Date() - currentQuiz.startTime) / 1000), // in seconds
+            isReviewMode: currentQuiz.isReviewMode || false, // Mark if this was a review session
+            reviewSessionId: currentQuiz.reviewSessionId || null // Reference to original session if review
         };
         
         await fetchAPI('/api/history', {
@@ -543,6 +545,46 @@ async function finishQuiz() {
     } catch (error) {
         showToast('Erro ao finalizar quiz', 'error');
         console.error('Error finishing quiz:', error);
+    } finally {
+        hideLoading();
+    }
+}
+
+// Review Mode Function
+async function startReviewMode(sessionId) {
+    try {
+        showLoading();
+        
+        // Get wrong answers for this specific session
+        const reviewData = await fetchAPI(`/api/quiz/wrong-answers/${sessionId}`);
+        
+        if (reviewData.totalWrongQuestions === 0) {
+            showToast('Nenhuma questão errada encontrada nesta sessão', 'info');
+            return;
+        }
+        
+        // Initialize review state (reusing quiz structure)
+        currentQuiz = {
+            questions: reviewData.questions,
+            currentIndex: 0,
+            answers: [],
+            feedbackMode: 'immediate', // Default to immediate feedback for reviews
+            questionTypeFilter: 'mixed',
+            startTime: new Date(),
+            isReviewMode: true, // Flag to indicate this is a review session
+            reviewSessionId: sessionId // Store original session ID
+        };
+        
+        showSection('quiz');
+        displayCurrentQuestion();
+        updateQuizProgress();
+        startQuizTimer();
+        
+        showToast(`Iniciando revisão: ${reviewData.totalWrongQuestions} questão(ões) errada(s)`, 'info');
+        
+    } catch (error) {
+        showToast('Erro ao iniciar revisão', 'error');
+        console.error('Error starting review mode:', error);
     } finally {
         hideLoading();
     }
@@ -667,6 +709,13 @@ function displayHistory(history) {
         const date = new Date(session.date).toLocaleString('pt-BR');
         const score = Math.round((session.correctAnswers / session.totalQuestions) * 100);
         
+        // Check if session has wrong answers to show review button
+        const hasWrongAnswers = session.wrongAnswers > 0;
+        const reviewButtonHtml = hasWrongAnswers ? 
+            `<button class="btn btn-small btn-secondary review-wrong-btn" data-session-id="${session.id}" onclick="startReviewMode(${session.id})">
+                <i class="fas fa-redo"></i> Revisar Erradas
+            </button>` : '';
+        
         sessionDiv.innerHTML = `
             <div class="history-clickable-area">
                 <div class="history-header">
@@ -679,8 +728,11 @@ function displayHistory(history) {
                     <span><i class="fas fa-times-circle text-error"></i> ${session.wrongAnswers} erradas</span>
                     <span><i class="fas fa-percentage"></i> ${score}%</span>
                 </div>
-                <div class="history-toggle">
-                    <i class="fas fa-chevron-down"></i>
+                <div class="history-actions">
+                    ${reviewButtonHtml}
+                    <div class="history-toggle">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </div>
             </div>
             <div class="history-details" style="display: none;">
@@ -696,9 +748,14 @@ function displayHistory(history) {
             </div>
         `;
         
-        // Adicionar evento apenas na área clicável
+        // Adicionar evento apenas na área clicável (excluindo botões)
         const clickableArea = sessionDiv.querySelector('.history-clickable-area');
-        clickableArea.addEventListener('click', () => toggleSessionDetails(session, sessionDiv));
+        const historyToggle = sessionDiv.querySelector('.history-toggle');
+        historyToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleSessionDetails(session, sessionDiv);
+        });
         
         container.appendChild(sessionDiv);
     });
@@ -1533,4 +1590,5 @@ window.editQuestion = editQuestion;
 window.deleteQuestion = deleteQuestion;
 window.removeOption = removeOption;
 window.handleCorrectOptionChange = handleCorrectOptionChange;
-window.exportSession = exportSession;
+window.startReviewMode = startReviewMode;
+
