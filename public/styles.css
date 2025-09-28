@@ -1828,3 +1828,59 @@ body {
     body { background: white; }
     .question-card, .stat-card { box-shadow: none; border: 1px solid var(--gray-300); }
 }
+
+/* Export Actions Styles */
+.export-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    padding: var(--space-md);
+    background-color: var(--gray-50);
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+}
+
+.export-actions .btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    min-width: 80px;
+}
+
+.export-actions .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.export-actions .btn i {
+    font-size: var(--font-size-sm);
+}
+
+.export-actions .btn:first-child {
+    background-color: #dc2626;
+    color: white;
+    border-color: #dc2626;
+}
+
+.export-actions .btn:first-child:hover {
+    background-color: #b91c1c;
+    border-color: #b91c1c;
+}
+
+.export-actions .btn:last-child {
+    background-color: #059669;
+    color: white;
+    border-color: #059669;
+}
+
+.export-actions .btn:last-child:hover {
+    background-color: #047857;
+    border-color: #047857;
+}
