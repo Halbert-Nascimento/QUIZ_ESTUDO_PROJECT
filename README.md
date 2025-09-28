@@ -48,7 +48,7 @@ Uma aplicação web completa para gerenciar questões de estudo, realizar testes
 - **Editor de Texto Rico**: Formatação avançada com HTML e toolbar visual
 - **Configuração Flexível**: 
   - Escolha de tipos de questões (múltipla, discursiva ou mista)
-  - Quantidade personalizável (1 a 50 questões)
+  - Quantidade personalizável (de 1 até todas as questões disponíveis)
   - Modos de feedback (imediato ou final)
 - **Sistema de Explicações**: Cada questão pode conter explicação detalhada
 
