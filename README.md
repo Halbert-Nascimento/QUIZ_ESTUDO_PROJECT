@@ -37,10 +37,10 @@ Uma aplicação web completa para gerenciar questões de estudo, realizar testes
 ## ✨ Características Principais
 
 ### 📊 Dashboard Inteligente
-- **Visão geral completa**: 54 questões disponíveis (51 múltipla escolha + 3 discursivas)
-- **Estatísticas em tempo real**: Contador de testes realizados e média de acertos
-- **Interface moderna**: Design responsivo com navegação intuitiva
-- **Ações rápidas**: Acesso direto às principais funcionalidades
+- Visão geral das estatísticas de estudo
+- Contador de questões disponíveis
+- Histórico de performance
+- Ações rápidas para facilitar a navegação
 
 ### 🎯 Sistema de Quiz Avançado
 - **Questões de Múltipla Escolha**: Com numeração configurável (letras/números)
