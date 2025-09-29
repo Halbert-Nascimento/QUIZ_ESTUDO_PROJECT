@@ -381,6 +381,12 @@ body {
     margin-bottom: var(--space-lg);
 }
 
+.empty-state .btn {
+    margin-top: var(--space-md);
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--font-size-lg);
+}
+
 /* Forms */
 .form-group {
     margin-bottom: var(--space-lg);
@@ -627,8 +633,8 @@ body {
 }
 
 .option-number-quiz {
-    min-width: 28px;
-    height: 28px;
+    min-width: 30px;
+    height: 30px;
     background: var(--gray-500);
     color: white;
     border-radius: 50%;
@@ -1327,8 +1333,8 @@ body {
 }
 
 .option-number {
-    min-width: 32px;
-    height: 32px;
+    min-width: 30px;
+    height: 30px;
     background: var(--primary-color);
     color: white;
     border-radius: 50%;
@@ -1338,6 +1344,7 @@ body {
     font-weight: 600;
     font-size: var(--font-size-sm);
     flex-shrink: 0;
+}
 }
 
 .option-input input {
@@ -1414,8 +1421,8 @@ body {
 }
 
 .preview-option-number {
-    min-width: 24px;
-    height: 24px;
+    min-width: 30px;
+    height: 30px;
     background: var(--gray-600);
     color: white;
     border-radius: 50%;
@@ -1425,6 +1432,7 @@ body {
     font-weight: 600;
     font-size: var(--font-size-sm);
     flex-shrink: 0;
+}
     margin-top: 2px;
 }
 
@@ -1474,8 +1482,8 @@ body {
 }
 
 .option-number-display {
-    min-width: 24px;
-    height: 24px;
+    min-width: 30px;
+    height: 30px;
     background: var(--gray-500);
     color: white;
     border-radius: 50%;
@@ -1485,6 +1493,7 @@ body {
     font-weight: 600;
     font-size: var(--font-size-sm);
     flex-shrink: 0;
+}
 }
 
 .option-display.correct-option .option-number-display {
