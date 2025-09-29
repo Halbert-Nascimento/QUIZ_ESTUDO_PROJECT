@@ -381,12 +381,6 @@ body {
     margin-bottom: var(--space-lg);
 }
 
-.empty-state .btn {
-    margin-top: var(--space-md);
-    padding: var(--space-md) var(--space-xl);
-    font-size: var(--font-size-lg);
-}
-
 /* Forms */
 .form-group {
     margin-bottom: var(--space-lg);
