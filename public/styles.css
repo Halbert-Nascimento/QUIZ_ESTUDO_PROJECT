@@ -393,6 +393,12 @@ body {
     margin-bottom: var(--space-lg);
 }
 
+.empty-state .btn {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--font-size-base);
+    min-height: auto;
+}
+
 /* Forms */
 .form-group {
     margin-bottom: var(--space-lg);
