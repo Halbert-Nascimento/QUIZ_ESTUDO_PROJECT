@@ -1095,6 +1095,30 @@ body {
     font-weight: 500;
 }
 
+.question-badges {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-xs);
+}
+
+.question-subject {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--success-color);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.question-subject i {
+    font-size: 0.9em;
+}
+
 .question-actions {
     display: flex;
     gap: var(--space-sm);
