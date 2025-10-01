@@ -76,6 +76,9 @@ function setupEventListeners() {
         radio.addEventListener('change', updateQuestionTypeFilter);
     });
     
+    // Subject filter change
+    document.getElementById('subject-filter').addEventListener('change', updateQuestionTypeFilter);
+    
     // Quiz actions
     document.getElementById('submit-answer').addEventListener('click', submitAnswer);
     document.getElementById('next-question').addEventListener('click', nextQuestion);
@@ -324,6 +327,7 @@ async function reviewLatestMistakes() {
 async function loadQuizConfig() {
     try {
         const questions = await fetchAPI('/api/questions');
+        const subjectsData = await fetchAPI('/api/subjects');
         
         // Count questions by type
         const multipleChoiceCount = questions.filter(q => q.type === 'multiple-choice').length;
@@ -333,6 +337,26 @@ async function loadQuizConfig() {
         // Update counters
         document.querySelector('#multiple-choice-count .count').textContent = multipleChoiceCount;
         document.querySelector('#essay-count .count').textContent = essayCount;
+        
+        // Populate subject filter
+        const subjectFilter = document.getElementById('subject-filter');
+        const existingOptions = subjectFilter.querySelectorAll('option:not([value="all"]):not([value="no-subject"])');
+        existingOptions.forEach(opt => opt.remove());
+        
+        if (subjectsData.subjects && subjectsData.subjects.length > 0) {
+            subjectsData.subjects.forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = `${subject} (${subjectsData.counts[subject] || 0})`;
+                subjectFilter.appendChild(option);
+            });
+        }
+        
+        // Update "no-subject" count
+        const noSubjectOption = subjectFilter.querySelector('option[value="no-subject"]');
+        if (noSubjectOption && subjectsData.counts['no-subject']) {
+            noSubjectOption.textContent = `Sem Matéria (${subjectsData.counts['no-subject']})`;
+        }
         
         // Auto-select appropriate filter based on available questions
         if (essayCount === 0 && multipleChoiceCount > 0) {
@@ -386,10 +410,12 @@ async function updateQuestionTypeFilter() {
     try {
         const questions = await fetchAPI('/api/questions');
         const selectedFilter = document.querySelector('input[name="question-type-filter"]:checked').value;
+        const selectedSubject = document.getElementById('subject-filter').value;
         
         let filteredQuestions = [];
         let filterDescription = '';
         
+        // Filter by type first
         switch(selectedFilter) {
             case 'multiple-choice':
                 filteredQuestions = questions.filter(q => q.type === 'multiple-choice');
@@ -403,6 +429,19 @@ async function updateQuestionTypeFilter() {
                 filteredQuestions = questions;
                 filterDescription = 'mistas';
                 break;
+        }
+        
+        // Filter by subject
+        if (selectedSubject && selectedSubject !== 'all') {
+            if (selectedSubject === 'no-subject') {
+                filteredQuestions = filteredQuestions.filter(q => !q.subject || q.subject === '');
+            } else {
+                filteredQuestions = filteredQuestions.filter(q => q.subject === selectedSubject);
+            }
+            
+            // Update description to include subject
+            const subjectText = selectedSubject === 'no-subject' ? 'sem matéria' : selectedSubject;
+            filterDescription += ` de ${subjectText}`;
         }
         
         const maxQuestions = filteredQuestions.length;
@@ -441,8 +480,14 @@ async function startQuiz() {
         const questionCount = parseInt(document.getElementById('question-count').value);
         const feedbackMode = document.querySelector('input[name="feedback-mode"]:checked').value;
         const questionTypeFilter = document.querySelector('input[name="question-type-filter"]:checked').value;
+        const subjectFilter = document.getElementById('subject-filter').value;
         
-        const questions = await fetchAPI(`/api/quiz/${questionCount}?type=${questionTypeFilter}`);
+        let apiUrl = `/api/quiz/${questionCount}?type=${questionTypeFilter}`;
+        if (subjectFilter && subjectFilter !== 'all') {
+            apiUrl += `&subject=${encodeURIComponent(subjectFilter)}`;
+        }
+        
+        const questions = await fetchAPI(apiUrl);
         
         if (questions.length === 0) {
             showToast('Nenhuma questão disponível para o filtro selecionado', 'error');
@@ -1055,7 +1100,21 @@ function showAdminSection(sectionName) {
 async function loadQuestions() {
     try {
         const questions = await fetchAPI('/api/questions');
+        const subjectsData = await fetchAPI('/api/subjects');
+        
         displayQuestions(questions);
+        
+        // Populate subject suggestions in the form
+        const subjectSuggestions = document.getElementById('subject-suggestions');
+        subjectSuggestions.innerHTML = '';
+        
+        if (subjectsData.subjects && subjectsData.subjects.length > 0) {
+            subjectsData.subjects.forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject;
+                subjectSuggestions.appendChild(option);
+            });
+        }
     } catch (error) {
         showToast('Erro ao carregar questões', 'error');
         console.error('Error loading questions:', error);
@@ -1082,6 +1141,7 @@ function displayQuestions(questions) {
         questionDiv.className = 'question-item';
         
         const typeLabel = question.type === 'multiple-choice' ? 'Múltipla Escolha' : 'Discursiva';
+        const subjectLabel = question.subject ? `<span class="question-subject"><i class="fas fa-book"></i> ${question.subject}</span>` : '';
         
         // Create a preview of the question with proper formatting
         const questionPreview = document.createElement('div');
@@ -1093,7 +1153,10 @@ function displayQuestions(questions) {
             <div class="question-header">
                 <div class="question-info">
                     <h4>${truncatedText}</h4>
-                    <span class="question-type">${typeLabel}</span>
+                    <div class="question-badges">
+                        <span class="question-type">${typeLabel}</span>
+                        ${subjectLabel}
+                    </div>
                 </div>
                 <div class="question-actions">
                     <button class="btn btn-small btn-outline" onclick="editQuestion(${question.id})">
@@ -1269,6 +1332,7 @@ async function editQuestion(id) {
         document.getElementById('question-content').innerHTML = question.question;
         document.getElementById('question-content-html').value = question.question;
         document.getElementById('explanation').value = question.explanation || '';
+        document.getElementById('question-subject').value = question.subject || '';
         
         // Handle options for multiple choice
         if (question.type === 'multiple-choice' && question.options) {
@@ -1643,6 +1707,7 @@ function getFormQuestionData() {
     const questionContent = document.getElementById('question-content-html').value;
     const explanation = document.getElementById('explanation').value;
     const numberingType = document.querySelector('input[name="numbering-type"]:checked').value;
+    const subject = document.getElementById('question-subject').value.trim();
     
     let options = null;
     let correctAnswer = '';
@@ -1672,7 +1737,8 @@ function getFormQuestionData() {
         options,
         correctAnswer,
         explanation,
-        numberingType: type === 'multiple-choice' ? numberingType : null
+        numberingType,
+        subject: subject !== '' ? subject : null
     };
 }
 

@@ -174,8 +174,8 @@ class DataManager {
         return shuffled.slice(0, Math.min(count, allQuestions.length));
     }
 
-    // Método para obter questões aleatórias por tipo
-    getRandomQuestionsByType(count, typeFilter = 'mixed') {
+    // Método para obter questões aleatórias por tipo e matéria
+    getRandomQuestionsByType(count, typeFilter = 'mixed', subjectFilter = null) {
         const allQuestions = this.getAllQuestions();
         
         if (allQuestions.length === 0) {
@@ -184,6 +184,7 @@ class DataManager {
 
         let filteredQuestions = [];
         
+        // Filter by type first
         switch (typeFilter) {
             case 'multiple-choice':
                 filteredQuestions = allQuestions.filter(q => q.type === 'multiple-choice');
@@ -197,12 +198,50 @@ class DataManager {
                 break;
         }
 
+        // Filter by subject if specified
+        if (subjectFilter && subjectFilter !== 'all') {
+            if (subjectFilter === 'no-subject') {
+                // Questions without subject
+                filteredQuestions = filteredQuestions.filter(q => !q.subject || q.subject === '');
+            } else {
+                // Questions with specific subject
+                filteredQuestions = filteredQuestions.filter(q => q.subject === subjectFilter);
+            }
+        }
+
         if (filteredQuestions.length === 0) {
             return [];
         }
 
         const shuffled = [...filteredQuestions].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, Math.min(count, filteredQuestions.length));
+    }
+
+    // Método para obter lista de matérias disponíveis
+    getAvailableSubjects() {
+        const allQuestions = this.getAllQuestions();
+        const subjects = new Set();
+        
+        allQuestions.forEach(q => {
+            if (q.subject && q.subject.trim() !== '') {
+                subjects.add(q.subject.trim());
+            }
+        });
+        
+        return Array.from(subjects).sort();
+    }
+
+    // Método para obter contagem de questões por matéria
+    getQuestionCountBySubject() {
+        const allQuestions = this.getAllQuestions();
+        const counts = {};
+        
+        allQuestions.forEach(q => {
+            const subject = q.subject && q.subject.trim() !== '' ? q.subject.trim() : 'no-subject';
+            counts[subject] = (counts[subject] || 0) + 1;
+        });
+        
+        return counts;
     }
 
     // Método para validar login

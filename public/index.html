@@ -257,6 +257,16 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="subject-filter">Matéria:</label>
+                        <select id="subject-filter" name="subject-filter">
+                            <option value="all">Todas as Matérias</option>
+                            <option value="no-subject">Sem Matéria</option>
+                            <!-- Subjects will be populated by JavaScript -->
+                        </select>
+                        <small id="subject-questions-info">Questões disponíveis para esta matéria serão atualizadas</small>
+                    </div>
+                    
+                    <div class="form-group">
                         <label>Modo de Feedback:</label>
                         <div class="radio-group">
                             <label class="radio-option">
@@ -513,6 +523,15 @@
                                     <option value="multiple-choice">Múltipla Escolha</option>
                                     <option value="essay">Discursiva</option>
                                 </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="question-subject">Matéria (opcional):</label>
+                                <input type="text" id="question-subject" name="subject" list="subject-suggestions" placeholder="Ex: Segurança da Informação, Redes, etc.">
+                                <datalist id="subject-suggestions">
+                                    <!-- Subjects will be populated by JavaScript -->
+                                </datalist>
+                                <small>Deixe em branco para questões sem matéria específica</small>
                             </div>
                             
                             <div class="form-group">

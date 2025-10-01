@@ -43,7 +43,7 @@ app.get('/api/questions/:id', (req, res) => {
 
 app.post('/api/questions', (req, res) => {
     try {
-        const { type, question, options, correctAnswer, explanation, numberingType } = req.body;
+        const { type, question, options, correctAnswer, explanation, numberingType, subject } = req.body;
         
         // Validação básica
         if (!type || !question || !correctAnswer) {
@@ -60,7 +60,8 @@ app.post('/api/questions', (req, res) => {
             options: type === 'multiple-choice' ? options : null,
             correctAnswer,
             explanation: explanation || '',
-            numberingType: type === 'multiple-choice' ? (numberingType || 'numbers') : null
+            numberingType: type === 'multiple-choice' ? (numberingType || 'numbers') : null,
+            subject: subject && subject.trim() !== '' ? subject.trim() : null
         };
 
         const newQuestion = dataManager.addQuestion(questionData);
@@ -76,7 +77,7 @@ app.post('/api/questions', (req, res) => {
 
 app.put('/api/questions/:id', (req, res) => {
     try {
-        const { type, question, options, correctAnswer, explanation, numberingType } = req.body;
+        const { type, question, options, correctAnswer, explanation, numberingType, subject } = req.body;
         
         const questionData = {
             type,
@@ -84,7 +85,8 @@ app.put('/api/questions/:id', (req, res) => {
             options: type === 'multiple-choice' ? options : null,
             correctAnswer,
             explanation: explanation || '',
-            numberingType: type === 'multiple-choice' ? (numberingType || 'numbers') : null
+            numberingType: type === 'multiple-choice' ? (numberingType || 'numbers') : null,
+            subject: subject && subject.trim() !== '' ? subject.trim() : null
         };
 
         const success = dataManager.updateQuestion(req.params.id, questionData);
@@ -116,12 +118,13 @@ app.get('/api/quiz/:count', (req, res) => {
     try {
         const count = parseInt(req.params.count);
         const typeFilter = req.query.type || 'mixed'; // 'multiple-choice', 'essay', or 'mixed'
+        const subjectFilter = req.query.subject || null; // subject name or 'all' or 'no-subject'
         
         if (isNaN(count) || count <= 0) {
             return res.status(400).json({ error: 'Número de questões inválido' });
         }
 
-        const questions = dataManager.getRandomQuestionsByType(count, typeFilter);
+        const questions = dataManager.getRandomQuestionsByType(count, typeFilter, subjectFilter);
         
         // Remove a resposta correta das questões para não vazar no frontend
         const questionsForQuiz = questions.map(q => ({
@@ -129,7 +132,8 @@ app.get('/api/quiz/:count', (req, res) => {
             type: q.type,
             question: q.question,
             options: q.options,
-            numberingType: q.numberingType
+            numberingType: q.numberingType,
+            subject: q.subject
         }));
 
         res.json(questionsForQuiz);
@@ -296,6 +300,21 @@ app.get('/api/stats', (req, res) => {
         res.json(stats);
     } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar estatísticas' });
+    }
+});
+
+// API para obter matérias disponíveis
+app.get('/api/subjects', (req, res) => {
+    try {
+        const subjects = dataManager.getAvailableSubjects();
+        const counts = dataManager.getQuestionCountBySubject();
+        
+        res.json({
+            subjects,
+            counts
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao buscar matérias' });
     }
 });
 
